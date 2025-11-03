@@ -15,7 +15,6 @@
 </head>
 <body>
 
-    <!-- NEUE TICKER-LEISTE -->
     <div class="ticker-wrap">
         <div class="ticker">
           <span>Beta Version Sale -50%</span>
@@ -31,7 +30,7 @@
                 <a href="#" class="logo">
                     <img src="logo.png" alt="SynapsePro Logo">
                 </a>
-                <ul>
+                <ul class="desktop-nav">
                     <li><a href="#features">Features</a></li>
                     <li><a href="#dashboard">Showcase</a></li>
                     <li><a href="#pricing">Get it</a></li>
@@ -45,7 +44,11 @@
         <section class="hero">
             <div class="container text-center">
                 <div class="hero-image-wrapper animate-on-scroll">
-                    <img src="display.png" alt="SynapsePro Addon on a Macbook" class="hero-image">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="display-mobile.png">
+                        <source media="(min-width: 769px)" srcset="display.png">
+                        <img src="display.png" alt="SynapsePro Addon on a Macbook" class="hero-image">
+                    </picture>
                 </div>
                 <div class="cta-buttons animate-on-scroll">
                     <a href="#pricing" class="btn btn-primary">Get it now</a>
@@ -94,7 +97,6 @@
             </div>
         </section>
         
-        <!-- NEUER TRENNSTRICH -->
         <div class="section-divider"></div>
 
         <!-- ======== SIDEBAR-SEKTION ======== -->
@@ -110,12 +112,27 @@
             </div>
         </section>
 
-        <!-- ======== PRICING SECTION (ÜBERARBEITET) ======== -->
+        <div class="section-divider"></div>
+
+        <!-- ======== VIDEO-SEKTION ======== -->
+        <section id="walkthrough" class="walkthrough-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="animate-on-scroll">See SynapsePro in Action.</h2>
+                    <p class="animate-on-scroll">Watch this complete walkthrough to see how every feature comes together to create the ultimate Anki experience.</p>
+                </div>
+                <div class="video-wrapper animate-on-scroll">
+                    <video src="walkthrough.mp4" controls playsinline></video>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== PRICING SECTION ======== -->
         <section id="pricing" class="pricing-section">
             <div class="container text-center">
                 <div class="pricing-card animate-on-scroll">
                     <h2 class="pricing-title">Get the Complete SynapsePro Suite.</h2>
-                    <p class="pricing-subtitle">50% Off Beta Version</p>
+                    <p class="pricing-subtitle">One-time payment for a lifetime learning upgrade.</p>
                     <div class="price-container">
                         <span class="original-price"><s>$50</s></span>
                         <div class="price">$25</div>
@@ -123,6 +140,8 @@
                     </div>
                     <a href="#" class="btn btn-primary btn-large">Buy Now</a>
                     <p class="pricing-footer">Secure payment. All future updates included.</p>
+                    <img src="payment.png" class="payment-methods-img" alt="Payment Methods">
+                    <p class="terms-link-wrapper"><a href="#" id="terms-link" class="terms-link">View Terms of Service</a></p>
                 </div>
             </div>
         </section>
@@ -131,24 +150,60 @@
     <footer class="main-footer">
         <div class="container">
             <p>&copy; 2024 SynapsePro. All rights reserved.</p>
-            <!-- Links mit IDs für JavaScript -->
             <p><a href="#" id="impressum-link">Impressum</a> | <a href="#" id="privacy-link">Privacy Policy</a></p>
         </div>
     </footer>
 
-    <!-- NEUE MODALS FÜR IMPRESSUM & DATENSCHUTZ -->
+    <!-- MODALS MIT FINALEM TEXT -->
     <div class="modal-overlay" id="impressum-modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <h2>Impressum</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.</p>
+            <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+            <p>
+                Mobesa Media<br>
+                Kastanienstraße 11<br>
+                24114 Kiel<br>
+                Deutschland
+            </p>
+            <p><strong>Kontakt:</strong></p>
+            <p>E-Mail: kontakt@mobesa.de</p>
+            <p>
+                Als Kleinunternehmer im Sinne von § 19 Abs. 1 UStG wird keine Umsatzsteuer berechnet.
+            </p>
+            <p><strong>EU-Streitschlichtung:</strong></p>
+            <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>.<br>Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+            <p><strong>Verbraucherstreitbeilegung/Universalschlichtungsstelle:</strong></p>
+            <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
         </div>
     </div>
+
     <div class="modal-overlay" id="privacy-modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <h2>Privacy Policy</h2>
-            <p>Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh.</p>
+            <p><strong>Verantwortliche Stelle:</strong></p>
+            <p>
+                Mobesa Media<br>
+                Kastanienstraße 11<br>
+                24114 Kiel<br>
+                E-Mail: kontakt@mobesa.de
+            </p>
+            <h3>Datenerfassung auf dieser Website</h3>
+            <p><strong>Hosting mit GitHub Pages</strong></p>
+            <p>Diese Website wird bei GitHub Pages gehostet. Anbieter ist die GitHub, Inc., 88 Colin P. Kelly Junior Street, San Francisco, CA 94107, USA. Beim Besuch unserer Website erfasst GitHub Pages verschiedene Logfiles einschließlich Ihrer IP-Adresse. Dies dient der Sicherheit und der Bereitstellung der Website. Weitere Informationen finden Sie in der Datenschutzerklärung von GitHub: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement</a>.</p>
+            <p><strong>Google Fonts</strong></p>
+            <p>Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Web Fonts in ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen. Zu diesem Zweck muss der von Ihnen verwendete Browser Verbindung zu den Servern von Google aufnehmen. Hierdurch erlangt Google Kenntnis darüber, dass über Ihre IP-Adresse diese Website aufgerufen wurde. Die Nutzung von Google Fonts erfolgt im Interesse einer einheitlichen und ansprechenden Darstellung unserer Online-Angebote. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar.</p>
+            <p><strong>Cookies und Analysetools</strong></p>
+            <p>Diese Website verwendet keine Cookies, die über die technisch notwendigen Funktionen hinausgehen, und setzt keine Analyse-Tools wie Google Analytics ein. Es findet kein Tracking Ihres Nutzerverhaltens zu Werbe- oder Analysezwecken statt.</p>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="terms-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Terms of Service</h2>
+            <p>Placeholder text for the terms of service. Here you will define exactly what the user gets when they purchase the product, including details about the features, any limitations, the scope of support, and the update policy.</p>
         </div>
     </div>
 

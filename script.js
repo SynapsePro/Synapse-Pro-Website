@@ -49,47 +49,31 @@ document.addEventListener('DOMContentLoaded', function() {
         function pauseEvent(e) { if (e.stopPropagation) e.stopPropagation(); if (e.preventDefault) e.preventDefault(); e.cancelBubble = true; e.returnValue = false; return false; }
     }
 
-    // NEUE LOGIK FÜR MODALS (POP-UPS)
+    // LOGIK FÜR MODALS (POP-UPS)
     const impressumLink = document.getElementById('impressum-link');
     const privacyLink = document.getElementById('privacy-link');
+    const termsLink = document.getElementById('terms-link');
     const impressumModal = document.getElementById('impressum-modal');
     const privacyModal = document.getElementById('privacy-modal');
+    const termsModal = document.getElementById('terms-modal');
     const allModals = document.querySelectorAll('.modal-overlay');
 
-    function openModal(modal) {
-        if (modal) modal.classList.add('visible');
-    }
-
-    function closeModal(modal) {
-        if (modal) modal.classList.remove('visible');
-    }
+    function openModal(modal) { if (modal) modal.classList.add('visible'); }
+    function closeModal(modal) { if (modal) modal.classList.remove('visible'); }
 
     if (impressumLink && impressumModal) {
-        impressumLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal(impressumModal);
-        });
+        impressumLink.addEventListener('click', (e) => { e.preventDefault(); openModal(impressumModal); });
     }
-
     if (privacyLink && privacyModal) {
-        privacyLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal(privacyModal);
-        });
+        privacyLink.addEventListener('click', (e) => { e.preventDefault(); openModal(privacyModal); });
+    }
+    if (termsLink && termsModal) {
+        termsLink.addEventListener('click', (e) => { e.preventDefault(); openModal(termsModal); });
     }
 
     allModals.forEach(modal => {
         const closeButton = modal.querySelector('.modal-close');
-        if (closeButton) {
-            closeButton.addEventListener('click', () => {
-                closeModal(modal);
-            });
-        }
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal(modal);
-            }
-        });
+        if (closeButton) { closeButton.addEventListener('click', () => { closeModal(modal); }); }
+        modal.addEventListener('click', (e) => { if (e.target === modal) { closeModal(modal); } });
     });
-
 });
