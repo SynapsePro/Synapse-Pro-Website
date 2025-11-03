@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynapsePro - The Ultimate Anki Addon</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NEUE TICKER-LEISTE -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+          <span>Beta Version Sale -50%</span>
+          <span>Used By Thousands Of Anki Users in Germany, UK and USA</span>
+          <span>Beta Version Sale -50%</span>
+          <span>Used By Thousands Of Anki Users in Germany, UK and USA</span>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="#" class="logo">
+                    <img src="logo.png" alt="SynapsePro Logo">
+                </a>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#dashboard">Showcase</a></li>
+                    <li><a href="#pricing">Get it</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ======== Hero Section ======== -->
+        <section class="hero">
+            <div class="container text-center">
+                <div class="hero-image-wrapper animate-on-scroll">
+                    <img src="display.png" alt="SynapsePro Addon on a Macbook" class="hero-image">
+                </div>
+                <div class="cta-buttons animate-on-scroll">
+                    <a href="#pricing" class="btn btn-primary">Get it now</a>
+                    <a href="#dashboard" class="btn btn-secondary">See Dashboard &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== FEATURES SECTION ======== -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="animate-on-scroll">Engineered for a Smarter Workflow.</h2>
+                    <p class="animate-on-scroll">SynapsePro is more than an addon. It's a complete ecosystem designed to optimize your learning process.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/ai.svg" alt="AI Icon"></div><h3>AI Assistant</h3><p>Your personal AI tutor. Get instant explanations, generate practice questions, or create clever mnemonics without leaving your card.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/planner.svg" alt="Planner Icon"></div><h3>Study Planner</h3><p>Organize your study sessions with a powerful daily planner. Set goals for each subject and track your progress to stay on schedule.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/design.svg" alt="Design Icon"></div><h3>Modern Design</h3><p>Transform your Anki experience with a clean, modern interface. Our optional theme makes studying feel focused and less cluttered.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/timer.svg" alt="Timer Icon"></div><h3>Pomodoro Timer</h3><p>Boost your focus with the built-in Pomodoro timer. Work in focused sprints and take effective breaks, all managed from the sidebar.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/mindmap.svg" alt="Mindmap Icon"></div><h3>Interactive Mindmap</h3><p>Visualize complex topics with an interactive mind map tool. Connect ideas, build hierarchies, and even learn them like flashcards.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/gamification.svg" alt="Gamification Icon"></div><h3>Gamification</h3><p>Turn learning into an adventure. Earn XP, level up, unlock ranks, and maintain your study streak to stay motivated every single day.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/music.svg" alt="Music Icon"></div><h3>Study Music</h3><p>Set the perfect mood for studying. Access a curated playlist of lofi, ambient sounds, and focus-enhancing music in the sidebar.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/stats.svg" alt="Stats Icon"></div><h3>New Statistics</h3><p>Go beyond basic stats. Get a clear overview of your consistency, review efficiency, and long-term retention on your main dashboard.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/browser.svg" alt="Browser Icon"></div><h3>Web-Browser</h3><p>Keep your resources close. Open Notion, YouTube, or any website in a dedicated sidebar to streamline your research and note-taking.</p></div>
+                </div>
+                <p class="features-subtext animate-on-scroll">...and some more fun Extras.</p>
+            </div>
+        </section>
+
+        <!-- ======== SHOWCASE SECTION ======== -->
+        <section id="dashboard" class="showcase-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="animate-on-scroll">Your Learning Dashboard. Everything at a Glance.</h2>
+                    <p class="animate-on-scroll">SynapsePro transforms your deck browser into a powerful control center. Use the slider below to see the stunning before-and-after comparison.</p>
+                </div>
+                <div class="slider-wrapper animate-on-scroll">
+                    <div id="before-after-slider">
+                        <div id="after-image"><img src="anki-after.png" alt="Anki with SynapsePro"/></div>
+                        <div id="before-image"><img src="anki-before.png" alt="Anki before SynapsePro"/></div>
+                        <div id="resizer"></div>
+                    </div>
+                </div>
+                <p class="slider-subtext animate-on-scroll">You can also disable individual features if the interface feels too cluttered or if you don't need a specific function.</p>
+            </div>
+        </section>
+        
+        <!-- NEUER TRENNSTRICH -->
+        <div class="section-divider"></div>
+
+        <!-- ======== SIDEBAR-SEKTION ======== -->
+        <section id="sidebar-section" class="sidebar-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="animate-on-scroll">Your Integrated Command Center.</h2>
+                    <p class="animate-on-scroll">The Launcher sidebar puts every tool at your fingertips, keeping your workflow fast and focused without ever leaving Anki.</p>
+                </div>
+                <div class="sidebar-image-wrapper animate-on-scroll">
+                    <img src="sidebar_explanation.png" alt="Anatomy of the SynapsePro Sidebar">
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== PRICING SECTION (ÜBERARBEITET) ======== -->
+        <section id="pricing" class="pricing-section">
+            <div class="container text-center">
+                <div class="pricing-card animate-on-scroll">
+                    <h2 class="pricing-title">Get the Complete SynapsePro Suite.</h2>
+                    <p class="pricing-subtitle">50% Off Beta Version</p>
+                    <div class="price-container">
+                        <span class="original-price"><s>$50</s></span>
+                        <div class="price">$25</div>
+                        <span class="price-tag">one-time</span>
+                    </div>
+                    <a href="#" class="btn btn-primary btn-large">Buy Now</a>
+                    <p class="pricing-footer">Secure payment. All future updates included.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2024 SynapsePro. All rights reserved.</p>
+            <!-- Links mit IDs für JavaScript -->
+            <p><a href="#" id="impressum-link">Impressum</a> | <a href="#" id="privacy-link">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <!-- NEUE MODALS FÜR IMPRESSUM & DATENSCHUTZ -->
+    <div class="modal-overlay" id="impressum-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Impressum</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.</p>
+        </div>
+    </div>
+    <div class="modal-overlay" id="privacy-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p>Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
