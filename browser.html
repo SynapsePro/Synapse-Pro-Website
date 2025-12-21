@@ -15,11 +15,11 @@
 </head>
 <body>
 
-    <!-- Vereinfachter Header ohne Navigation, nur Logo -->
+    <!-- Header: Logo ist jetzt größer (height: 60px) -->
     <header class="main-header">
         <div class="container">
-            <nav class="main-nav" style="justify-content: center;">
-                <a href="index.html" class="logo">
+            <nav class="main-nav" style="justify-content: center; height: 100px;">
+                <a href="index.html" class="logo" style="height: 60px;">
                     <img src="logo.png" alt="SynapsePro Logo">
                 </a>
             </nav>
@@ -32,54 +32,50 @@
             <div class="container text-center">
                 <div class="section-header">
                     <h2 class="animate-on-scroll">Welcome to your Browser.</h2>
-                    <p class="animate-on-scroll">Select your preferred search engine below to start browsing the web directly within Anki.</p>
+                    <p class="animate-on-scroll">Select your preferred search engine to start browsing the web directly within Anki.</p>
                 </div>
 
-                <div class="engine-list animate-on-scroll">
+                <!-- Hier ist jetzt das Grid statt der Liste -->
+                <div class="browser-grid animate-on-scroll">
                     
                     <!-- Google -->
-                    <a href="https://www.google.com" class="engine-card">
-                        <div class="engine-icon-wrapper">
-                            <img src="icons/google.png" alt="Google Logo">
+                    <a href="https://www.google.com" class="browser-card">
+                        <div class="browser-icon">
+                            <img src="icons/google.png" alt="Google">
                         </div>
-                        <span class="engine-name">Google</span>
-                        <span class="engine-arrow">&rarr;</span>
+                        <h3>Google</h3>
                     </a>
 
                     <!-- Bing -->
-                    <a href="https://www.bing.com" class="engine-card">
-                        <div class="engine-icon-wrapper">
-                            <img src="icons/bing.png" alt="Bing Logo">
+                    <a href="https://www.bing.com" class="browser-card">
+                        <div class="browser-icon">
+                            <img src="icons/bing.png" alt="Bing">
                         </div>
-                        <span class="engine-name">Bing</span>
-                        <span class="engine-arrow">&rarr;</span>
+                        <h3>Bing</h3>
                     </a>
 
                     <!-- DuckDuckGo -->
-                    <a href="https://duckduckgo.com" class="engine-card">
-                        <div class="engine-icon-wrapper">
-                            <img src="icons/duckduckgo.png" alt="DuckDuckGo Logo">
+                    <a href="https://duckduckgo.com" class="browser-card">
+                        <div class="browser-icon">
+                            <img src="icons/duckduckgo.png" alt="DuckDuckGo">
                         </div>
-                        <span class="engine-name">DuckDuckGo</span>
-                        <span class="engine-arrow">&rarr;</span>
+                        <h3>DuckDuckGo</h3>
                     </a>
 
-                    <!-- YouTube (Sehr wichtig für Lernen) -->
-                    <a href="https://www.youtube.com" class="engine-card">
-                        <div class="engine-icon-wrapper">
-                            <img src="icons/youtube.png" alt="YouTube Logo">
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com" class="browser-card">
+                        <div class="browser-icon">
+                            <img src="icons/youtube.png" alt="YouTube">
                         </div>
-                        <span class="engine-name">YouTube</span>
-                        <span class="engine-arrow">&rarr;</span>
+                        <h3>YouTube</h3>
                     </a>
 
                     <!-- Wikipedia -->
-                    <a href="https://www.wikipedia.org" class="engine-card">
-                        <div class="engine-icon-wrapper">
-                            <img src="icons/wikipedia.png" alt="Wikipedia Logo">
+                    <a href="https://www.wikipedia.org" class="browser-card">
+                        <div class="browser-icon">
+                            <img src="icons/wikipedia.png" alt="Wikipedia">
                         </div>
-                        <span class="engine-name">Wikipedia</span>
-                        <span class="engine-arrow">&rarr;</span>
+                        <h3>Wikipedia</h3>
                     </a>
 
                 </div>
@@ -93,7 +89,6 @@
         </div>
     </footer>
 
-    <!-- Wir nutzen das gleiche Script für die Animationen -->
     <script src="script.js"></script>
 
 </body>
