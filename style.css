@@ -156,17 +156,16 @@ p { font-size: 1.1rem; color: var(--text-color-light); max-width: 650px; margin-
     .hero { padding-top: 20px; padding-bottom: 60px; }
 }
 
-/* ======== BROWSER TOOL PAGE (FINAL DESIGN) ======== */
+/* ======== BROWSER TOOL PAGE (VERTICAL LIST FINAL) ======== */
 
-/* 1. Lücke oben entfernen & Hintergrundfarbe setzen */
+/* 1. Grundeinstellungen: Keine Lücke oben, hellblauer Hintergrund */
 body.browser-body {
-    padding-top: 0 !important; /* Überschreibt die 30px vom Ticker */
-    background-color: #F5F8FA; /* Das ganz helle Blau wie im Screenshot */
+    padding-top: 0 !important;
+    background-color: #F5F8FA;
 }
 
-/* Header auf dieser Seite anpassen */
 .browser-header {
-    background-color: transparent !important; /* Header transparent, damit er ins Blau übergeht */
+    background-color: transparent !important;
     top: 0 !important;
     box-shadow: none !important;
     padding-top: 20px;
@@ -174,33 +173,35 @@ body.browser-body {
 }
 
 .browser-section {
-    min-height: 80vh; /* Zentriert den Inhalt vertikal auf dem Screen */
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     padding-top: 0;
+    padding-bottom: 50px;
 }
 
-/* 2. Das Grid Layout (2 Spalten wie im Screenshot Stil) */
-.browser-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive Spalten */
-    gap: 20px;
-    max-width: 800px; /* Begrenzt die Breite, damit es nicht zu breit wird */
-    margin: 0 auto;
+/* 2. Layout: Liste sauber untereinander */
+.browser-list {
+    display: flex;
+    flex-direction: column; /* Wichtig: Untereinander */
+    gap: 15px;              /* Abstand zwischen den Boxen */
+    max-width: 600px;       /* Nicht zu breit werden lassen */
+    width: 100%;
+    margin: 0 auto;         /* Horizontal zentrieren */
 }
 
 /* 3. Die Karte (Weiß, Rahmen, Abgerundet, Schatten) */
 .browser-card {
     background-color: #ffffff;
-    border: 1px solid #e1e4e8; /* Der minimale graue Rand */
-    border-radius: 12px;       /* Die abgerundeten Ecken */
-    padding: 20px;             /* Innenabstand */
+    border: 1px solid #e1e4e8; /* Feiner grauer Rand */
+    border-radius: 12px;
+    padding: 18px 25px;
     text-decoration: none;
-    display: flex;             /* Flexbox für Nebeneinander-Anordnung */
-    align-items: center;       /* Vertikal zentrieren */
-    justify-content: flex-start; /* Links bündig */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02); /* Sehr subtiler Schatten */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
 /* Hover Effekt */
@@ -210,12 +211,12 @@ body.browser-body {
     border-color: var(--primary-blue);
 }
 
-/* 4. Das Icon (Größe erzwingen!) */
+/* 4. Das Icon (feste Größe, Bild passt sich an) */
 .browser-icon-wrapper {
-    width: 40px;      /* Feste Breite */
-    height: 40px;     /* Feste Höhe */
-    min-width: 40px;  /* Verhindert Quetschen */
-    margin-right: 15px; /* Abstand zum Text rechts daneben */
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    margin-right: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -224,12 +225,12 @@ body.browser-body {
 .browser-icon-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Sorgt dafür, dass deine 500px Bilder perfekt hineinpassen */
+    object-fit: contain;
 }
 
-/* 5. Der Text (Name der Suchmaschine) */
+/* 5. Der Text */
 .browser-name {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #1a202c; /* Dunkles Grau/Schwarz für gute Lesbarkeit */
+    color: #1a202c;
 }
