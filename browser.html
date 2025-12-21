@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SynapsePro - Browser Tool</title>
+    <title>SynapsePro - Browser</title>
     
     <link rel="icon" type="image/png" href="logo.png">
 
@@ -13,12 +13,11 @@
     
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="browser-body"> <!-- Diese Klasse entfernt die Lücke und setzt die Farbe -->
 
-    <!-- Header: Logo ist jetzt größer (height: 60px) -->
-    <header class="main-header">
+    <header class="main-header browser-header">
         <div class="container">
-            <nav class="main-nav" style="justify-content: center; height: 100px;">
+            <nav class="main-nav" style="justify-content: center;">
                 <a href="index.html" class="logo" style="height: 60px;">
                     <img src="logo.png" alt="SynapsePro Logo">
                 </a>
@@ -27,67 +26,59 @@
     </header>
 
     <main>
-        <!-- ======== BROWSER SELECTION SECTION ======== -->
         <section class="browser-section">
-            <div class="container text-center">
-                <div class="section-header">
+            <div class="container">
+                <div class="section-header text-center">
                     <h2 class="animate-on-scroll">Welcome to your Browser.</h2>
                     <p class="animate-on-scroll">Select your preferred search engine to start browsing the web directly within Anki.</p>
                 </div>
 
-                <!-- Hier ist jetzt das Grid statt der Liste -->
                 <div class="browser-grid animate-on-scroll">
                     
                     <!-- Google -->
                     <a href="https://www.google.com" class="browser-card">
-                        <div class="browser-icon">
+                        <div class="browser-icon-wrapper">
                             <img src="icons/google.png" alt="Google">
                         </div>
-                        <h3>Google</h3>
+                        <span class="browser-name">Google</span>
                     </a>
 
                     <!-- Bing -->
                     <a href="https://www.bing.com" class="browser-card">
-                        <div class="browser-icon">
+                        <div class="browser-icon-wrapper">
                             <img src="icons/bing.png" alt="Bing">
                         </div>
-                        <h3>Bing</h3>
+                        <span class="browser-name">Bing</span>
                     </a>
 
                     <!-- DuckDuckGo -->
                     <a href="https://duckduckgo.com" class="browser-card">
-                        <div class="browser-icon">
+                        <div class="browser-icon-wrapper">
                             <img src="icons/duckduckgo.png" alt="DuckDuckGo">
                         </div>
-                        <h3>DuckDuckGo</h3>
+                        <span class="browser-name">DuckDuckGo</span>
                     </a>
 
                     <!-- YouTube -->
                     <a href="https://www.youtube.com" class="browser-card">
-                        <div class="browser-icon">
+                        <div class="browser-icon-wrapper">
                             <img src="icons/youtube.png" alt="YouTube">
                         </div>
-                        <h3>YouTube</h3>
+                        <span class="browser-name">YouTube</span>
                     </a>
 
                     <!-- Wikipedia -->
                     <a href="https://www.wikipedia.org" class="browser-card">
-                        <div class="browser-icon">
+                        <div class="browser-icon-wrapper">
                             <img src="icons/wikipedia.png" alt="Wikipedia">
                         </div>
-                        <h3>Wikipedia</h3>
+                        <span class="browser-name">Wikipedia</span>
                     </a>
 
                 </div>
             </div>
         </section>
     </main>
-
-    <footer class="main-footer">
-        <div class="container">
-            <p>&copy; 2024 SynapsePro. All rights reserved.</p>
-        </div>
-    </footer>
 
     <script src="script.js"></script>
 
