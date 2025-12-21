@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynapsePro - Browser Tool</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Vereinfachter Header ohne Navigation, nur Logo -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="main-nav" style="justify-content: center;">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="SynapsePro Logo">
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ======== BROWSER SELECTION SECTION ======== -->
+        <section class="browser-section">
+            <div class="container text-center">
+                <div class="section-header">
+                    <h2 class="animate-on-scroll">Welcome to your Browser.</h2>
+                    <p class="animate-on-scroll">Select your preferred search engine below to start browsing the web directly within Anki.</p>
+                </div>
+
+                <div class="engine-list animate-on-scroll">
+                    
+                    <!-- Google -->
+                    <a href="https://www.google.com" class="engine-card">
+                        <div class="engine-icon-wrapper">
+                            <img src="icons/google.png" alt="Google Logo">
+                        </div>
+                        <span class="engine-name">Google</span>
+                        <span class="engine-arrow">&rarr;</span>
+                    </a>
+
+                    <!-- Bing -->
+                    <a href="https://www.bing.com" class="engine-card">
+                        <div class="engine-icon-wrapper">
+                            <img src="icons/bing.png" alt="Bing Logo">
+                        </div>
+                        <span class="engine-name">Bing</span>
+                        <span class="engine-arrow">&rarr;</span>
+                    </a>
+
+                    <!-- DuckDuckGo -->
+                    <a href="https://duckduckgo.com" class="engine-card">
+                        <div class="engine-icon-wrapper">
+                            <img src="icons/duckduckgo.png" alt="DuckDuckGo Logo">
+                        </div>
+                        <span class="engine-name">DuckDuckGo</span>
+                        <span class="engine-arrow">&rarr;</span>
+                    </a>
+
+                    <!-- YouTube (Sehr wichtig für Lernen) -->
+                    <a href="https://www.youtube.com" class="engine-card">
+                        <div class="engine-icon-wrapper">
+                            <img src="icons/youtube.png" alt="YouTube Logo">
+                        </div>
+                        <span class="engine-name">YouTube</span>
+                        <span class="engine-arrow">&rarr;</span>
+                    </a>
+
+                    <!-- Wikipedia -->
+                    <a href="https://www.wikipedia.org" class="engine-card">
+                        <div class="engine-icon-wrapper">
+                            <img src="icons/wikipedia.png" alt="Wikipedia Logo">
+                        </div>
+                        <span class="engine-name">Wikipedia</span>
+                        <span class="engine-arrow">&rarr;</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2024 SynapsePro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Wir nutzen das gleiche Script für die Animationen -->
+    <script src="script.js"></script>
+
+</body>
+</html>
