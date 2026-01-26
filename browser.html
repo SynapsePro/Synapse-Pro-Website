@@ -12,10 +12,60 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
+
+    <!-- Interne Styles für die spezifischen Anpassungen -->
+    <style>
+        /* 1. Hintergrund auf Hellgrau ändern */
+        body.browser-body {
+            background-color: rgb(242, 242, 242) !important;
+        }
+
+        /* 2. Header Fixierung und Milchglas-Effekt entfernen */
+        header.browser-header {
+            position: relative !important; /* Scrollt mit, nicht fixiert */
+            top: auto !important;
+            backdrop-filter: none !important; /* Kein Milchglas */
+            background: transparent !important; /* Keine Hintergrundfarbe falls nötig */
+            box-shadow: none !important;
+            padding-top: 20px;
+            padding-bottom: 0;
+        }
+
+        /* 3. Style für die neue Tutorial-Box */
+        .tutorial-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px 25px;
+            max-width: 600px;
+            margin: 30px auto 40px auto; /* Abstand nach oben und unten */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Leichter Schatten zum Abheben */
+            text-align: center;
+        }
+
+        .tutorial-card h3 {
+            color: rgb(11, 90, 201);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .tutorial-card p {
+            color: #4a4a4a;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Leichte Anpassung, damit der Titel nicht zu nah am Header klebt */
+        .section-header {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body class="browser-body">
 
-    <!-- Header: Logo ist nicht anklickbar -->
+    <!-- Header: Logo scrollt jetzt mit -->
     <header class="main-header browser-header">
         <div class="container">
             <nav class="main-nav" style="justify-content: center;">
@@ -30,9 +80,19 @@
         <section class="browser-section">
             <div class="container">
                 <div class="section-header text-center">
-                    <!-- Titel in Wunschfarbe -->
+                    <!-- Titel -->
                     <h2 class="animate-on-scroll" style="color: rgb(11, 90, 201);">Welcome to your Browser.</h2>
                     <p class="animate-on-scroll">Select your preferred search engine to start browsing the web directly within Anki.</p>
+                </div>
+
+                <!-- NEUE TUTORIAL BOX -->
+                <div class="tutorial-card animate-on-scroll">
+                    <h3>💡 Pro Tip: Quick Search</h3>
+                    <p>
+                        Highlight any text within your Anki cards, right-click, and select 
+                        <strong>"Search in Sidebar..."</strong>. 
+                        The selected term will be automatically searched in this browser.
+                    </p>
                 </div>
 
                 <div class="browser-list animate-on-scroll">
