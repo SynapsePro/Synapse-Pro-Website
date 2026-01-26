@@ -13,39 +13,41 @@
     
     <link rel="stylesheet" href="style.css">
 
-    <!-- Interne Styles für die spezifischen Anpassungen -->
     <style>
-        /* 1. Hintergrund auf Hellgrau ändern */
+        /* 1. Hintergrund & Top-Line */
         body.browser-body {
-            background-color: rgb(242, 242, 242) !important;
+            background-color: #f2f2f2 !important;
+            border-top: 1px solid #cccccc; /* Minimaler mittelgrauer Strich ganz oben */
+            margin-top: 0; /* Sicherstellen, dass der Strich ganz oben sitzt */
         }
 
         /* 2. Header Fixierung und Milchglas-Effekt entfernen */
         header.browser-header {
-            position: relative !important; /* Scrollt mit, nicht fixiert */
+            position: relative !important;
             top: auto !important;
-            backdrop-filter: none !important; /* Kein Milchglas */
-            background: transparent !important; /* Keine Hintergrundfarbe falls nötig */
+            backdrop-filter: none !important;
+            background: transparent !important;
             box-shadow: none !important;
             padding-top: 20px;
             padding-bottom: 0;
         }
 
-        /* 3. Style für die neue Tutorial-Box */
+        /* 3. Style für die Tutorial-Box (angepasst an Browser-Cards) */
         .tutorial-card {
             background-color: #ffffff;
+            border: 1px solid #e5e5e5; /* Dezenter grauer Rand wie gewünscht */
             border-radius: 12px;
             padding: 20px 25px;
             max-width: 600px;
-            margin: 30px auto 40px auto; /* Abstand nach oben und unten */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Leichter Schatten zum Abheben */
+            margin: 30px auto 40px auto;
+            box-shadow: none !important; /* Keinen Schatten */
             text-align: center;
         }
 
         .tutorial-card h3 {
             color: rgb(11, 90, 201);
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-size: 1.1rem;
             font-weight: 700;
         }
@@ -57,7 +59,7 @@
             margin: 0;
         }
 
-        /* Leichte Anpassung, damit der Titel nicht zu nah am Header klebt */
+        /* Abstand Titel zum Header */
         .section-header {
             margin-top: 20px;
         }
@@ -65,7 +67,7 @@
 </head>
 <body class="browser-body">
 
-    <!-- Header: Logo scrollt jetzt mit -->
+    <!-- Header: Logo scrollt normal mit -->
     <header class="main-header browser-header">
         <div class="container">
             <nav class="main-nav" style="justify-content: center;">
@@ -80,14 +82,13 @@
         <section class="browser-section">
             <div class="container">
                 <div class="section-header text-center">
-                    <!-- Titel -->
                     <h2 class="animate-on-scroll" style="color: rgb(11, 90, 201);">Welcome to your Browser.</h2>
                     <p class="animate-on-scroll">Select your preferred search engine to start browsing the web directly within Anki.</p>
                 </div>
 
-                <!-- NEUE TUTORIAL BOX -->
+                <!-- Tutorial Box im gewünschten Clean-Look -->
                 <div class="tutorial-card animate-on-scroll">
-                    <h3>💡 Pro Tip: Quick Search</h3>
+                    <h3>Quick Search</h3>
                     <p>
                         Highlight any text within your Anki cards, right-click, and select 
                         <strong>"Search in Sidebar..."</strong>. 
