@@ -16,12 +16,12 @@
     <style>
         /* 1. Hintergrund & Top-Line */
         body.browser-body {
-            background-color: #f2f2f2 !important;
-            border-top: 1px solid #cccccc; /* Minimaler mittelgrauer Strich ganz oben */
-            margin-top: 0; /* Sicherstellen, dass der Strich ganz oben sitzt */
+            background-color: #ffffff !important; /* Hintergrund jetzt Weiß */
+            border-top: 1px solid #cccccc; 
+            margin-top: 0; 
         }
 
-        /* 2. Header Fixierung und Milchglas-Effekt entfernen */
+        /* 2. Header Fixierung */
         header.browser-header {
             position: relative !important;
             top: auto !important;
@@ -29,18 +29,18 @@
             background: transparent !important;
             box-shadow: none !important;
             padding-top: 20px;
-            padding-bottom: 0;
+            padding-bottom: 5px; /* Abstand nach unten verringert */
         }
 
-        /* 3. Style für die Tutorial-Box (angepasst an Browser-Cards) */
+        /* 3. Style für die Tutorial-Box (angepasst: Hellgrau) */
         .tutorial-card {
-            background-color: #ffffff;
-            border: 1px solid #e5e5e5; /* Dezenter grauer Rand wie gewünscht */
+            background-color: #f9f9f9; /* Dezentes Hellgrau */
+            border: 1px solid #e5e5e5; 
             border-radius: 12px;
             padding: 20px 25px;
             max-width: 600px;
             margin: 30px auto 40px auto;
-            box-shadow: none !important; /* Keinen Schatten */
+            box-shadow: none !important;
             text-align: center;
         }
 
@@ -59,9 +59,16 @@
             margin: 0;
         }
 
-        /* Abstand Titel zum Header */
+        /* 4. Override für die Browser-Cards (angepasst: Hellgrau) */
+        /* Da die Cards vermutlich im style.css definiert sind, überschreiben wir hier den Hintergrund */
+        .browser-card {
+            background-color: #f9f9f9 !important; /* Dezentes Hellgrau */
+            border: 1px solid #e5e5e5 !important; /* Rand passend behalten */
+        }
+
+        /* Abstand Titel zum Header verringert */
         .section-header {
-            margin-top: 20px;
+            margin-top: 5px; /* Vorher 20px, jetzt weniger Abstand zum Logo */
         }
     </style>
 </head>
@@ -72,7 +79,8 @@
         <div class="container">
             <nav class="main-nav" style="justify-content: center;">
                 <span class="logo" style="height: 60px; pointer-events: none;">
-                    <img src="logo.png" alt="SynapsePro Logo">
+                    <!-- Bild geändert zu browser.png -->
+                    <img src="browser.png" alt="SynapsePro Browser Logo">
                 </span>
             </nav>
         </div>
@@ -82,11 +90,12 @@
         <section class="browser-section">
             <div class="container">
                 <div class="section-header text-center">
-                    <h2 class="animate-on-scroll" style="color: rgb(11, 90, 201);">Welcome to your Browser.</h2>
+                    <!-- Text geändert zu "Internet Browser" -->
+                    <h2 class="animate-on-scroll" style="color: rgb(11, 90, 201);">Internet Browser</h2>
                     <p class="animate-on-scroll">Select your preferred search engine to start browsing the web directly within Anki.</p>
                 </div>
 
-                <!-- Tutorial Box im gewünschten Clean-Look -->
+                <!-- Tutorial Box -->
                 <div class="tutorial-card animate-on-scroll">
                     <h3>Quick Search</h3>
                     <p>
