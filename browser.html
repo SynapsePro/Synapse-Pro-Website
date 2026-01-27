@@ -16,7 +16,7 @@
     <style>
         /* 1. Hintergrund & Top-Line */
         body.browser-body {
-            background-color: #ffffff !important; /* Hintergrund jetzt Weiß */
+            background-color: #ffffff !important;
             border-top: 1px solid #cccccc; 
             margin-top: 0; 
         }
@@ -29,17 +29,28 @@
             background: transparent !important;
             box-shadow: none !important;
             padding-top: 20px;
-            padding-bottom: 5px; /* Abstand nach unten verringert */
+            padding-bottom: 5px;
         }
 
-        /* 3. Style für die Tutorial-Box (angepasst: Hellgrau) */
+        /* Titel-Styling (Dünner) */
+        .section-header h2 {
+            font-weight: 500 !important; /* Dünnere Schriftart (Medium) */
+        }
+
+        /* Abstand Text zur Box verringern */
+        .section-header p {
+            margin-bottom: 10px !important; /* Weniger Abstand nach unten */
+        }
+
+        /* 3. Style für die Tutorial-Box */
         .tutorial-card {
             background-color: #f9f9f9; /* Dezentes Hellgrau */
             border: 1px solid #e5e5e5; 
             border-radius: 12px;
             padding: 20px 25px;
             max-width: 600px;
-            margin: 30px auto 40px auto;
+            /* margin-top verringert von 30px auf 10px */
+            margin: 10px auto 40px auto; 
             box-shadow: none !important;
             text-align: center;
         }
@@ -59,27 +70,25 @@
             margin: 0;
         }
 
-        /* 4. Override für die Browser-Cards (angepasst: Hellgrau) */
-        /* Da die Cards vermutlich im style.css definiert sind, überschreiben wir hier den Hintergrund */
+        /* 4. Override für die Browser-Cards */
         .browser-card {
             background-color: #f9f9f9 !important; /* Dezentes Hellgrau */
-            border: 1px solid #e5e5e5 !important; /* Rand passend behalten */
+            border: 1px solid #e5e5e5 !important;
         }
 
-        /* Abstand Titel zum Header verringert */
+        /* Abstand Titel zum Header */
         .section-header {
-            margin-top: 5px; /* Vorher 20px, jetzt weniger Abstand zum Logo */
+            margin-top: 5px;
         }
     </style>
 </head>
 <body class="browser-body">
 
-    <!-- Header: Logo scrollt normal mit -->
+    <!-- Header -->
     <header class="main-header browser-header">
         <div class="container">
             <nav class="main-nav" style="justify-content: center;">
                 <span class="logo" style="height: 60px; pointer-events: none;">
-                    <!-- Bild geändert zu browser.png -->
                     <img src="browser.png" alt="SynapsePro Browser Logo">
                 </span>
             </nav>
@@ -90,7 +99,6 @@
         <section class="browser-section">
             <div class="container">
                 <div class="section-header text-center">
-                    <!-- Text geändert zu "Internet Browser" -->
                     <h2 class="animate-on-scroll" style="color: rgb(11, 90, 201);">Internet Browser</h2>
                     <p class="animate-on-scroll">Select your preferred search engine to start browsing the web directly within Anki.</p>
                 </div>
