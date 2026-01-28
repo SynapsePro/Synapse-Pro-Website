@@ -6,100 +6,230 @@
     <title>SynapsePro - Browser</title>
     
     <link rel="icon" type="image/png" href="logo.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Lottie Player Script (Notwendig für die .json Animation) -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- Falls style.css existiert -->
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* 1. Hintergrund & Top-Line */
+        /* --- APPLE SYSTEM VARIABLES --- */
+        :root {
+            --bg-color: #ffffff;
+            --card-bg: #F5F5F7; /* Apple System Gray 6 */
+            --card-border: #E5E5EA; /* Apple System Gray 5 */
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-blue: #0071D3; /* Synapse Blue */
+            --hover-bg: #EAEAEB;
+            --radius-l: 20px;
+            --radius-m: 14px;
+        }
+
+        /* --- GLOBAL RESET & TYPOGRAPHY --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
         body.browser-body {
-            background-color: #ffffff !important;
-            border-top: 1px solid #cccccc; 
-            margin-top: 0; 
+            background-color: var(--bg-color) !important;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-primary);
+            padding-top: 20px; 
         }
 
-        /* 2. Header Fixierung */
+        /* --- FIXED TOP BORDER (Der "ewige" Strich) --- */
+        .fixed-top-border {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #d1d1d6;
+            z-index: 9999;
+        }
+
+        /* --- HEADER --- */
         header.browser-header {
-            position: relative !important;
-            top: auto !important;
-            backdrop-filter: none !important;
-            background: transparent !important;
-            box-shadow: none !important;
-            padding-top: 20px;
-            padding-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0 10px 0;
+            background: transparent;
         }
 
-        /* Titel-Styling (Dünner) */
-        .section-header h2 {
-            font-weight: 500 !important; /* Dünnere Schriftart (Medium) */
+        /* Container für die Lottie Animation */
+        .logo-wrapper {
+            width: 150px;
+            height: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none; /* Keine Interaktion mit der Animation */
         }
 
-        /* Abstand Text zur Box verringern */
-        .section-header p {
-            margin-bottom: 10px !important; /* Weniger Abstand nach unten */
+        /* --- MAIN CONTENT --- */
+        .container {
+            max-width: 600px; /* Etwas schmaler für den "Stack"-Look */
+            margin: 0 auto;
+            padding: 0 20px 40px 20px;
         }
 
-        /* 3. Style für die Tutorial-Box */
-        .tutorial-card {
-            background-color: #f9f9f9; /* Dezentes Hellgrau */
-            border: 1px solid #e5e5e5; 
-            border-radius: 12px;
-            padding: 20px 25px;
-            max-width: 600px;
-            /* margin-top verringert von 30px auf 10px */
-            margin: 10px auto 40px auto; 
-            box-shadow: none !important;
+        .section-header {
             text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        /* --- TUTORIAL CARD --- */
+        .tutorial-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-l);
+            padding: 20px 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 1px solid var(--card-border);
         }
 
         .tutorial-card h3 {
-            color: rgb(11, 90, 201);
-            margin-top: 0;
-            margin-bottom: 12px;
-            font-size: 1.1rem;
+            color: var(--accent-blue);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             font-weight: 700;
+            margin-bottom: 8px;
         }
 
         .tutorial-card p {
-            color: #4a4a4a;
-            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-size: 14px;
             line-height: 1.5;
-            margin: 0;
         }
 
-        /* 4. Override für die Browser-Cards */
+        .tutorial-card strong {
+            font-weight: 600;
+        }
+
+        /* --- BROWSER LIST (Vertical Stack) --- */
+        .browser-list {
+            display: flex;
+            flex-direction: column; /* WICHTIG: Untereinander */
+            gap: 12px; /* Abstand zwischen den Boxen */
+        }
+
+        /* --- BROWSER CARD (Row Layout) --- */
         .browser-card {
-            background-color: #f9f9f9 !important; /* Dezentes Hellgrau */
-            border: 1px solid #e5e5e5 !important;
+            display: flex;
+            align-items: center; /* Vertikal zentrieren */
+            justify-content: flex-start; /* Links ausrichten */
+            
+            background-color: var(--card-bg) !important;
+            border: 1px solid transparent !important;
+            border-radius: var(--radius-m);
+            
+            padding: 16px 20px;
+            width: 100%; /* Volle Breite */
+            
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
 
-        /* Abstand Titel zum Header */
-        .section-header {
-            margin-top: 5px;
+        .browser-card:hover {
+            background-color: var(--hover-bg) !important;
+            transform: scale(1.02); /* Leichter Zoom beim Hover */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
+
+        .browser-card:active {
+            transform: scale(0.98);
+            opacity: 0.8;
+        }
+
+        .browser-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 18px; /* Abstand Bild zu Text */
+        }
+
+        .browser-icon-wrapper img {
+            width: 32px; /* Etwas kleiner für die Listenansicht */
+            height: 32px;
+            object-fit: contain;
+            /* Subtiler Schatten für die Icons */
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .browser-name {
+            font-size: 17px; /* Standard iOS Listengröße */
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header h2 { animation-delay: 0.1s; }
+        .section-header p { animation-delay: 0.2s; }
+        .tutorial-card { animation-delay: 0.3s; }
+        .browser-list { animation-delay: 0.4s; }
+
     </style>
 </head>
 <body class="browser-body">
 
-    <!-- Header -->
+    <!-- Fixierte Linie -->
+    <div class="fixed-top-border"></div>
+
     <header class="main-header browser-header">
-        <div class="container">
-            <nav class="main-nav" style="justify-content: center;">
-                <span class="logo" style="height: 60px; pointer-events: none;">
-                    <img src="browser.png" alt="SynapsePro Browser Logo">
-                </span>
-            </nav>
+        <div class="logo-wrapper">
+            <!-- Lottie Animation -->
+            <lottie-player 
+                src="browser.json" 
+                background="transparent" 
+                speed="1" 
+                style="width: 150px; height: 75px;" 
+                loop 
+                autoplay>
+            </lottie-player>
         </div>
     </header>
 
     <main>
         <section class="browser-section">
             <div class="container">
-                <div class="section-header text-center">
-                    <h2 class="animate-on-scroll" style="color: rgb(11, 90, 201);">Internet Browser</h2>
+                
+                <div class="section-header">
+                    <h2 class="animate-on-scroll">Internet Browser</h2>
                     <p class="animate-on-scroll">Select your preferred search engine to start browsing the web directly within Anki.</p>
                 </div>
 
@@ -109,10 +239,11 @@
                     <p>
                         Highlight any text within your Anki cards, right-click, and select 
                         <strong>"Search in Sidebar..."</strong>. 
-                        The selected term will be automatically searched in this browser.
+                        The selected term will be automatically searched here.
                     </p>
                 </div>
 
+                <!-- Vertical Stack List -->
                 <div class="browser-list animate-on-scroll">
                     
                     <!-- Google -->
