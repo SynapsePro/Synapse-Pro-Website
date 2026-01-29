@@ -7,24 +7,40 @@
     
     <link rel="icon" type="image/png" href="logo.png">
     
-    <!-- Lottie Player Script (Notwendig für die .json Animation) -->
+    <!-- Lottie Player Script -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <!-- Falls style.css existiert -->
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* --- APPLE SYSTEM VARIABLES --- */
+        /* --- CSS VARIABLES (Light Mode Defaults) --- */
         :root {
             --bg-color: #ffffff;
             --card-bg: #F5F5F7; /* Apple System Gray 6 */
-            --card-border: #0071D3; /* Apple System Gray 5 */
+            --card-border: #E5E5EA; /* Standardmäßiges Apple Grau für Borders */
             --text-primary: #1d1d1f;
             --text-secondary: #86868b;
             --accent-blue: #0071D3; /* Synapse Blue */
             --hover-bg: #EAEAEB;
+            --top-line: #d1d1d6;
+            
             --radius-l: 20px;
             --radius-m: 14px;
+        }
+
+        /* --- DARK MODE (System Preference) --- */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #2C2C2C; /* Gewünschte Hintergrundfarbe */
+                --card-bg: #3a3a3c;  /* Karten etwas heller als Hintergrund */
+                --card-border: #454545;
+                --text-primary: #e0e0e0;
+                --text-secondary: #a0a0a5;
+                --accent-blue: #4facfe; /* Etwas helleres Blau für bessere Lesbarkeit auf Dunkel */
+                --hover-bg: #48484a;
+                --top-line: #454545;
+            }
         }
 
         /* --- GLOBAL RESET & TYPOGRAPHY --- */
@@ -40,17 +56,19 @@
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: var(--text-primary);
             padding-top: 20px; 
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* --- FIXED TOP BORDER (Der "ewige" Strich) --- */
+        /* --- FIXED TOP BORDER --- */
         .fixed-top-border {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 1px;
-            background-color: #d1d1d6;
+            background-color: var(--top-line);
             z-index: 9999;
+            transition: background-color 0.3s ease;
         }
 
         /* --- HEADER --- */
@@ -69,12 +87,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            pointer-events: none; /* Keine Interaktion mit der Animation */
+            pointer-events: none; 
         }
 
         /* --- MAIN CONTENT --- */
         .container {
-            max-width: 600px; /* Etwas schmaler für den "Stack"-Look */
+            max-width: 600px; 
             margin: 0 auto;
             padding: 0 20px 40px 20px;
         }
@@ -109,6 +127,7 @@
             text-align: center;
             margin-bottom: 30px;
             border: 1px solid var(--card-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .tutorial-card h3 {
@@ -127,27 +146,28 @@
 
         .tutorial-card strong {
             font-weight: 600;
+            color: var(--accent-blue);
         }
 
         /* --- BROWSER LIST (Vertical Stack) --- */
         .browser-list {
             display: flex;
-            flex-direction: column; /* WICHTIG: Untereinander */
-            gap: 12px; /* Abstand zwischen den Boxen */
+            flex-direction: column; 
+            gap: 12px; 
         }
 
-        /* --- BROWSER CARD (Row Layout) --- */
+        /* --- BROWSER CARD --- */
         .browser-card {
             display: flex;
-            align-items: center; /* Vertikal zentrieren */
-            justify-content: flex-start; /* Links ausrichten */
+            align-items: center; 
+            justify-content: flex-start; 
             
             background-color: var(--card-bg) !important;
             border: 1px solid transparent !important;
             border-radius: var(--radius-m);
             
             padding: 16px 20px;
-            width: 100%; /* Volle Breite */
+            width: 100%; 
             
             text-decoration: none;
             transition: all 0.2s ease;
@@ -156,7 +176,7 @@
 
         .browser-card:hover {
             background-color: var(--hover-bg) !important;
-            transform: scale(1.02); /* Leichter Zoom beim Hover */
+            transform: scale(1.02); 
             box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
 
@@ -169,19 +189,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 18px; /* Abstand Bild zu Text */
+            margin-right: 18px; 
         }
 
         .browser-icon-wrapper img {
-            width: 32px; /* Etwas kleiner für die Listenansicht */
+            width: 32px; 
             height: 32px;
             object-fit: contain;
-            /* Subtiler Schatten für die Icons */
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
         .browser-name {
-            font-size: 17px; /* Standard iOS Listengröße */
+            font-size: 17px; 
             font-weight: 500;
             color: var(--text-primary);
         }
