@@ -71,19 +71,12 @@
             transition: background-color 0.3s ease;
         }
 
-        /* --- HEADER --- */
-        header.browser-header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px 0 10px 0;
-            background: transparent;
-        }
-
         /* Container für die Lottie Animation */
         .logo-wrapper {
             width: 150px;
             height: 75px;
+            /* GEÄNDERT: Zentrierung via margin, da kein Flex-Parent mehr */
+            margin: 0 auto 10px auto; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -216,27 +209,27 @@
     <!-- Fixierte Linie -->
     <div class="fixed-top-border"></div>
 
-    <header class="main-header browser-header">
-        <div class="logo-wrapper">
-            <!-- 
-               GEÄNDERT: 
-               - 'loop' Attribut entfernt, damit es nur einmal abspielt.
-               - 'autoplay' bleibt, damit es startet.
-            -->
-            <lottie-player 
-                src="browser.json" 
-                background="transparent" 
-                speed="1" 
-                style="width: 150px; height: 75px;" 
-                autoplay>
-            </lottie-player>
-        </div>
-    </header>
+    <!-- GEÄNDERT: Header komplett entfernt -->
 
     <main>
         <section class="browser-section">
             <div class="container">
                 
+                <!-- 
+                   GEÄNDERT: 
+                   Logo Wrapper hierher verschoben.
+                   Es ist nun Teil des normalen Flusses und scrollt mit.
+                -->
+                <div class="logo-wrapper">
+                    <lottie-player 
+                        src="browser.json" 
+                        background="transparent" 
+                        speed="1" 
+                        style="width: 150px; height: 75px;" 
+                        autoplay>
+                    </lottie-player>
+                </div>
+
                 <div class="section-header">
                     <!-- GEÄNDERT: class="animate-on-scroll" entfernt -->
                     <h2>Internet Browser</h2>
