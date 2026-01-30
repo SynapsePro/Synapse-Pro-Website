@@ -75,8 +75,10 @@
         .logo-wrapper {
             width: 150px;
             height: 75px;
-            /* GEÄNDERT: Zentrierung via margin, da kein Flex-Parent mehr */
-            margin: 0 auto 10px auto; 
+            
+            /* GEÄNDERT: Oben 60px Abstand (statt 0) */
+            margin: 60px auto 10px auto; 
+            
             display: flex;
             justify-content: center;
             align-items: center;
@@ -119,10 +121,7 @@
             padding: 20px 25px;
             text-align: center;
             margin-bottom: 30px;
-            
-            /* GEÄNDERT: Blauer Rand statt grau */
             border: 1px solid var(--accent-blue);
-            
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
@@ -142,7 +141,6 @@
 
         .tutorial-card strong {
             font-weight: 600;
-            /* GEÄNDERT: Textfarbe Schwarz (bzw. Primary) statt Blau */
             color: var(--text-primary);
         }
 
@@ -209,17 +207,11 @@
     <!-- Fixierte Linie -->
     <div class="fixed-top-border"></div>
 
-    <!-- GEÄNDERT: Header komplett entfernt -->
-
     <main>
         <section class="browser-section">
             <div class="container">
                 
-                <!-- 
-                   GEÄNDERT: 
-                   Logo Wrapper hierher verschoben.
-                   Es ist nun Teil des normalen Flusses und scrollt mit.
-                -->
+                <!-- Logo Wrapper: Jetzt mit 60px margin-top -->
                 <div class="logo-wrapper">
                     <lottie-player 
                         src="browser.json" 
@@ -231,13 +223,11 @@
                 </div>
 
                 <div class="section-header">
-                    <!-- GEÄNDERT: class="animate-on-scroll" entfernt -->
                     <h2>Internet Browser</h2>
                     <p>Select your preferred search engine to start browsing the web directly within Anki.</p>
                 </div>
 
                 <!-- Tutorial Box -->
-                <!-- GEÄNDERT: class="animate-on-scroll" entfernt -->
                 <div class="tutorial-card">
                     <h3>Quick Search</h3>
                     <p>
@@ -248,7 +238,6 @@
                 </div>
 
                 <!-- Vertical Stack List -->
-                <!-- GEÄNDERT: class="animate-on-scroll" entfernt -->
                 <div class="browser-list">
                     
                     <!-- Google -->
