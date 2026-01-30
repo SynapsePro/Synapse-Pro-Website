@@ -3,304 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SynapsePro | The Ultimate Anki Ecosystem</title>
+    <title>SynapsePro - The Ultimate Anki Addon</title>
     
     <link rel="icon" type="image/png" href="logo.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <style>
-        :root {
-            --primary: #0071e3;
-            --primary-hover: #0077ed;
-            --bg-light: #f5f5f7;
-            --text-dark: #1d1d1f;
-            --text-gray: #86868b;
-            --white: #ffffff;
-            --border: #d2d2d7;
-            --radius-lg: 20px;
-            --radius-md: 12px;
-            --shadow: 0 20px 40px rgba(0,0,0,0.06);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background-color: var(--white);
-            color: var(--text-dark);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-            scroll-behavior: smooth;
-        }
-
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-        .text-center { text-align: center; }
-
-        /* Ticker */
-        .ticker-wrap {
-            background: var(--text-dark);
-            color: white;
-            padding: 10px 0;
-            overflow: hidden;
-            font-size: 13px;
-            font-weight: 500;
-        }
-        .ticker {
-            display: flex;
-            white-space: nowrap;
-            animation: ticker 30s linear infinite;
-        }
-        .ticker span { padding: 0 40px; }
-        @keyframes ticker {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Header */
-        header {
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo img { height: 32px; }
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 14px; transition: 0.2s; }
-        .nav-links a:hover { color: var(--primary); }
-
-        /* Hero */
-        .hero { padding: 80px 0 40px; }
-        .hero-image { width: 100%; max-width: 900px; border-radius: var(--radius-lg); margin-top: 40px; box-shadow: var(--shadow); }
-
-        /* Pricing Section (The Core Request) */
-        .pricing-section { padding: 100px 0; background-color: var(--bg-light); }
-        .section-intro { margin-bottom: 60px; }
-        .section-intro h2 { font-size: 42px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px; }
-        .section-intro p { color: var(--text-gray); font-size: 19px; }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .card {
-            background: var(--white);
-            padding: 48px;
-            border-radius: 30px;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
-            position: relative;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-        .card.featured { border: 2px solid var(--primary); }
-        
-        .badge {
-            background: var(--bg-light);
-            padding: 6px 12px;
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 20px;
-            align-self: flex-start;
-        }
-        .badge.blue { background: #e3f2ff; color: var(--primary); }
-
-        .card h3 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
-        .card .desc { color: var(--text-gray); margin-bottom: 30px; font-size: 16px; }
-
-        .features-list { list-style: none; margin-bottom: 40px; flex-grow: 1; }
-        .features-list li { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 15px; font-weight: 500; }
-        .features-list li::before { content: '✓'; color: #34c759; font-weight: 800; }
-
-        /* Addon Code Box */
-        .addon-box {
-            background: var(--bg-light);
-            padding: 20px;
-            border-radius: var(--radius-md);
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .addon-label { font-size: 12px; font-weight: 600; color: var(--text-gray); display: block; margin-bottom: 8px; }
-        .code-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-        .code-value { font-family: monospace; font-size: 20px; font-weight: 700; color: var(--text-dark); }
-
-        /* Price */
-        .price-wrap { margin-bottom: 30px; }
-        .old-price { text-decoration: line-through; color: var(--text-gray); font-size: 18px; }
-        .new-price { font-size: 48px; font-weight: 800; display: block; line-height: 1; }
-        .price-meta { font-size: 14px; color: var(--text-gray); font-weight: 500; }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 32px;
-            border-radius: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: 0.2s;
-            cursor: pointer;
-            border: none;
-            font-size: 16px;
-        }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: var(--primary-hover); }
-        .btn-secondary { background: var(--text-dark); color: white; }
-        .btn-secondary:hover { opacity: 0.9; }
-        .btn-outline { border: 1px solid var(--border); color: var(--text-dark); }
-        .btn-outline:hover { background: var(--bg-light); }
-        .btn-sm { padding: 8px 16px; font-size: 13px; }
-        .w-full { width: 100%; }
-
-        .payment-img { max-width: 200px; margin: 20px auto 0; display: block; opacity: 0.7; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .pricing-grid { grid-template-columns: 1fr; }
-            .section-intro h2 { font-size: 32px; }
-            .card { padding: 32px; }
-        }
-
-        /* Utility */
-        .mt-10 { margin-top: 10px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="ticker-wrap">
         <div class="ticker">
-            <span>Special Beta Launch: 40% OFF AI Features</span>
-            <span>Used by 5,000+ Students Worldwide</span>
-            <span>Free Forever Core Features</span>
-            <span>Special Beta Launch: 40% OFF AI Features</span>
+          <span>Beta Version Sale -50%</span>
+          <span>Used By Thousands Of Anki Users in Germany, UK and USA</span>
+          <span>Beta Version Sale -50%</span>
+          <span>Used By Thousands Of Anki Users in Germany, UK and USA</span>
         </div>
     </div>
 
-    <header>
+    <header class="main-header">
         <div class="container">
-            <nav class="nav-content">
-                <a href="#" class="logo"><img src="logo.png" alt="SynapsePro"></a>
-                <ul class="nav-links">
+            <nav class="main-nav">
+                <a href="#" class="logo">
+                    <img src="logo.png" alt="SynapsePro Logo">
+                </a>
+                <ul class="desktop-nav">
                     <li><a href="#features">Features</a></li>
-                    <li><a href="#pricing">Download</a></li>
+                    <li><a href="#dashboard">Showcase</a></li>
+                    <li><a href="#pricing">Get it</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero text-center">
-            <div class="container">
-                <h1>Revolutionize your Anki workflow.</h1>
-                <p class="desc">The most powerful addon suite ever built for medical students and polyglots.</p>
-                <div class="cta-btns mt-10">
-                    <a href="#pricing" class="btn btn-primary">Start for Free</a>
+        <!-- ======== Hero Section ======== -->
+        <section class="hero">
+            <div class="container text-center">
+                <div class="hero-image-wrapper animate-on-scroll">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="display-mobile.png">
+                        <source media="(min-width: 769px)" srcset="display.png">
+                        <img src="display.png" alt="SynapsePro Addon on a Macbook" class="hero-image">
+                    </picture>
                 </div>
-                <img src="display.png" class="hero-image" alt="SynapsePro Preview">
+                <div class="cta-buttons animate-on-scroll">
+                    <a href="#pricing" class="btn btn-primary">Get it now</a>
+                    <a href="#dashboard" class="btn btn-secondary">See Dashboard &rarr;</a>
+                </div>
             </div>
         </section>
 
-        <!-- PRICING SECTION -->
-        <section id="pricing" class="pricing-section">
+        <!-- ======== FEATURES SECTION ======== -->
+        <section id="features" class="features-section">
             <div class="container">
-                <div class="section-intro text-center">
-                    <h2>Choose your power.</h2>
-                    <p>Download the core suite for free or upgrade to ultimate AI intelligence.</p>
+                <div class="section-header text-center">
+                    <h2 class="animate-on-scroll">Engineered for a Smarter Workflow.</h2>
+                    <p class="animate-on-scroll">SynapsePro is more than an addon. It's a complete ecosystem designed to optimize your learning process.</p>
                 </div>
+                <div class="features-grid">
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/ai.svg" alt="AI Icon"></div><h3>AI Assistant</h3><p>Your personal AI tutor. Get instant explanations, generate practice questions, or create clever mnemonics without leaving your card.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/planner.svg" alt="Planner Icon"></div><h3>Study Planner</h3><p>Organize your study sessions with a powerful daily planner. Set goals for each subject and track your progress to stay on schedule.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/design.svg" alt="Design Icon"></div><h3>Modern Design</h3><p>Transform your Anki experience with a clean, modern interface. Our optional theme makes studying feel focused and less cluttered.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/timer.svg" alt="Timer Icon"></div><h3>Pomodoro Timer</h3><p>Boost your focus with the built-in Pomodoro timer. Work in focused sprints and take effective breaks, all managed from the sidebar.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/mindmap.svg" alt="Mindmap Icon"></div><h3>Interactive Mindmap</h3><p>Visualize complex topics with an interactive mind map tool. Connect ideas, build hierarchies, and even learn them like flashcards.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/gamification.svg" alt="Gamification Icon"></div><h3>Gamification</h3><p>Turn learning into an adventure. Earn XP, level up, unlock ranks, and maintain your study streak to stay motivated every single day.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/music.svg" alt="Music Icon"></div><h3>Study Music</h3><p>Set the perfect mood for studying. Access a curated playlist of lofi, ambient sounds, and focus-enhancing music in the sidebar.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/stats.svg" alt="Stats Icon"></div><h3>New Statistics</h3><p>Go beyond basic stats. Get a clear overview of your consistency, review efficiency, and long-term retention on your main dashboard.</p></div>
+                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/browser.svg" alt="Browser Icon"></div><h3>Web-Browser</h3><p>Keep your resources close. Open Notion, YouTube, or any website in a dedicated sidebar to streamline your research and note-taking.</p></div>
+                </div>
+                <p class="features-subtext animate-on-scroll">...and some more fun Extras.</p>
+            </div>
+        </section>
 
-                <div class="pricing-grid">
-                    <!-- FREE TIER -->
-                    <div class="card">
-                        <span class="badge">Community Edition</span>
-                        <h3>Core Suite</h3>
-                        <p class="desc">Everything you need to transform your Anki experience. Permanent access.</p>
-                        
-                        <ul class="features-list">
-                            <li>Interactive Mindmaps</li>
-                            <li>Advanced Study Planner</li>
-                            <li>Pomodoro & Lofi Music Hub</li>
-                            <li>Modern UI Theme</li>
-                            <li>Enhanced Statistics</li>
-                            <li>Integrated Web-Browser</li>
-                        </ul>
-
-                        <div class="addon-box">
-                            <span class="addon-label">AnkiWeb Add-on Code:</span>
-                            <div class="code-row">
-                                <span class="code-value" id="addonCode">2091361538</span>
-                                <button class="btn btn-outline btn-sm" onclick="copyCode()">Copy</button>
-                            </div>
-                        </div>
-
-                        <a href="https://ankiweb.net" target="_blank" class="btn btn-outline w-full">View on AnkiWeb</a>
+        <!-- ======== SHOWCASE SECTION ======== -->
+        <section id="dashboard" class="showcase-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="animate-on-scroll">Your Learning Dashboard. Everything at a Glance.</h2>
+                    <p class="animate-on-scroll">SynapsePro transforms your deck browser into a powerful control center. Use the slider below to see the stunning before-and-after comparison.</p>
+                </div>
+                <div class="slider-wrapper animate-on-scroll">
+                    <div id="before-after-slider">
+                        <div id="after-image"><img src="anki-after.png" alt="Anki with SynapsePro"/></div>
+                        <div id="before-image"><img src="anki-before.png" alt="Anki before SynapsePro"/></div>
+                        <div id="resizer"></div>
                     </div>
+                </div>
+                <p class="slider-subtext animate-on-scroll">You can also disable individual features if the interface feels too cluttered or if you don't need a specific function.</p>
+            </div>
+        </section>
+        
+        <div class="section-divider"></div>
 
-                    <!-- PAID TIER -->
-                    <div class="card featured">
-                        <span class="badge blue">Most Popular</span>
-                        <h3>AI Turbocharge</h3>
-                        <p class="desc">Harness the power of GPT-4 directly within your cards to learn 3x faster.</p>
+        <!-- ======== SIDEBAR-SEKTION ======== -->
+        <section id="sidebar-section" class="sidebar-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="animate-on-scroll">Your Integrated Command Center.</h2>
+                    <p class="animate-on-scroll">The Launcher sidebar puts every tool at your fingertips, keeping your workflow fast and focused without ever leaving Anki.</p>
+                </div>
+                <div class="sidebar-image-wrapper animate-on-scroll">
+                    <img src="sidebar_explanation.png" alt="Anatomy of the SynapsePro Sidebar">
+                </div>
+            </div>
+        </section>
 
-                        <div class="price-wrap">
-                            <span class="old-price">€15.00</span>
-                            <span class="new-price">€9.00</span>
-                            <span class="price-meta">One-time payment</span>
-                        </div>
-                        
-                        <ul class="features-list">
-                            <li><strong>1,000 AI Credits</strong> included</li>
-                            <li>One-Click Explanations</li>
-                            <li>Auto-Generate Mnemonics</li>
-                            <li>Generate Practice Questions</li>
-                            <li>Priority Support & Updates</li>
-                        </ul>
+        <div class="section-divider"></div>
 
-                        <a href="#" class="btn btn-primary w-full">Get AI Credits Now</a>
-                        <img src="payment.png" alt="Payments" class="payment-img">
-                        <p class="text-center mt-10"><a href="#" style="color: var(--text-gray); font-size: 12px;">Terms of Service apply</a></p>
+        <!-- ======== VIDEO-SEKTION ======== -->
+        <section id="walkthrough" class="walkthrough-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="animate-on-scroll">See SynapsePro in Action.</h2>
+                    <p class="animate-on-scroll">Watch this complete walkthrough to see how every feature comes together to create the ultimate Anki experience.</p>
+                </div>
+                <div class="video-wrapper animate-on-scroll">
+                    <video src="walkthrough.mp4" controls playsinline></video>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== PRICING SECTION ======== -->
+        <section id="pricing" class="pricing-section">
+            <div class="container text-center">
+                <div class="pricing-card animate-on-scroll">
+                    <h2 class="pricing-title">Get the Complete SynapsePro Suite.</h2>
+                    <p class="pricing-subtitle">One-time payment for a lifetime learning upgrade.</p>
+                    <div class="price-container">
+                        <span class="original-price"><s>$50</s></span>
+                        <div class="price">$25</div>
+                        <span class="price-tag">one-time</span>
                     </div>
+                    <a href="#" class="btn btn-primary btn-large">Buy Now</a>
+                    <p class="pricing-footer">Secure payment. All future updates included.</p>
+                    <img src="payment.png" class="payment-methods-img" alt="Payment Methods">
+                    <p class="terms-link-wrapper"><a href="#" id="terms-link" class="terms-link">View Terms of Service</a></p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer style="padding: 60px 0; border-top: 1px solid var(--bg-light);" class="text-center">
+    <footer class="main-footer">
         <div class="container">
-            <p style="color: var(--text-gray); font-size: 14px;">&copy; 2024 SynapsePro. Built for excellence in Kiel, Germany.</p>
-            <p style="margin-top: 10px;">
-                <a href="#" style="color: var(--text-dark); font-size: 14px; text-decoration: none; margin: 0 10px;">Impressum</a>
-                <a href="#" style="color: var(--text-dark); font-size: 14px; text-decoration: none; margin: 0 10px;">Privacy Policy</a>
-            </p>
+            <p>&copy; 2024 SynapsePro. All rights reserved.</p>
+            <p><a href="#" id="impressum-link">Impressum</a> | <a href="#" id="privacy-link">Privacy Policy</a></p>
         </div>
     </footer>
 
-    <script>
-        function copyCode() {
-            const code = document.getElementById('addonCode').innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                const btn = event.target;
-                const originalText = btn.innerText;
-                btn.innerText = 'Copied!';
-                btn.style.borderColor = '#34c759';
-                btn.style.color = '#34c759';
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.style.borderColor = '';
-                    btn.style.color = '';
-                }, 2000);
-            });
-        }
-    </script>
+    <!-- MODALS MIT FINALEM TEXT -->
+    <div class="modal-overlay" id="impressum-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Impressum</h2>
+            <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+            <p>
+                Mobesa Media<br>
+                Kastanienstraße 11<br>
+                24114 Kiel<br>
+                Deutschland
+            </p>
+            <p><strong>Kontakt:</strong></p>
+            <p>E-Mail: kontakt@mobesa.de</p>
+            <p>
+                Als Kleinunternehmer im Sinne von § 19 Abs. 1 UStG wird keine Umsatzsteuer berechnet.
+            </p>
+            <p><strong>EU-Streitschlichtung:</strong></p>
+            <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>.<br>Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+            <p><strong>Verbraucherstreitbeilegung/Universalschlichtungsstelle:</strong></p>
+            <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="privacy-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p><strong>Verantwortliche Stelle:</strong></p>
+            <p>
+                Mobesa Media<br>
+                Kastanienstraße 11<br>
+                24114 Kiel<br>
+                E-Mail: kontakt@mobesa.de
+            </p>
+            <h3>Datenerfassung auf dieser Website</h3>
+            <p><strong>Hosting mit GitHub Pages</strong></p>
+            <p>Diese Website wird bei GitHub Pages gehostet. Anbieter ist die GitHub, Inc., 88 Colin P. Kelly Junior Street, San Francisco, CA 94107, USA. Beim Besuch unserer Website erfasst GitHub Pages verschiedene Logfiles einschließlich Ihrer IP-Adresse. Dies dient der Sicherheit und der Bereitstellung der Website. Weitere Informationen finden Sie in der Datenschutzerklärung von GitHub: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement</a>.</p>
+            <p><strong>Google Fonts</strong></p>
+            <p>Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Web Fonts in ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen. Zu diesem Zweck muss der von Ihnen verwendete Browser Verbindung zu den Servern von Google aufnehmen. Hierdurch erlangt Google Kenntnis darüber, dass über Ihre IP-Adresse diese Website aufgerufen wurde. Die Nutzung von Google Fonts erfolgt im Interesse einer einheitlichen und ansprechenden Darstellung unserer Online-Angebote. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar.</p>
+            <p><strong>Cookies und Analysetools</strong></p>
+            <p>Diese Website verwendet keine Cookies, die über die technisch notwendigen Funktionen hinausgehen, und setzt keine Analyse-Tools wie Google Analytics ein. Es findet kein Tracking Ihres Nutzerverhaltens zu Werbe- oder Analysezwecken statt.</p>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="terms-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Terms of Service</h2>
+            <p>Placeholder text for the terms of service. Here you will define exactly what the user gets when they purchase the product, including details about the features, any limitations, the scope of support, and the update policy.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
