@@ -32,6 +32,28 @@
         }
         .nav-btn-dark-blue:hover { opacity: 0.9; transform: scale(1.02); }
 
+        /* Fix für Dashboard Button */
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            color: var(--dark-blue);
+            border: 2px solid var(--dark-blue);
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 1;
+            transition: all 0.2s ease;
+            margin-left: 10px;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(0, 58, 109, 0.05);
+            transform: scale(1.02);
+        }
+
         /* Pricing Section mit Verlauf */
         .pricing-section-gradient {
             background: linear-gradient(to bottom, #FFFFFF 0%, var(--dark-blue) 100%);
@@ -67,15 +89,20 @@
         }
         .compact-card:hover { transform: translateY(-8px); }
 
-        /* AI Premium Card mit deinem Gradienten */
+        /* AI Premium Card mit deinem Gradienten - RAND ENTFERNT */
         .compact-card.ai-premium {
             background: linear-gradient(165deg, #BFE1FF 0%, #FFFFFF 50%, #EEF8FF 100%);
-            border: 2px solid var(--standard-blue);
+            border: none; /* Rand entfernt */
         }
 
         .compact-card.ai-premium .subtitle {
-            color: var(--dark-blue) !important; /* Gewünschte Textfarbe */
+            color: var(--dark-blue) !important;
             font-weight: 600;
+        }
+
+        /* Abstand zwischen Subtitle und Features vergrößert */
+        .compact-card .subtitle {
+            margin-bottom: 40px !important; 
         }
 
         .compact-card .badge {
@@ -124,6 +151,26 @@
         }
         .code-txt { font-family: monospace; font-size: 18px; font-weight: 700; color: #000; }
         
+        /* Verbesserter Copy Button */
+        .mini-copy-btn {
+            background: var(--dark-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .mini-copy-btn:hover {
+            background-color: #002a4f;
+            transform: scale(1.02);
+        }
+        .mini-copy-btn:active {
+            transform: scale(0.98);
+        }
+
         /* Buttons */
         .btn-compact {
             padding: 16px;
@@ -139,19 +186,14 @@
 
         @media (max-width: 768px) {
             .pricing-grid-compact { grid-template-columns: 1fr; }
+            .cta-buttons { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+            .btn-secondary { margin-left: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="ticker-wrap">
-        <div class="ticker">
-          <span>Beta Version Sale -50%</span>
-          <span>Used By Thousands Of Anki Users in Germany, UK and USA</span>
-          <span>Beta Version Sale -50%</span>
-          <span>Used By Thousands Of Anki Users in Germany, UK and USA</span>
-        </div>
-    </div>
+    <!-- Ticker wurde entfernt -->
 
     <header class="main-header">
         <div class="container">
@@ -180,7 +222,8 @@
                 </div>
                 <div class="cta-buttons animate-on-scroll">
                     <a href="#pricing" class="nav-btn-dark-blue" style="padding: 16px 32px; font-size: 18px;">Free Download</a>
-                    <a href="#dashboard" class="btn btn-secondary">See Dashboard &rarr;</a>
+                    <!-- Button gefixt -->
+                    <a href="#dashboard" class="btn-secondary">See Dashboard &rarr;</a>
                 </div>
             </div>
         </section>
@@ -193,7 +236,6 @@
                     <p class="animate-on-scroll">SynapsePro is more than an addon. It's a complete ecosystem designed to optimize your learning process.</p>
                 </div>
                 <div class="features-grid">
-                    <!-- Features wie im Original -->
                     <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/ai.svg" alt="AI Icon"></div><h3>AI Assistant</h3><p>Your personal AI tutor. Get instant explanations, generate practice questions, or create clever mnemonics without leaving your card.</p></div>
                     <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/planner.svg" alt="Planner Icon"></div><h3>Study Planner</h3><p>Organize your study sessions with a powerful daily planner.</p></div>
                     <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/design.svg" alt="Design Icon"></div><h3>Modern Design</h3><p>Transform your Anki experience with a clean, modern interface.</p></div>
@@ -225,7 +267,7 @@
 
         <div class="section-divider"></div>
 
-        <!-- ======== SIDEBAR-SEKTION (WIEDER DA) ======== -->
+        <!-- ======== SIDEBAR-SEKTION ======== -->
         <section id="sidebar-section" class="sidebar-section">
             <div class="container">
                 <div class="section-header text-center">
@@ -240,12 +282,13 @@
 
         <div class="section-divider"></div>
 
-        <!-- ======== VIDEO-SEKTION (WIEDER DA) ======== -->
+        <!-- ======== VIDEO-SEKTION ======== -->
         <section id="walkthrough" class="walkthrough-section">
             <div class="container">
                 <div class="section-header text-center">
-                    <h2 class="animate-on-scroll">See SynapsePro in Action.</h2>
-                    <p class="animate-on-scroll">Watch this complete walkthrough to see how every feature comes together.</p>
+                    <!-- Texte geändert wie gewünscht -->
+                    <h2 class="animate-on-scroll">This is SynapsePro</h2>
+                    <p class="animate-on-scroll">A beautiful modern design meets functionality and efficiency.</p>
                 </div>
                 <div class="video-wrapper animate-on-scroll">
                     <video src="walkthrough.mp4" controls playsinline></video>
@@ -266,6 +309,7 @@
                     <div class="compact-card animate-on-scroll">
                         <span class="badge">Community</span>
                         <h3>Core Suite</h3>
+                        <!-- Abstand vergrößert durch CSS override -->
                         <p class="subtitle" style="color: #6e6e73;">Essential tools to optimize your study workflow forever.</p>
                         
                         <ul class="card-features">
@@ -280,17 +324,21 @@
                         <span class="price-sub">Always available</span>
 
                         <div class="mini-addon-box">
-                            <span class="code-txt" id="code-val">2091361538</span>
-                            <button class="mini-copy-btn" onclick="copyAddonCode()" style="background: var(--dark-blue);">Copy</button>
+                            <!-- Code geändert -->
+                            <span class="code-txt" id="code-val">236979321</span>
+                            <!-- Copy Button verbessert -->
+                            <button class="mini-copy-btn" onclick="copyAddonCode()">Copy</button>
                         </div>
 
-                        <a href="https://ankiweb.net/shared/info/2091361538" target="_blank" class="btn-compact btn-dark-blue">AnkiWeb Page</a>
+                        <!-- Link aktualisiert -->
+                        <a href="https://ankiweb.net/shared/info/236979321" target="_blank" class="btn-compact btn-dark-blue">AnkiWeb Page</a>
                     </div>
 
                     <!-- AI CARD -->
                     <div class="compact-card ai-premium animate-on-scroll">
                         <span class="badge">Beta Offer</span>
                         <h3>AI Turbo</h3>
+                        <!-- Abstand vergrößert durch CSS override -->
                         <p class="subtitle">The ultimate tutor. Instant explanations & mnemonics.</p>
                         
                         <ul class="card-features">
@@ -298,7 +346,7 @@
                             <li>Instant "Explain this Card"</li>
                             <li>Auto-Mnemonic Generator</li>
                             <li>Practice Question Generator</li>
-                            <li>Lifetime access to AI features</li>
+                            <!-- Lifetime Zeile entfernt -->
                         </ul>
 
                         <div style="margin-bottom: 20px;">
@@ -310,7 +358,8 @@
                         <a href="#" class="btn-compact btn-standard-blue" style="background: var(--standard-blue);">Unlock AI Assistant</a>
                         
                         <div style="text-align: center; margin-top: 15px;">
-                            <img src="payment.png" alt="Payments" style="max-width: 140px; opacity: 0.8;">
+                            <!-- Bild vergrößert -->
+                            <img src="payment.png" alt="Payments" style="max-width: 180px; opacity: 0.8;">
                             <p><a href="#" class="terms-link" style="font-size: 11px; color: #86868b; text-decoration: none;">Terms of Service</a></p>
                         </div>
                     </div>
@@ -321,7 +370,8 @@
 
     <footer class="main-footer" style="padding: 40px 0; background: var(--dark-blue); color: white;">
         <div class="container text-center">
-            <p>&copy; 2024 SynapsePro. All rights reserved.</p>
+            <!-- Text aktualisiert und weiß -->
+            <p style="color: white;">&copy; 2026 SynapsePro. All rights reserved.</p>
             <p><a href="#" style="color: white; text-decoration: none;">Impressum</a> | <a href="#" style="color: white; text-decoration: none;">Privacy Policy</a></p>
         </div>
     </footer>
@@ -331,11 +381,18 @@
             const code = document.getElementById('code-val').innerText;
             navigator.clipboard.writeText(code).then(() => {
                 const btn = document.querySelector('.mini-copy-btn');
+                const originalText = btn.innerText;
+                const originalBg = window.getComputedStyle(btn).backgroundColor;
+                
                 btn.innerText = 'Copied!';
                 btn.style.background = '#34c759';
+                
                 setTimeout(() => {
-                    btn.innerText = 'Copy';
-                    btn.style.background = '#003A6D';
+                    btn.innerText = originalText;
+                    btn.style.background = originalBg;
+                    // Reset inline style to allow CSS hover to work again if needed, 
+                    // or just set it back to the dark blue var if using inline styles.
+                    btn.style.removeProperty('background'); 
                 }, 2000);
             });
         }
