@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - SynapsePro</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === BASE STYLES === */
+        :root {
+            --dark-blue: #003A6D;
+            --standard-blue: #0071D3;
+            --bg-light: #F5F5F7;
+            --text-main: #1D1D1F;
+            --text-muted: #86868B;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 760px; /* Leicht schmaler für besseren Lesefluss */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* === HEADER === */
+        .simple-header {
+            background-color: var(--card-bg);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 35px;
+            display: block;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--dark-blue);
+        }
+
+        /* === PAGE TITLE === */
+        .page-header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--dark-blue);
+            margin: 0 0 10px 0;
+            letter-spacing: -1px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* === NEWS CARDS (Text Boxes) === */
+        .news-container {
+            padding-bottom: 80px;
+        }
+
+        .news-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 45px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .news-date {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--standard-blue);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .news-title {
+            font-size: 26px;
+            font-weight: 800;
+            margin: 0 0 20px 0;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .news-content {
+            font-size: 16px;
+            color: #444;
+        }
+
+        .news-content p {
+            margin-bottom: 20px;
+        }
+
+        .news-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 600px) {
+            .page-header h1 { font-size: 32px; }
+            .news-card { padding: 30px 20px; }
+            .news-title { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <header class="simple-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="SynapsePro Logo">
+            </a>
+            <a href="index.html" class="back-link">&larr; Back to Home</a>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Page Title -->
+        <div class="page-header">
+            <h1>News & Updates</h1>
+            <p>Announcements, thoughts, and community updates.</p>
+        </div>
+
+        <div class="news-container">
+
+            <!-- 
+            =============================================================
+            HOW TO ADD A NEW POST:
+            Copy the entire <article class="news-card"> block below, 
+            paste it ABOVE the old one, and change the text/date.
+            =============================================================
+            -->
+
+            <article class="news-card">
+                <span class="news-date">October 2023</span>
+                <h2 class="news-title">Thank you for the amazing support!</h2>
+                
+                <div class="news-content">
+                    <p>Thank you so much for the incredible support and all the positive thumbs-up ratings on the AnkiWeb Addon page! It really means a lot to me.</p>
+                    
+                    <p>I have received some highly constructive feedback via email, as well as a few fantastic feature suggestions—some of which I've already been able to implement in the latest update.</p>
+                    
+                    <p>Please note that a few other requested changes and bug fixes might take a little more time to fully develop and test. I kindly ask for your patience as I continue to improve SynapsePro behind the scenes.</p>
+                    
+                    <p>Happy studying and thank you for being part of this journey!</p>
+                </div>
+            </article>
+
+            <!-- END OF NEWS ENTRY -->
+
+        </div>
+    </main>
+
+</body>
+</html>
