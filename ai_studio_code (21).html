@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog - SynapsePro</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === BASE STYLES (Matched to main site) === */
+        :root {
+            --dark-blue: #003A6D;
+            --standard-blue: #0071D3;
+            --bg-light: #F5F5F7;
+            --text-main: #1D1D1F;
+            --text-muted: #86868B;
+            --card-bg: #FFFFFF;
+            
+            /* Tag Colors */
+            --tag-new: #E8F2FC;
+            --tag-new-text: #0071D3;
+            --tag-improved: #E9F7EF;
+            --tag-improved-text: #1E8449;
+            --tag-fix: #FDEDEC;
+            --tag-fix-text: #CB4335;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* === HEADER === */
+        .simple-header {
+            background-color: var(--card-bg);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 35px;
+            display: block;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--dark-blue);
+        }
+
+        /* === PAGE TITLE === */
+        .page-header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--dark-blue);
+            margin: 0 0 10px 0;
+            letter-spacing: -1px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* === CHANGELOG ENTRIES === */
+        .changelog-container {
+            padding-bottom: 80px;
+        }
+
+        .changelog-entry {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: transform 0.2s;
+        }
+
+        .changelog-entry:hover {
+            transform: translateY(-2px);
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #E5E5EA;
+            padding-bottom: 15px;
+        }
+
+        .version {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .date {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* List Styling */
+        .changes-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .changes-list li {
+            font-size: 15px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .changes-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Tags / Badges */
+        .tag {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 6px;
+            min-width: 60px;
+            text-align: center;
+            display: inline-block;
+            margin-top: 2px; /* Alignment fix */
+        }
+
+        .tag.new { background-color: var(--tag-new); color: var(--tag-new-text); }
+        .tag.improved { background-color: var(--tag-improved); color: var(--tag-improved-text); }
+        .tag.fix { background-color: var(--tag-fix); color: var(--tag-fix-text); }
+
+        .change-text {
+            flex: 1;
+            color: #333;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 600px) {
+            .entry-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            .page-header h1 { font-size: 32px; }
+            .changelog-entry { padding: 25px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <header class="simple-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="SynapsePro Logo">
+            </a>
+            <a href="index.html" class="back-link">&larr; Back to Home</a>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Page Title -->
+        <div class="page-header">
+            <h1>Changelog</h1>
+            <p>Stay up to date with the latest features, improvements, and fixes.</p>
+        </div>
+
+        <div class="changelog-container">
+
+            <!-- 
+            =============================================================
+            HOW TO ADD A NEW UPDATE:
+            Copy the entire <div class="changelog-entry"> block below, 
+            paste it ABOVE the old one, and change the text. 
+            Use <span class="tag new">, <span class="tag improved"> or <span class="tag fix">
+            =============================================================
+            -->
+
+            <!-- LATEST UPDATE -->
+            <div class="changelog-entry">
+                <div class="entry-header">
+                    <h2 class="version">Latest Update</h2>
+                    <span class="date">October 2023</span>
+                </div>
+                
+                <ul class="changes-list">
+                    <li>
+                        <span class="tag new">New</span>
+                        <span class="change-text">Added a new setting to automatically hide the sidebar while actively reviewing cards.</span>
+                    </li>
+                    <li>
+                        <span class="tag new">New</span>
+                        <span class="change-text">Added "Countries/Languages" category to the Daily Facts widget.</span>
+                    </li>
+                    <li>
+                        <span class="tag new">New</span>
+                        <span class="change-text">Added the ability to pause and stop the Study Plan timer.</span>
+                    </li>
+                    <li>
+                        <span class="tag new">New</span>
+                        <span class="change-text">Added "Changelog" and "News" quick-access buttons to the settings menu.</span>
+                    </li>
+                    <li>
+                        <span class="tag improved">Improved</span>
+                        <span class="change-text">Refined the main dashboard UI (optimized spacing and removed/softened unnecessary shadows for a cleaner look).</span>
+                    </li>
+                    <li>
+                        <span class="tag improved">Improved</span>
+                        <span class="change-text">Optimized the onboarding experience for a smoother start.</span>
+                    </li>
+                    <li>
+                        <span class="tag improved">Improved</span>
+                        <span class="change-text">Optimized overall image rendering and loading speeds.</span>
+                    </li>
+                    <li>
+                        <span class="tag improved">Improved</span>
+                        <span class="change-text">Refined the layout and styling of the buttons inside the website sidebar tool.</span>
+                    </li>
+                    <li>
+                        <span class="tag fix">Fix</span>
+                        <span class="change-text">Resolved a bug that occurred when switching between Anki profiles.</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- END OF UPDATE ENTRY -->
+
+            <!-- EXAMPLE OF AN OLDER UPDATE (Optional, you can delete this if you only want to show one for now) -->
+            <div class="changelog-entry" style="opacity: 0.8;">
+                <div class="entry-header">
+                    <h2 class="version">Initial Release</h2>
+                    <span class="date">September 2023</span>
+                </div>
+                
+                <ul class="changes-list">
+                    <li>
+                        <span class="tag new">New</span>
+                        <span class="change-text">Official launch of SynapsePro - The ultimate Anki learning dashboard.</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
