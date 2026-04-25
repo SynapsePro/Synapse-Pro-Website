@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynapsePro - AI API Key Guide</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* === CUSTOM DESIGN OVERRIDES === */
+        :root {
+            --dark-blue: #003A6D;
+            --standard-blue: #0071D3;
+            --light-bg: #f5f5f7;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #1d1d1f;
+        }
+
+        /* Header Buttons */
+        .nav-btn-dark-blue {
+            background-color: var(--dark-blue) !important;
+            color: white !important;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: opacity 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+        .nav-btn-dark-blue:hover { opacity: 0.9; transform: scale(1.02); }
+
+        /* Tutorial Button Blau statt Rot */
+        .btn-tutorial {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--standard-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 113, 211, 0.2);
+        }
+        .btn-tutorial:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 113, 211, 0.3);
+        }
+
+        /* Page Content Styles */
+        .page-header {
+            text-align: center;
+            padding: 80px 20px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .page-header p.subtitle {
+            font-size: 18px;
+            color: #424245;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 113, 211, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 113, 211, 0.1);
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .lang-btn {
+            background: transparent;
+            border: 2px solid #d2d2d7;
+            color: #1d1d1f;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover { border-color: var(--dark-blue); }
+        .lang-btn.active {
+            background: var(--dark-blue);
+            border-color: var(--dark-blue);
+            color: white;
+        }
+
+        /* Guide Content */
+        .guide-container {
+            max-width: 700px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+        .lang-content { display: none; }
+        .lang-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .step-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #eaeaea;
+        }
+        .step-number {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--standard-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .step-text h3 { margin: 0 0 8px 0; font-size: 18px; color: var(--dark-blue); font-weight: 700; }
+        .step-text p { margin: 0; color: #6e6e73; line-height: 1.5; font-size: 15px; }
+        .step-text a { color: var(--standard-blue); font-weight: 600; text-decoration: none; }
+        .step-text a:hover { text-decoration: underline; }
+
+        .important-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .important-box h4 { margin: 0 0 10px 0; color: #856404; font-size: 16px; }
+        .important-box p { margin: 0; color: #856404; font-size: 14px; line-height: 1.5; }
+
+        /* Pricing Section */
+        .pricing-info {
+            max-width: 700px;
+            margin: 0 auto 80px;
+            padding: 40px;
+            background: linear-gradient(165deg, #f8fbff 0%, #ffffff 100%);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,58,109,0.08);
+            border: 1px solid rgba(0, 113, 211, 0.1);
+            text-align: center;
+        }
+        .pricing-info h2 { color: var(--dark-blue); font-size: 28px; font-weight: 800; margin-bottom: 30px; }
+        
+        .price-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .price-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #eaeaea;
+        }
+        .price-card h4 { margin: 0 0 10px 0; color: #6e6e73; font-size: 14px; font-weight: 600; text-transform: uppercase; }
+        .price-card .cost { font-size: 32px; font-weight: 800; color: #1d1d1f; margin-bottom: 5px; display: block; }
+        .price-card .unit { font-size: 13px; color: #86868b; }
+
+        .avg-cost {
+            background: var(--dark-blue);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .avg-cost span { display: block; font-size: 15px; opacity: 0.9; margin-bottom: 5px; }
+        .avg-cost strong { font-size: 24px; font-weight: 700; }
+
+        .pricing-disclaimer {
+            font-size: 12px;
+            color: #86868b;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .price-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 32px; }
+            .step-item { flex-direction: column; gap: 15px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="SynapsePro Logo">
+                </a>
+                <ul class="desktop-nav">
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#pricing" class="nav-btn-dark-blue">Back to Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>How to get a key for the AI Assistant.</h1>
+            <p class="subtitle">
+                <strong>This add-on is completely non-profit</strong> - I earn nothing from it. However, AI API calls have unavoidable costs that I can't cover for all users for free. With your own key, <strong>you pay only for what you actually use.</strong>
+            </p>
+            <a href="#" class="btn-tutorial">
+                See YouTube Tutorial
+            </a>
+        </section>
+
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" onclick="switchLang('de')">Deutsch</button>
+            <button class="lang-btn" onclick="switchLang('es')">Español</button>
+        </div>
+
+        <section class="guide-container">
+            <!-- ENGLISH CONTENT -->
+            <div id="content-en" class="lang-content active">
+                <ul class="step-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">
+                            <h3>Go to the OpenRouter website</h3>
+                            <p>Visit <a href="https://openrouter.ai" target="_blank">openrouter.ai</a></p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">
+                            <h3>Sign up or log in</h3>
+                            <p>Create an account (Sign Up) or log into your existing account (Log In).</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">
+                            <h3>Add credits to your account</h3>
+                            <p>Go to the Billing or Credits section. You need to add at least $5 to use the API. Complete the payment process.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">
+                            <h3>Open the dashboard</h3>
+                            <p>After adding credits, return to your dashboard.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">
+                            <h3>Navigate to API Keys</h3>
+                            <p>Find “API Keys” in the menu and click on it.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">
+                            <h3>Create a new API key</h3>
+                            <p>Click “Create Key” or “New API Key”. Optionally give it a name.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">
+                            <h3>Copy and store your API key</h3>
+                            <p>The key is shown only once (but you can create a new one anytime). Save it securely.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">
+                            <h3>Use the API Key in the Synapse Pro Add-On</h3>
+                            <p>Copy and paste it into the license key dialog pop-up inside Anki. Click OK and use the AI Assistant!</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="important-box">
+                    <h4>Important:</h4>
+                    <p>• You must have at least $5 in credits to use the API.<br>• Never share your API key publicly.</p>
+                </div>
+            </div>
+
+            <!-- GERMAN CONTENT -->
+            <div id="content-de" class="lang-content">
+                <ul class="step-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">
+                            <h3>Gehe auf die OpenRouter Website</h3>
+                            <p>Besuche <a href="https://openrouter.ai" target="_blank">openrouter.ai</a></p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">
+                            <h3>Registrieren oder Einloggen</h3>
+                            <p>Erstelle ein neues Konto (Sign Up) oder melde dich in deinem bestehenden Konto an (Log In).</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">
+                            <h3>Guthaben aufladen</h3>
+                            <p>Gehe zum Bereich "Billing" oder "Credits". Du musst mindestens 5 $ aufladen, um die API zu nutzen. Schließe den Bezahlvorgang ab.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">
+                            <h3>Dashboard öffnen</h3>
+                            <p>Kehre nach dem Aufladen zu deinem Dashboard zurück.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">
+                            <h3>Zu den API Keys navigieren</h3>
+                            <p>Suche im Menü nach „API Keys“ und klicke darauf.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">
+                            <h3>Einen neuen API Key erstellen</h3>
+                            <p>Klicke auf „Create Key“ oder „New API Key“. Du kannst ihm optional einen Namen geben.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">
+                            <h3>API Key kopieren und sicher speichern</h3>
+                            <p>Der Key wird nur ein einziges Mal angezeigt (du kannst aber jederzeit einen neuen erstellen). Speichere ihn an einem sicheren Ort.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">
+                            <h3>Den API Key im Synapse Pro Add-On nutzen</h3>
+                            <p>Kopiere den Key und füge ihn in das Pop-up-Fenster in Anki ein. Klicke auf OK und nutze den AI Assistant!</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="important-box">
+                    <h4>Wichtig:</h4>
+                    <p>• Du musst mindestens 5 $ Guthaben haben, um die API zu nutzen.<br>• Teile deinen API-Schlüssel niemals öffentlich.</p>
+                </div>
+            </div>
+
+            <!-- SPANISH CONTENT -->
+            <div id="content-es" class="lang-content">
+                <ul class="step-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">
+                            <h3>Ve al sitio web de OpenRouter</h3>
+                            <p>Visita <a href="https://openrouter.ai" target="_blank">openrouter.ai</a></p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">
+                            <h3>Regístrate o inicia sesión</h3>
+                            <p>Crea una cuenta (Sign Up) o inicia sesión en tu cuenta existente (Log In).</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">
+                            <h3>Añade saldo a tu cuenta</h3>
+                            <p>Ve a la sección de Facturación (Billing) o Créditos. Debes añadir al menos $5 para usar la API. Completa el proceso de pago.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">
+                            <h3>Abre el panel de control</h3>
+                            <p>Después de añadir saldo, vuelve a tu Dashboard.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">
+                            <h3>Navega a las claves API</h3>
+                            <p>Busca "API Keys" en el menú y haz clic en él.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">
+                            <h3>Crea una nueva clave API</h3>
+                            <p>Haz clic en "Create Key" o "New API Key". Opcionalmente, puedes darle un nombre.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">
+                            <h3>Copia y guarda tu clave API</h3>
+                            <p>La clave solo se muestra una vez (pero puedes crear una nueva cuando quieras). Guárdala de forma segura.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">
+                            <h3>Usa la clave API en el Add-On Synapse Pro</h3>
+                            <p>Cópiala y pégala en la ventana emergente de la clave de licencia dentro de Anki. ¡Haz clic en OK y usa el Asistente de IA!</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="important-box">
+                    <h4>Importante:</h4>
+                    <p>• Debes tener al menos $5 en créditos para poder usar la API.<br>• Nunca compartas tu clave API públicamente.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-info">
+            <h2>What does it cost?</h2>
+            
+            <div class="price-grid">
+                <div class="price-card">
+                    <h4>Weighted Avg Input Price</h4>
+                    <span class="cost">$0.036</span>
+                    <span class="unit">per 1M tokens</span>
+                </div>
+                <div class="price-card">
+                    <h4>Weighted Avg Output Price</h4>
+                    <span class="cost">$0.173</span>
+                    <span class="unit">per 1M tokens</span>
+                </div>
+            </div>
+
+            <div class="avg-cost">
+                <span>Estimated average cost per AI request:</span>
+                <strong>≈ $0.00025</strong>
+            </div>
+
+            <p class="pricing-disclaimer">
+                * Disclaimer: The actual cost per request may be slightly higher or lower depending on the length of your card and the length of the AI's response. API costs are subject to change by OpenRouter and depend entirely on the specific AI model being used.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="main-footer" style="padding: 60px 0; background: var(--dark-blue); color: white; border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container text-center">
+            <div style="margin-bottom: 20px;">
+                <img src="logo.png" alt="SynapsePro Logo" style="height: 40px; filter: brightness(0) invert(1); opacity: 0.9;">
+            </div>
+            <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 25px;">&copy; 2026 SynapsePro. All rights reserved.</p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="imprint.html" style="color: white; text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.8; transition: opacity 0.2s;">Imprint</a>
+                <a href="privacy.html" style="color: white; text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.8; transition: opacity 0.2s;">Privacy Policy</a>
+                <a href="terms.html" style="color: white; text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.8; transition: opacity 0.2s;">Terms & Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchLang(lang) {
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update content blocks
+            document.querySelectorAll('.lang-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById('content-' + lang).classList.add('active');
+        }
+    </script>
+</body>
+</html>
