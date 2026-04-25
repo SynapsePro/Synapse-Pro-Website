@@ -68,9 +68,9 @@
 
         .pricing-grid-compact {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr; /* Angepasst für eine zentrierte Karte */
             gap: 25px;
-            max-width: 920px;
+            max-width: 460px; /* Angepasst damit die Karte mittig und nicht zu breit ist */
             margin: 50px auto 0;
             padding: 0 20px;
         }
@@ -129,9 +129,10 @@
             font-size: 14px;
             margin-bottom: 10px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
             font-weight: 500;
+            line-height: 1.4;
         }
         .card-features li::before { content: "✓"; color: var(--standard-blue); font-weight: 900; }
 
@@ -301,23 +302,23 @@
             <div class="container text-center">
                 <div class="section-header">
                     <h2 class="animate-on-scroll">Ready to Upgrade Your Anki?</h2>
-                    <p class="animate-on-scroll">Download the core suite for free or unlock the full power with AI.</p>
+                    <p class="animate-on-scroll">Download the Add-On for free and unlock the full power.</p>
                 </div>
 
                 <div class="pricing-grid-compact">
                     <!-- FREE CARD -->
                     <div class="compact-card animate-on-scroll">
                         <span class="badge">Community</span>
-                        <h3>Core Suite</h3>
+                        <h3>SynapsePro - Add-On</h3>
                         <!-- Abstand vergrößert durch CSS override -->
                         <p class="subtitle" style="color: #6e6e73;">Essential tools to optimize your study workflow forever.</p>
                         
                         <ul class="card-features">
-                            <li>Interactive Mindmaps</li>
-                            <li>Advanced Study Planner</li>
-                            <li>Pomodoro & Music Hub</li>
-                            <li>Notebook Function</li>
-                            <li>Modern UI Theme</li>
+                            <li><span><strong>Organization:</strong> AI Study Plan Configurator, Deadline Bar & Study Plan Widgets</span></li>
+                            <li><span><strong>Productivity:</strong> Integrated Mind Maps, Notebook, Web-Sidebar, Pomodoro Timer & Focus Music</span></li>
+                            <li><span><strong>Gamification:</strong> XP & Leveling System, 21 Unique Ranks, Streaks & Daily Challenges</span></li>
+                            <li><span><strong>AI Assistant:</strong> Instant Card Explanations, Mnemonics & MCQs (requires your own API Key)</span></li>
+                            <li><span><strong>Customization:</strong> Dark Mode Ready & Daily Facts (Medical/Law/General)</span></li>
                         </ul>
 
                         <span class="price-big">Free</span>
@@ -332,36 +333,6 @@
 
                         <!-- Link aktualisiert -->
                         <a href="https://ankiweb.net/shared/info/236979321" target="_blank" class="btn-compact btn-dark-blue">AnkiWeb Page</a>
-                    </div>
-
-                    <!-- AI CARD -->
-                    <div class="compact-card ai-premium animate-on-scroll">
-                        <span class="badge">Beta Offer</span>
-                        <h3>AI Turbo</h3>
-                        <!-- Abstand vergrößert durch CSS override -->
-                        <p class="subtitle">The ultimate tutor. Instant explanations & mnemonics.</p>
-                        
-                        <ul class="card-features">
-                            <li><strong>1,000 AI Credits</strong> included</li>
-                            <li>Instant "Explain this Card"</li>
-                            <li>Auto-Mnemonic Generator</li>
-                            <li>Practice Question Generator</li>
-                            <!-- Lifetime Zeile entfernt -->
-                        </ul>
-
-                        <div style="margin-bottom: 20px;">
-                            <span style="text-decoration: line-through; color: #86868b; font-size: 18px;">€15</span>
-                            <span class="price-big">€9</span>
-                            <span class="price-sub">One-time payment</span>
-                        </div>
-
-                        <a href="#" class="btn-compact btn-standard-blue" style="background: var(--standard-blue);">Coming Soon!</a>
-                        
-                        <div style="text-align: center; margin-top: 15px;">
-                            <!-- Bild vergrößert -->
-                            <img src="payment.png" alt="Payments" style="max-width: 180px; opacity: 0.8;">
-                            <p><a href="#" class="terms-link" style="font-size: 11px; color: #86868b; text-decoration: none;">Terms of Service</a></p>
-                        </div>
                     </div>
                 </div>
             </div>
