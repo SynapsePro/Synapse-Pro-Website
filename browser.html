@@ -29,24 +29,6 @@
             --radius-m: 14px;
         }
 
-        /* --- DARK MODE (System Preference) --- */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #2C2C2C; /* Gewünschte Hintergrundfarbe */
-                --card-bg: #3a3a3c;  /* Karten etwas heller als Hintergrund */
-                --card-border: #454545;
-                --text-primary: #e0e0e0;
-                --text-secondary: #a0a0a5;
-                --accent-blue: #4facfe; /* Etwas helleres Blau für bessere Lesbarkeit auf Dunkel */
-                --hover-bg: #48484a;
-                --top-line: #454545;
-            }
-
-            .section-header h2 {
-                color: #E0E0E0; /* Sehr helles Grau */
-            }
-        }
-
         /* --- GLOBAL RESET & TYPOGRAPHY --- */
         * {
             box-sizing: border-box;
@@ -104,7 +86,7 @@
         .section-header h2 {
             font-size: 28px;
             font-weight: 700;
-            color: #414141;
+            color: #414141; /* Standard Helle Farbe */
             margin-bottom: 8px;
             letter-spacing: -0.5px;
         }
@@ -204,6 +186,43 @@
             color: var(--text-primary);
         }
 
+        /* --- DARK MODE (System Preference & Anki Classes am Ende der CSS-Datei!) --- */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #2C2C2C; 
+                --card-bg: #3a3a3c;  
+                --card-border: #454545;
+                --text-primary: #e0e0e0;
+                --text-secondary: #a0a0a5;
+                --accent-blue: #4facfe; 
+                --hover-bg: #48484a;
+                --top-line: #454545;
+            }
+
+            .section-header h2 {
+                color: #E0E0E0 !important;
+            }
+        }
+
+        /* Anki spezifische Darkmode Klassen (überschreibt alles vorherige zuverlässig) */
+        body.nightMode, body.night_mode, html.nightMode body, html.night_mode body {
+            --bg-color: #2C2C2C; 
+            --card-bg: #3a3a3c;  
+            --card-border: #454545;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a5;
+            --accent-blue: #4facfe; 
+            --hover-bg: #48484a;
+            --top-line: #454545;
+        }
+
+        html.nightMode .section-header h2,
+        html.night_mode .section-header h2,
+        body.nightMode .section-header h2,
+        body.night_mode .section-header h2 {
+            color: #E0E0E0 !important;
+        }
+
     </style>
 </head>
 <body class="browser-body">
@@ -292,5 +311,11 @@
 
     <script src="script.js"></script>
 
+    <!-- Skript, das die Anki-Darkmode-Klasse ans Body-Element weitergibt, falls nötig -->
+    <script>
+        if (document.documentElement.classList.contains("nightMode") || document.documentElement.classList.contains("night_mode")) {
+            document.body.classList.add("nightMode");
+        }
+    </script>
 </body>
 </html>
