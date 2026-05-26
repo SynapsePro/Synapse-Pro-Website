@@ -4,316 +4,333 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SynapsePro - Browser</title>
-    
-    <link rel="icon" type="image/png" href="logo.png">
-    
-    <!-- Lottie Player Script -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-    <!-- Falls style.css existiert -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* --- CSS VARIABLES (Light Mode Defaults) --- */
+        /* ── Design Tokens ─────────────────────────────────────── */
         :root {
-            --bg-color: #ffffff;
-            --card-bg: #F5F5F7; /* Apple System Gray 6 */
-            --card-border: #E5E5EA; /* Standardmäßiges Apple Grau */
-            --text-primary: #1d1d1f;
-            --text-secondary: #86868b;
-            --accent-blue: #0071D3; /* Synapse Blue */
-            --hover-bg: #EAEAEB;
-            --top-line: #d1d1d6;
-            
-            --radius-l: 20px;
-            --radius-m: 14px;
+            --bg:              #ffffff;
+            --card-bg:         #F5F5F7;
+            --card-hover:      #EAEAEC;
+            --sep:             rgba(0, 0, 0, 0.08);
+            --text-primary:    #1d1d1f;
+            --text-secondary:  #6e6e73;
+            --accent:          #0071D3;
+            --tip-bg:          rgba(0, 113, 211, 0.06);
+            --tip-border:      rgba(0, 113, 211, 0.18);
+            --top-border:      rgba(0, 0, 0, 0.08);
+            --chevron:         #C7C7CC;
         }
 
-        /* --- GLOBAL RESET & TYPOGRAPHY --- */
-        * {
+        /* ── Reset ─────────────────────────────────────────────── */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             -webkit-font-smoothing: antialiased;
         }
 
+        /* ── Base ──────────────────────────────────────────────── */
         body.browser-body {
-            background-color: var(--bg-color) !important;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                         "Segoe UI", Helvetica, Arial, sans-serif;
             color: var(--text-primary);
-            padding-top: 20px; 
-            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
         }
 
-        /* --- FIXED TOP BORDER --- */
+        /* ── Fixed hairline border ─────────────────────────────── */
         .fixed-top-border {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: var(--top-line);
+            top: 0; left: 0;
+            width: 100%; height: 1px;
+            background: var(--top-border);
             z-index: 9999;
-            transition: background-color 0.3s ease;
         }
 
-        /* Container für die Lottie Animation */
+        /* ── Layout ────────────────────────────────────────────── */
+        .container {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 0 20px 56px;
+        }
+
+        /* ── Lottie logo ───────────────────────────────────────── */
         .logo-wrapper {
             width: 300px;
-            height: 150px;
-            
-            /* GEÄNDERT: Oben 20px Abstand verkleinert */
-            margin: 20px auto 10px auto; 
-            
+            height: 128px;
+            margin: 16px auto 0;
             display: flex;
-            justify-content: center;
             align-items: center;
-            pointer-events: none; 
+            justify-content: center;
+            pointer-events: none;
         }
 
-        /* --- MAIN CONTENT --- */
-        .container {
-            max-width: 600px; 
-            margin: 0 auto;
-            padding: 0 20px 40px 20px;
-        }
-
+        /* ── Section header ────────────────────────────────────── */
         .section-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
         }
 
         .section-header h2 {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
-            color: #414141; /* Standard Helle Farbe */
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.3px;
+            color: var(--text-primary);
+            margin-bottom: 5px;
         }
 
         .section-header p {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-secondary);
-            font-weight: 400;
-            max-width: 400px;
-            margin: 0 auto;
-            line-height: 1.4;
-        }
-
-        /* --- TUTORIAL CARD --- */
-        .tutorial-card {
-            background-color: var(--card-bg);
-            border-radius: var(--radius-l);
-            padding: 20px 25px;
-            text-align: center;
-            margin-bottom: 30px;
-            border: 1px solid #414141;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .tutorial-card h3 {
-            color: var(--text-primary);
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .tutorial-card p {
-            color: var(--text-primary);
-            font-size: 14px;
             line-height: 1.5;
+            max-width: 340px;
+            margin: 0 auto;
         }
 
-        .tutorial-card strong {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        /* --- BROWSER LIST (Vertical Stack) --- */
-        .browser-list {
+        /* ── Tip callout ───────────────────────────────────────── */
+        .tutorial-card {
             display: flex;
-            flex-direction: column; 
-            gap: 12px; 
+            gap: 11px;
+            align-items: flex-start;
+            background: var(--tip-bg);
+            border: 1px solid var(--tip-border);
+            border-radius: 14px;
+            padding: 13px 16px;
+            margin-bottom: 20px;
         }
 
-        /* --- BROWSER CARD --- */
+        .tip-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 1px;
+            color: var(--accent);
+        }
+
+        .tip-content h3 {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 3px;
+        }
+
+        .tip-content p {
+            font-size: 13px;
+            color: var(--text-primary);
+            line-height: 1.55;
+        }
+
+        .tip-content strong {
+            font-weight: 600;
+        }
+
+        /* ── Grouped list (iOS Settings style) ─────────────────── */
+        .browser-list {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
         .browser-card {
             display: flex;
-            align-items: center; 
-            justify-content: flex-start; 
-            
-            background-color: var(--card-bg) !important;
-            border: 1px solid transparent !important;
-            border-radius: var(--radius-m);
-            
-            padding: 16px 20px;
-            width: 100%; 
-            
+            align-items: center;
+            padding: 12px 16px;
             text-decoration: none;
-            transition: all 0.2s ease;
+            color: var(--text-primary);
+            position: relative;
             cursor: pointer;
+            transition: background 0.12s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .browser-card:hover {
-            background-color: var(--hover-bg) !important;
-            transform: scale(1.02); 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        /* Hairline separator that starts after the icon, not the edge */
+        .browser-card + .browser-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 54px;
+            right: 0;
+            height: 0.5px;
+            background: var(--sep);
         }
 
-        .browser-card:active {
-            transform: scale(0.98);
-            opacity: 0.8;
-        }
+        .browser-card:hover  { background: var(--card-hover); }
+        .browser-card:active { background: var(--card-hover); opacity: 0.6; }
 
+        /* Icon container – rounded square like iOS app icons */
         .browser-icon-wrapper {
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            overflow: hidden;
+            flex-shrink: 0;
+            margin-right: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 18px; 
+            background: transparent;
         }
 
         .browser-icon-wrapper img {
-            width: 32px; 
-            height: 32px;
+            width: 30px;
+            height: 30px;
             object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            display: block;
         }
 
         .browser-name {
-            font-size: 17px; 
-            font-weight: 500;
-            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 400;
+            flex: 1;
+            line-height: 1;
         }
 
-        /* --- DARK MODE (System Preference & Anki Classes am Ende der CSS-Datei!) --- */
+        /* Chevron – the Apple disclosure indicator */
+        .browser-chevron {
+            font-size: 19px;
+            font-weight: 300;
+            line-height: 1;
+            color: var(--chevron);
+            margin-left: 4px;
+            letter-spacing: -1px;
+        }
+
+        /* ── Dark mode – system ────────────────────────────────── */
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-color: #2C2C2C; 
-                --card-bg: #3a3a3c;  
-                --card-border: #454545;
-                --text-primary: #e0e0e0;
-                --text-secondary: #a0a0a5;
-                --accent-blue: #4facfe; 
-                --hover-bg: #48484a;
-                --top-line: #454545;
+                --bg:             #1c1c1e;
+                --card-bg:        #2c2c2e;
+                --card-hover:     #3a3a3c;
+                --sep:            rgba(255, 255, 255, 0.09);
+                --text-primary:   #f5f5f7;
+                --text-secondary: #98989d;
+                --accent:         #409CFF;
+                --tip-bg:         rgba(64, 156, 255, 0.09);
+                --tip-border:     rgba(64, 156, 255, 0.22);
+                --top-border:     rgba(255, 255, 255, 0.08);
+                --chevron:        #48484a;
             }
-
-            .section-header h2 {
-                color: #E0E0E0 !important;
-            }
         }
 
-        /* Anki spezifische Darkmode Klassen (überschreibt alles vorherige zuverlässig) */
-        body.nightMode, body.night_mode, html.nightMode body, html.night_mode body {
-            --bg-color: #2C2C2C; 
-            --card-bg: #3a3a3c;  
-            --card-border: #454545;
-            --text-primary: #e0e0e0;
-            --text-secondary: #a0a0a5;
-            --accent-blue: #4facfe; 
-            --hover-bg: #48484a;
-            --top-line: #454545;
+        /* ── Dark mode – Anki nightMode classes ────────────────── */
+        body.nightMode, body.night_mode,
+        html.nightMode body, html.night_mode body {
+            --bg:             #1c1c1e;
+            --card-bg:        #2c2c2e;
+            --card-hover:     #3a3a3c;
+            --sep:            rgba(255, 255, 255, 0.09);
+            --text-primary:   #f5f5f7;
+            --text-secondary: #98989d;
+            --accent:         #409CFF;
+            --tip-bg:         rgba(64, 156, 255, 0.09);
+            --tip-border:     rgba(64, 156, 255, 0.22);
+            --top-border:     rgba(255, 255, 255, 0.08);
+            --chevron:        #48484a;
         }
-
-        html.nightMode .section-header h2,
-        html.night_mode .section-header h2,
-        body.nightMode .section-header h2,
-        body.night_mode .section-header h2 {
-            color: #E0E0E0 !important;
-        }
-
     </style>
 </head>
 <body class="browser-body">
 
-    <!-- Fixierte Linie -->
     <div class="fixed-top-border"></div>
 
     <main>
         <section class="browser-section">
             <div class="container">
-                
-                <!-- Logo Wrapper: Jetzt mit verkleinertem margin-top -->
+
+                <!-- Lottie animation -->
                 <div class="logo-wrapper">
-                    <lottie-player 
-                        src="browser.json" 
-                        background="transparent" 
-                        speed="1" 
-                        style="width: 300px; height: 150px;" 
+                    <lottie-player
+                        src="browser.json"
+                        background="transparent"
+                        speed="1"
+                        style="width: 300px; height: 128px;"
                         autoplay
                         loop>
                     </lottie-player>
                 </div>
 
+                <!-- Heading -->
                 <div class="section-header">
                     <h2>Internet Browser</h2>
                     <p>Select your preferred search engine to start browsing the web directly within Anki.</p>
                 </div>
 
-                <!-- Tutorial Box -->
+                <!-- Quick Search tip -->
                 <div class="tutorial-card">
-                    <h3>Quick Search</h3>
-                    <p>
-                        Highlight any text within your Anki cards, right-click, and select 
-                        <strong>"Search in Sidebar..."</strong>. 
-                        The selected term will be automatically searched here.
-                    </p>
+                    <svg class="tip-icon" viewBox="0 0 20 20" fill="none"
+                         stroke="currentColor" stroke-width="1.7"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="10" cy="10" r="8.5"/>
+                        <line x1="10" y1="9" x2="10" y2="14.5"/>
+                        <circle cx="10" cy="6.2" r="0.7" fill="currentColor" stroke="none"/>
+                    </svg>
+                    <div class="tip-content">
+                        <h3>Quick Search</h3>
+                        <p>Highlight any text within your Anki cards, right-click, and select
+                           <strong>"Search in Sidebar…"</strong> —
+                           the selected term will be searched here automatically.</p>
+                    </div>
                 </div>
 
-                <!-- Vertical Stack List -->
+                <!-- Grouped browser list -->
                 <div class="browser-list">
-                    
-                    <!-- Google -->
+
                     <a href="https://www.google.com" class="browser-card">
                         <div class="browser-icon-wrapper">
                             <img src="icons/google.png" alt="Google">
                         </div>
                         <span class="browser-name">Google</span>
+                        <span class="browser-chevron">›</span>
                     </a>
 
-                    <!-- Bing -->
                     <a href="https://www.bing.com" class="browser-card">
                         <div class="browser-icon-wrapper">
                             <img src="icons/bing.png" alt="Bing">
                         </div>
                         <span class="browser-name">Bing</span>
+                        <span class="browser-chevron">›</span>
                     </a>
 
-                    <!-- DuckDuckGo -->
                     <a href="https://duckduckgo.com" class="browser-card">
                         <div class="browser-icon-wrapper">
                             <img src="icons/duckduckgo.png" alt="DuckDuckGo">
                         </div>
                         <span class="browser-name">DuckDuckGo</span>
+                        <span class="browser-chevron">›</span>
                     </a>
 
-                    <!-- YouTube -->
                     <a href="https://www.youtube.com" class="browser-card">
                         <div class="browser-icon-wrapper">
                             <img src="icons/youtube.png" alt="YouTube">
                         </div>
                         <span class="browser-name">YouTube</span>
+                        <span class="browser-chevron">›</span>
                     </a>
 
-                    <!-- Wikipedia -->
                     <a href="https://www.wikipedia.org" class="browser-card">
                         <div class="browser-icon-wrapper">
                             <img src="icons/wikipedia.png" alt="Wikipedia">
                         </div>
                         <span class="browser-name">Wikipedia</span>
+                        <span class="browser-chevron">›</span>
                     </a>
 
                 </div>
+
             </div>
         </section>
     </main>
 
     <script src="script.js"></script>
-
-    <!-- Skript, das die Anki-Darkmode-Klasse ans Body-Element weitergibt, falls nötig -->
     <script>
-        if (document.documentElement.classList.contains("nightMode") || document.documentElement.classList.contains("night_mode")) {
+        if (document.documentElement.classList.contains("nightMode") ||
+            document.documentElement.classList.contains("night_mode")) {
             document.body.classList.add("nightMode");
         }
     </script>
