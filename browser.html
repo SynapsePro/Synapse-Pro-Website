@@ -21,6 +21,10 @@
             --tip-border:      rgba(0, 113, 211, 0.18);
             --top-border:      rgba(0, 0, 0, 0.08);
             --chevron:         #C7C7CC;
+            --search-bg:       #F5F5F7;
+            --search-border:   rgba(0, 0, 0, 0.10);
+            --search-focus:    rgba(0, 113, 211, 0.35);
+            --search-icon:     #8E8E93;
         }
 
         /* ── Reset ─────────────────────────────────────────────── */
@@ -56,37 +60,133 @@
             padding: 0 20px 56px;
         }
 
-        /* ── Lottie logo ───────────────────────────────────────── */
-        .logo-wrapper {
-            width: 300px;
-            height: 128px;
-            margin: 16px auto 0;
+        /* ── Hero header box ───────────────────────────────────── */
+        .hero-box {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px 18px;
+            margin-top: 20px;
+            margin-bottom: 32px;
+        }
+
+        .hero-lottie {
+            width: 72px;
+            height: 72px;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             pointer-events: none;
         }
 
-        /* ── Section header ────────────────────────────────────── */
-        .section-header {
-            text-align: center;
-            margin-bottom: 24px;
+        .hero-lottie lottie-player {
+            width: 72px;
+            height: 72px;
         }
 
-        .section-header h2 {
-            font-size: 24px;
+        .hero-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .hero-text h2 {
+            font-size: 20px;
             font-weight: 700;
             letter-spacing: -0.3px;
             color: var(--text-primary);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+            line-height: 1.2;
         }
 
-        .section-header p {
-            font-size: 14px;
+        .hero-text p {
+            font-size: 13px;
             color: var(--text-secondary);
-            line-height: 1.5;
-            max-width: 340px;
-            margin: 0 auto;
+            line-height: 1.45;
+        }
+
+        /* ── Search bar box ────────────────────────────────────── */
+        .search-box {
+            margin-bottom: 32px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--search-bg);
+            border: 1.5px solid var(--search-border);
+            border-radius: 14px;
+            padding: 0 14px;
+            height: 46px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--search-focus);
+        }
+
+        .search-bar svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            color: var(--search-icon);
+            margin-right: 10px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: 15px;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .search-bar input::placeholder {
+            color: var(--search-icon);
+        }
+
+        .search-bar .search-go-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            border: none;
+            background: var(--accent);
+            color: #fff;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-left: 8px;
+            transition: opacity 0.15s ease, transform 0.1s ease;
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        .search-bar .search-go-btn.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .search-bar .search-go-btn:hover {
+            opacity: 0.85;
+        }
+
+        .search-bar .search-go-btn:active {
+            transform: scale(0.92);
+        }
+
+        .search-bar .search-go-btn svg {
+            width: 14px;
+            height: 14px;
+            color: #fff;
+            margin: 0;
         }
 
         /* ── Tip callout ───────────────────────────────────────── */
@@ -147,7 +247,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Hairline separator that starts after the icon, not the edge */
         .browser-card + .browser-card::before {
             content: '';
             position: absolute;
@@ -161,7 +260,6 @@
         .browser-card:hover  { background: var(--card-hover); }
         .browser-card:active { background: var(--card-hover); opacity: 0.6; }
 
-        /* Icon container – rounded square like iOS app icons */
         .browser-icon-wrapper {
             width: 30px;
             height: 30px;
@@ -189,7 +287,6 @@
             line-height: 1;
         }
 
-        /* Chevron – the Apple disclosure indicator */
         .browser-chevron {
             font-size: 19px;
             font-weight: 300;
@@ -213,6 +310,10 @@
                 --tip-border:     rgba(64, 156, 255, 0.22);
                 --top-border:     rgba(255, 255, 255, 0.08);
                 --chevron:        #48484a;
+                --search-bg:      #2c2c2e;
+                --search-border:  rgba(255, 255, 255, 0.12);
+                --search-focus:   rgba(64, 156, 255, 0.25);
+                --search-icon:    #636366;
             }
         }
 
@@ -230,6 +331,10 @@
             --tip-border:     rgba(64, 156, 255, 0.22);
             --top-border:     rgba(255, 255, 255, 0.08);
             --chevron:        #48484a;
+            --search-bg:      #2c2c2e;
+            --search-border:  rgba(255, 255, 255, 0.12);
+            --search-focus:   rgba(64, 156, 255, 0.25);
+            --search-icon:    #636366;
         }
     </style>
 </head>
@@ -241,22 +346,44 @@
         <section class="browser-section">
             <div class="container">
 
-                <!-- Lottie animation -->
-                <div class="logo-wrapper">
-                    <lottie-player
-                        src="browser.json"
-                        background="transparent"
-                        speed="1"
-                        style="width: 300px; height: 128px;"
-                        autoplay
-                        loop>
-                    </lottie-player>
+                <!-- Hero box: Lottie + heading -->
+                <div class="hero-box">
+                    <div class="hero-lottie">
+                        <lottie-player
+                            src="browser.json"
+                            background="transparent"
+                            speed="1"
+                            autoplay
+                            loop>
+                        </lottie-player>
+                    </div>
+                    <div class="hero-text">
+                        <h2>Internet Browser</h2>
+                        <p>Select your preferred search engine to start browsing the web directly within Anki.</p>
+                    </div>
                 </div>
 
-                <!-- Heading -->
-                <div class="section-header">
-                    <h2>Internet Browser</h2>
-                    <p>Select your preferred search engine to start browsing the web directly within Anki.</p>
+                <!-- Search bar -->
+                <div class="search-box">
+                    <div class="search-bar" id="searchBar">
+                        <svg viewBox="0 0 20 20" fill="none"
+                             stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="8.5" cy="8.5" r="6"/>
+                            <line x1="13" y1="13" x2="18" y2="18"/>
+                        </svg>
+                        <input type="text" id="searchInput"
+                               placeholder="Search with Google…"
+                               autocomplete="off" spellcheck="false">
+                        <button class="search-go-btn" id="searchBtn" tabindex="-1">
+                            <svg viewBox="0 0 20 20" fill="none"
+                                 stroke="currentColor" stroke-width="2.4"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="4" y1="10" x2="16" y2="10"/>
+                                <polyline points="11,5 16,10 11,15"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Quick Search tip -->
@@ -331,6 +458,28 @@
             document.documentElement.classList.contains("night_mode")) {
             document.body.classList.add("nightMode");
         }
+
+        // Search bar logic
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn   = document.getElementById('searchBtn');
+
+        searchInput.addEventListener('input', function () {
+            searchBtn.classList.toggle('active', this.value.trim().length > 0);
+        });
+
+        function performSearch() {
+            const q = searchInput.value.trim();
+            if (q) {
+                window.location.href =
+                    'https://www.google.com/search?q=' + encodeURIComponent(q);
+            }
+        }
+
+        searchInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') performSearch();
+        });
+
+        searchBtn.addEventListener('click', performSearch);
     </script>
 </body>
 </html>
