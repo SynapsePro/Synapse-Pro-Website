@@ -6,7 +6,7 @@
     <title>SynapsePro - Browser</title>
 
     <link rel="icon" type="image/png" href="logo.png">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
     <style>
         /* ── Design Tokens ─────────────────────────────────────── */
         :root {
@@ -73,8 +73,8 @@
         }
 
         .hero-lottie {
-            width: 110px;
-            height: 110px;
+            width: 75px;
+            height: 75px;
             flex-shrink: 0;
             display: flex;
             align-items: center;
@@ -82,9 +82,9 @@
             pointer-events: none;
         }
 
-        .hero-lottie lottie-player {
-            width: 110px;
-            height: 110px;
+        .hero-lottie dotlottie-player {
+            width: 75px;
+            height: 75px;
         }
 
         .hero-text {
@@ -349,13 +349,14 @@
                 <!-- Hero box: Lottie + heading -->
                 <div class="hero-box">
                     <div class="hero-lottie">
-                        <lottie-player
+                        <dotlottie-player
                             src="icons/browser.lottie"
                             background="transparent"
                             speed="1"
+                            style="width: 75px; height: 75px;"
                             autoplay
                             loop>
-                        </lottie-player>
+                        </dotlottie-player>
                     </div>
                     <div class="hero-text">
                         <h2>Internet Browser</h2>
