@@ -250,6 +250,57 @@
             letter-spacing: -1px;
         }
 
+        /* ── Wide screens: grouped list → tile grid ────────────── */
+        /* Below 640px everything stays exactly as before (single    */
+        /* column, iOS grouped list). From 640px up the column       */
+        /* widens and the list becomes a responsive card grid.       */
+        @media (min-width: 640px) {
+            .container {
+                max-width: 900px;
+                padding: 0 32px 64px;
+            }
+
+            .search-box {
+                margin-top: 28px;
+                margin-bottom: 30px;
+            }
+
+            .search-bar { height: 50px; }
+            .search-bar input { font-size: 16px; }
+
+            .tutorial-card { margin-bottom: 26px; }
+
+            /* List becomes a grid of self-contained tiles */
+            .browser-list {
+                background: transparent;
+                border-radius: 0;
+                overflow: visible;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+                gap: 12px;
+            }
+
+            .browser-card {
+                background: var(--card-bg);
+                border: 1px solid var(--sep);
+                border-radius: 14px;
+                padding: 16px 16px;
+                transition: background 0.12s ease, transform 0.08s ease;
+            }
+
+            .browser-card:hover  { background: var(--card-hover); }
+            .browser-card:active { transform: scale(0.985); opacity: 1; }
+
+            /* Hairline separators only make sense in a single column */
+            .browser-card + .browser-card::before { display: none; }
+        }
+
+        @media (min-width: 900px) {
+            .browser-list {
+                grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            }
+        }
+
         /* ── Dark mode – system ────────────────────────────────── */
         @media (prefers-color-scheme: dark) {
             :root {
@@ -436,9 +487,21 @@
             searchBtn.classList.toggle('active', this.value.trim().length > 0);
         });
 
+        // Treat the input as a direct URL when it looks like one,
+        // otherwise fall back to a Google search.
+        function looksLikeUrl(s) {
+            if (/\s/.test(s)) return false;                 // has spaces → search
+            if (/^https?:\/\//i.test(s)) return true;       // explicit scheme
+            if (/^localhost(:\d+)?(\/|$)/i.test(s)) return true;
+            return /^([a-z0-9-]+\.)+[a-z]{2,}(\/\S*)?$/i.test(s); // domain.tld
+        }
+
         function performSearch() {
             const q = searchInput.value.trim();
-            if (q) {
+            if (!q) return;
+            if (looksLikeUrl(q)) {
+                window.location.href = /^https?:\/\//i.test(q) ? q : 'https://' + q;
+            } else {
                 window.location.href =
                     'https://www.google.com/search?q=' + encodeURIComponent(q);
             }
@@ -449,6 +512,18 @@
         });
 
         searchBtn.addEventListener('click', performSearch);
+
+        // Browser-style shortcuts: "/" focuses the bar, Esc clears/blurs.
+        document.addEventListener('keydown', function (e) {
+            if (e.key === '/' && document.activeElement !== searchInput) {
+                e.preventDefault();
+                searchInput.focus();
+            } else if (e.key === 'Escape' && document.activeElement === searchInput) {
+                searchInput.value = '';
+                searchBtn.classList.remove('active');
+                searchInput.blur();
+            }
+        });
     </script>
 </body>
 </html>
