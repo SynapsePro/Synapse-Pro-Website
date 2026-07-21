@@ -341,6 +341,42 @@
             --search-focus:   rgba(64, 156, 255, 0.25);
             --search-icon:    #636366;
         }
+
+        /* ── Entrance animation (on first load) ─────────────────── */
+        /* Subtle Apple-style float-in: gentle rise + fade, softly    */
+        /* staggered. Uses fill-mode 'backwards' so the final state    */
+        /* is the element's own CSS — hover/active transforms stay     */
+        /* intact after the animation finishes.                        */
+        @keyframes floatIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .search-box {
+                animation: floatIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+                animation-delay: 0.04s;
+            }
+
+            .tutorial-card {
+                animation: floatIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+                animation-delay: 0.11s;
+            }
+
+            .browser-card {
+                animation: floatIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+            }
+
+            .browser-card:nth-child(1) { animation-delay: 0.18s; }
+            .browser-card:nth-child(2) { animation-delay: 0.235s; }
+            .browser-card:nth-child(3) { animation-delay: 0.29s; }
+            .browser-card:nth-child(4) { animation-delay: 0.345s; }
+            .browser-card:nth-child(5) { animation-delay: 0.40s; }
+            .browser-card:nth-child(6) { animation-delay: 0.455s; }
+            .browser-card:nth-child(7) { animation-delay: 0.51s; }
+            .browser-card:nth-child(8) { animation-delay: 0.565s; }
+            .browser-card:nth-child(9) { animation-delay: 0.62s; }
+        }
     </style>
 </head>
 <body class="browser-body">
