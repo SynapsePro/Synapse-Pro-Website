@@ -1,232 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support - SynapsePro</title>
-    
-    <link rel="icon" type="image/png" href="logo.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Using the same style.css as the main page -->
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* === CUSTOM STYLES FOR CONTACT PAGE === */
-        :root {
-            --dark-blue: #003A6D;
-            --standard-blue: #0071D3;
-            --text-main: #1d1d1f;
-            --text-sub: #6e6e73;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fbfbfd;
-            margin: 0;
-            color: var(--text-main);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Header */
-        .support-header {
-            padding: 40px 20px 20px;
-            text-align: center;
-        }
-        
-        .support-logo {
-            max-width: 180px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        .page-title {
-            font-size: 40px;
-            font-weight: 800;
-            color: var(--dark-blue);
-            margin-bottom: 10px;
-        }
-        
-        .page-subtitle {
-            font-size: 18px;
-            color: var(--text-sub);
-            max-width: 600px;
-            margin: 0 auto 50px;
-            line-height: 1.5;
-        }
-
-        /* === GRID LAYOUT === */
-        .support-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-bottom: 60px;
-        }
-
-        .support-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            width: 100%;
-        }
-
-        /* === CARD DESIGN === */
-        .support-card {
-            background: white;
-            border-radius: 24px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-        }
-
-        .support-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
-        }
-
-        .icon-wrapper {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icon-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .support-card h3 {
-            font-size: 22px;
-            font-weight: 700;
-            margin: 0 0 12px 0;
-            color: var(--dark-blue);
-        }
-
-        .support-card p {
-            font-size: 15px;
-            color: var(--text-sub);
-            line-height: 1.5;
-            margin: 0 0 30px 0;
-            flex-grow: 1;
-        }
-
-        /* === BUTTONS === */
-        .btn-support {
-            width: 100%;
-            padding: 14px;
-            border-radius: 12px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: opacity 0.2s, transform 0.1s;
-            display: inline-block;
-            box-sizing: border-box;
-        }
-
-        .btn-filled {
-            background-color: var(--dark-blue);
-            color: white;
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--dark-blue);
-            color: var(--dark-blue);
-        }
-
-        .btn-support:hover {
-            opacity: 0.9;
-            transform: scale(1.02);
-        }
-
-        .main-footer {
-            margin-top: auto;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 900px) {
-            .support-grid {
-                grid-template-columns: 1fr;
-                max-width: 450px;
-                margin: 0 auto;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Get help with the SynapsePro Anki addon, report a bug, or contact the team about installation, AI tools, focus features, and study workflows.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#050505">
+  <title>SynapsePro Support &amp; Contact | Anki Addon Help</title>
+  <link rel="canonical" href="https://www.synapse-pro.de/contact.html">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SynapsePro">
+  <meta property="og:title" content="SynapsePro Support &amp; Contact">
+  <meta property="og:description" content="Help with installation, features, and technical issues for the SynapsePro Anki addon.">
+  <meta property="og:url" content="https://www.synapse-pro.de/contact.html">
+  <meta property="og:image" content="https://www.synapse-pro.de/images/og-synapsepro.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "SynapsePro Support & Contact",
+    "url": "https://www.synapse-pro.de/contact.html",
+    "description": "Support and contact information for the SynapsePro Anki add-on.",
+    "isPartOf": { "@type": "WebSite", "name": "SynapsePro", "url": "https://www.synapse-pro.de/" }
+  }
+  </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"a4d748549a9f4c1798913d57ffdf75ff"}'></script>
+  <script defer src="script.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <!-- Header Section -->
-    <header class="support-header">
-        <a href="index.html">
-            <img src="logo.png" alt="SynapsePro Logo" class="support-logo">
-        </a>
-        <h1 class="page-title">Support Center</h1>
-        <p class="page-subtitle">Need help with SynapsePro? Choose an option below to find what you are looking for.</p>
-    </header>
+  <header class="site-header">
+    <div class="shell nav-shell">
+      <a class="brand" href="index.html" aria-label="SynapsePro home">
+        <img src="images/logo.png" alt="" width="367" height="367">
+        <span>SynapsePro</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#workflow">Workflow</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html" aria-current="page">Support</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="nav-link-muted" href="https://github.com/mobesamedia/SynapsePro" target="_blank" rel="noopener">GitHub</a>
+        <a class="nav-pill" href="https://ankiweb.net/shared/info/236979321" target="_blank" rel="noopener">Free Download</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open navigation"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
 
-    <!-- Main Content -->
-    <main class="support-container">
-        <div class="support-grid">
-            
-            <!-- Box 1: Main Site -->
-            <div class="support-card animate-on-scroll">
-                <div class="icon-wrapper">
-                    <img src="website.png" alt="Website Icon">
-                </div>
-                <h3>SynapsePro Home</h3>
-                <p>Discover features, view pricing, and download the latest version of the addon.</p>
-                <a href="https://www.synapse-pro.de" class="btn-support btn-outline">Visit Website</a>
-            </div>
+  <div class="mobile-menu" id="mobile-navigation">
+    <div>
+      <nav aria-label="Mobile navigation">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#workflow">Workflow</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html" aria-current="page">Support</a>
+        <a href="https://github.com/mobesamedia/SynapsePro" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </div>
 
-            <!-- Box 2: Contact (Email) -->
-            <div class="support-card animate-on-scroll">
-                <div class="icon-wrapper">
-                    <img src="contact.png" alt="Contact Icon">
-                </div>
-                <h3>Get in Touch</h3>
-                <p>Have a question or need personal assistance? Send me an email directly.</p>
-                <a href="mailto:help.synapse.pro@gmail.com" class="btn-support btn-filled">Contact Me</a>
-            </div>
+  <main class="page-main" id="main-content">
+    <section class="page-hero">
+      <div class="shell page-hero-inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Support</span></nav>
+        <p class="section-kicker">Support</p>
+        <h1>Let’s get you back to learning.</h1>
+        <p class="page-hero-lede">Questions about installation, a feature, or a technical issue? Choose the most direct route below.</p>
+      </div>
+    </section>
 
-            <!-- Box 3: Bug Report -->
-            <div class="support-card animate-on-scroll">
-                <div class="icon-wrapper">
-                    <img src="bug.png" alt="Bug Icon">
-                </div>
-                <h3>Report an Issue</h3>
-                <p>Found a bug? Let me know so I can improve the experience for everyone.</p>
-                <!-- Placeholder button (no "coming soon") -->
-                <a href="#" class="btn-support btn-outline">Report Bug</a>
-            </div>
+    <section class="page-section" aria-label="Support options">
+      <div class="shell contact-grid">
+        <article class="contact-card" data-reveal>
+          <div class="contact-icon"><img src="images/icon-addon.svg" alt="" width="30" height="30"></div>
+          <h2>Email support</h2>
+          <p>Describe what you are trying to do and include your Anki version when the question is technical.</p>
+          <a class="button button-primary" href="mailto:help.synapse.pro@gmail.com?subject=SynapsePro%20Support">Write an email</a>
+        </article>
 
-        </div>
-    </main>
+        <article class="contact-card" data-reveal data-delay="70">
+          <div class="contact-icon"><img src="images/icon-settings.svg" alt="" width="30" height="30"></div>
+          <h2>Report a bug</h2>
+          <p>Include the steps that caused the problem, what you expected, and a screenshot or error message if available.</p>
+          <a class="button button-light" href="mailto:help.synapse.pro@gmail.com?subject=SynapsePro%20Bug%20Report">Report an issue</a>
+        </article>
 
-    <!-- Footer -->
-    <footer class="main-footer" style="padding: 40px 0; background: var(--dark-blue); color: white;">
-        <div class="container text-center" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <p style="color: white; margin-bottom: 10px;">&copy; 2026 SynapsePro. All rights reserved.</p>
-            <p><a href="#" style="color: white; text-decoration: none; font-size: 14px;">Impressum</a> <span style="opacity:0.5; margin:0 5px;">|</span> <a href="#" style="color: white; text-decoration: none; font-size: 14px;">Privacy Policy</a></p>
-        </div>
-    </footer>
+        <article class="contact-card" data-reveal data-delay="140">
+          <div class="contact-icon"><img src="images/icon-web.svg" alt="" width="30" height="30"></div>
+          <h2>Project links</h2>
+          <p>Open the official AnkiWeb listing for installation or visit GitHub for project updates and source information.</p>
+          <a class="button button-light" href="https://github.com/mobesamedia/SynapsePro" target="_blank" rel="noopener">Open GitHub</a>
+        </article>
+      </div>
+    </section>
+  </main>
 
-    <script src="script.js"></script>
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="footer-top">
+        <a class="brand footer-brand" href="index.html" aria-label="SynapsePro home"><img src="images/logo.png" alt="" width="367" height="367"><span>SynapsePro</span></a>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="https://ankiweb.net/shared/info/236979321" target="_blank" rel="noopener">AnkiWeb</a>
+          <a href="https://github.com/mobesamedia/SynapsePro" target="_blank" rel="noopener">GitHub</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Support</a>
+          <a href="imprint.html">Imprint</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </nav>
+      </div>
+      <div class="footer-bottom"><span>© 2026 SynapsePro. All rights reserved.</span><span>Designed for focused learning.</span></div>
+    </div>
+  </footer>
 </body>
 </html>

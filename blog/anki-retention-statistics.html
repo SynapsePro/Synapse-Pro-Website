@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Understand Anki retention rate, true retention, review time, daily load, and FSRS statistics so you can improve cards without overreacting to noisy data.">
+  <meta name="robots" content="index, follow, max-image-preview:large"><meta name="theme-color" content="#050505">
+  <title>Anki Retention Rate &amp; Statistics: A Practical Guide</title>
+  <link rel="canonical" href="https://www.synapse-pro.de/blog/anki-retention-statistics.html"><link rel="icon" type="image/png" href="../images/logo.png">
+  <meta property="og:type" content="article"><meta property="og:site_name" content="SynapsePro"><meta property="og:title" content="How to Read Anki Retention and Review Statistics"><meta property="og:description" content="Understand true retention, workload, review time, and FSRS signals before changing your settings."><meta property="og:url" content="https://www.synapse-pro.de/blog/anki-retention-statistics.html"><meta property="og:image" content="https://www.synapse-pro.de/images/og-synapsepro.png"><meta property="article:published_time" content="2026-07-24"><meta property="article:modified_time" content="2026-07-24"><meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.synapse-pro.de/blog/anki-retention-statistics.html#article","headline":"Anki Retention Rate and Statistics: What Your Review Data Actually Means","description":"A practical guide to true retention, review time, daily load, and FSRS statistics in Anki.","image":"https://www.synapse-pro.de/images/og-synapsepro.png","datePublished":"2026-07-24","dateModified":"2026-07-24","author":{"@type":"Organization","name":"SynapsePro","url":"https://www.synapse-pro.de/"},"publisher":{"@type":"Organization","name":"SynapsePro","logo":{"@type":"ImageObject","url":"https://www.synapse-pro.de/images/logo.png"}},"mainEntityOfPage":"https://www.synapse-pro.de/blog/anki-retention-statistics.html","inLanguage":"en"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.synapse-pro.de/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.synapse-pro.de/blog.html"},{"@type":"ListItem","position":3,"name":"Anki Retention Statistics","item":"https://www.synapse-pro.de/blog/anki-retention-statistics.html"}]}]}
+  </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"a4d748549a9f4c1798913d57ffdf75ff"}'></script><script defer src="../script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header"><div class="shell nav-shell"><a class="brand" href="../index.html" aria-label="SynapsePro home"><img src="../images/logo.png" alt="" width="367" height="367"><span>SynapsePro</span></a><nav class="nav-links" aria-label="Primary navigation"><a href="../index.html#features">Features</a><a href="../index.html#workflow">Workflow</a><a href="../blog.html" aria-current="page">Blog</a><a href="../contact.html">Support</a></nav><div class="nav-actions"><a class="nav-link-muted" href="https://github.com/mobesamedia/SynapsePro" target="_blank" rel="noopener">GitHub</a><a class="nav-pill" href="https://ankiweb.net/shared/info/236979321" target="_blank" rel="noopener">Free Download</a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open navigation"><span></span><span></span></button></div></div></header>
+  <div class="mobile-menu" id="mobile-navigation"><div><nav aria-label="Mobile navigation"><a href="../index.html#features">Features</a><a href="../index.html#workflow">Workflow</a><a href="../blog.html">Blog</a><a href="../contact.html">Support</a><a href="https://github.com/mobesamedia/SynapsePro" target="_blank" rel="noopener">GitHub</a></nav></div></div>
+
+  <main class="page-main" id="main-content">
+    <header class="page-hero article-hero"><div class="shell page-hero-inner"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="../blog.html">Blog</a><span aria-hidden="true">/</span><span>Anki Retention Statistics</span></nav><p class="section-kicker">Statistics &amp; FSRS</p><h1>What your Anki retention data really tells you.</h1><p class="page-hero-lede">A useful dashboard should lead to a better decision — not make you change settings because one day looked worse than the last.</p><div class="article-meta"><span>By SynapsePro</span><span>July 24, 2026</span><span>8 min read</span></div></div></header>
+
+    <section class="page-section"><div class="shell article-layout">
+      <article class="article-content prose">
+        <p class="article-intro">Anki statistics can answer important questions: Is your workload sustainable? Are mature cards being remembered at the level you expect? Are difficult cards consuming too much time? The key is to interpret trends at the right scale and change one cause at a time.</p>
+
+        <h2 id="start">Start with the decision, not the graph</h2>
+        <p>Before opening statistics, name the decision you might make. Examples: reduce new cards, repair difficult prompts, change a focus routine, optimize FSRS parameters, or leave the system alone. Without a decision in mind, it is easy to mistake movement for insight.</p>
+        <p>The official <a href="https://docs.ankiweb.net/stats.html" target="_blank" rel="noopener">Anki statistics documentation</a> explicitly warns that a single day is not a good overall indicator. Everyone has better and worse days; longer periods are more useful for changing habits or settings.</p>
+
+        <h2 id="metrics">Five Anki statistics worth understanding</h2>
+        <div class="table-wrap"><table><thead><tr><th>Metric</th><th>What it answers</th><th>Common mistake</th></tr></thead><tbody><tr><td>True retention</td><td>How often reviewed material was recalled over a period</td><td>Judging it from one day</td></tr><tr><td>Review time</td><td>How much time the workload consumes</td><td>Optimizing speed before card clarity</td></tr><tr><td>Again count</td><td>How often retrieval failed</td><td>Pressing Hard to protect the number</td></tr><tr><td>Future due / daily load</td><td>How much review work is approaching</td><td>Adding new cards without checking capacity</td></tr><tr><td>FSRS stability and difficulty</td><td>How the scheduler models memory for cards</td><td>Editing parameters manually without a clear reason</td></tr></tbody></table></div>
+
+        <h2 id="retention">What “true retention” means in Anki</h2>
+        <p>In Anki’s true retention table, a mature card has an interval of at least 21 days. Only the first review of a card on a given day counts: Again is treated as a failure, while Hard, Good, and Easy are treated as a pass. This makes the table different from a simple percentage of all button presses.</p>
+        <p>Look at monthly data and separate young and mature cards. Young cards are still stabilizing and often behave differently from mature knowledge. A change in deck composition can move the overall percentage even when your study behavior did not change.</p>
+
+        <h2 id="fsrs">Desired retention and FSRS</h2>
+        <p>With FSRS enabled, Anki expects true retention to be close to the desired retention setting over time. Desired retention is the proportion of due cards you aim to recall successfully. The default described in the <a href="https://docs.ankiweb.net/deck-options.html#desired-retention" target="_blank" rel="noopener">Anki deck options guide</a> is 90%, which is intended to balance retention and workload.</p>
+        <p>Higher desired retention produces shorter intervals and more reviews. The workload grows particularly quickly at high settings, so “higher” is not automatically “better.” Learning has a time budget.</p>
+        <div class="article-callout"><strong>Answer buttons matter</strong>When you fail to recall, use Again. Under FSRS, Hard means you did recall correctly, but with difficulty. Using Hard for forgotten cards gives the scheduler misleading information and can produce intervals that are too long.</div>
+
+        <h3>Stability, difficulty, and retrievability</h3>
+        <ul><li><strong>Stability</strong> estimates how long it takes recall probability to decline to a defined level.</li><li><strong>Difficulty</strong> reflects how readily a card’s interval can grow after reviews.</li><li><strong>Retrievability</strong> is the estimated probability that you can recall a card now.</li></ul>
+        <p>These values are most useful as patterns across cards. A difficult card is not a personal failure; it may contain too much information, weak cues, interference, or material that was never fully understood.</p>
+
+        <h2 id="time">Review time and efficiency</h2>
+        <p>Average seconds per card can reveal friction, but it needs context. A short vocabulary recognition card should be faster than a clinical reasoning prompt. Compare like with like and watch the trend over weeks.</p>
+        <p>If review time rises, inspect the causes before trying to answer faster:</p>
+        <ul><li>Are prompts ambiguous or overloaded?</li><li>Are you reviewing new material that was not understood first?</li><li>Is a particular deck full of long lists or weak distinctions?</li><li>Are sessions happening when attention is consistently low?</li><li>Are reference lookups and AI explanations occurring inside the timed review?</li></ul>
+        <p>A separate maintenance block can fix cards without turning every review into an editing session. Pair that with an <a href="anki-pomodoro.html">Anki Pomodoro workflow</a> to keep focus blocks clean.</p>
+
+        <h2 id="workload">Future due and sustainable workload</h2>
+        <p>The future due graph estimates upcoming reviews, while daily load describes the average contribution of current cards to daily work. These are planning signals, not promises: failed cards, new cards, and changing settings will alter the actual queue.</p>
+        <p>If the queue is repeatedly larger than the time available, the first lever is often new-card intake. Reducing new cards temporarily protects due reviews and prevents the backlog from growing. Changing retention settings can affect workload too, but it should be done with a clear understanding of the tradeoff.</p>
+
+        <h2 id="diagnose">Diagnose patterns before changing settings</h2>
+        <h3>Retention is lower than expected</h3>
+        <ul><li>Use the answer buttons as intended.</li><li>Optimize FSRS parameters when sufficient review history is available.</li><li>Repair or suspend leeches and ambiguous cards.</li><li>Separate very different material into appropriate presets when useful.</li><li>Check whether fatigue or rushed sessions are driving failures.</li></ul>
+
+        <h3>Retention is very high, but workload feels excessive</h3>
+        <p>Check whether desired retention is higher than you need, whether cards are overly easy, or whether too many new cards enter the system. Extremely high recall can mean you are reviewing earlier than necessary for your goal.</p>
+
+        <h3>Daily results swing widely</h3>
+        <p>Do not tune the scheduler around noise. Compare monthly retention, deck composition, study time, and answer habits. A single stressful day, exam week, or unusual deck can distort the daily view.</p>
+
+        <h2 id="review">A monthly Anki statistics review</h2>
+        <ol><li>Select the collection or a meaningful deck and use a one-month view.</li><li>Compare true retention with your intended target.</li><li>Check review time and daily load for sustainability.</li><li>Identify decks with unusual Again rates or slow cards.</li><li>Open a small sample of those cards and look for a shared design problem.</li><li>Make one change: card repair, new-card limit, focus routine, or FSRS optimization.</li><li>Wait long enough to observe the effect before changing another variable.</li></ol>
+        <p>Statistics are valuable when they shorten the path from pattern to action. A calm dashboard that combines retention, consistency, accuracy, and time can help — as long as the final decision remains yours.</p>
+
+        <div class="article-cta"><h2>See more than a review count.</h2><p>SynapsePro brings retention, consistency, accuracy, efficiency, planning, and focus tools into one Anki workspace.</p><a class="button button-primary" href="https://ankiweb.net/shared/info/236979321" target="_blank" rel="noopener">Get SynapsePro free</a></div>
+      </article>
+      <aside class="article-aside" aria-label="Article navigation"><strong>In this guide</strong><nav><a href="#start">Start with a decision</a><a href="#metrics">Core metrics</a><a href="#retention">True retention</a><a href="#fsrs">FSRS</a><a href="#time">Review time</a><a href="#workload">Workload</a><a href="#diagnose">Diagnose patterns</a><a href="#review">Monthly review</a></nav><div class="related-reading"><strong>Related reading</strong><a href="anki-pomodoro.html">Anki Pomodoro</a><a href="best-anki-addons.html">Best Anki addons</a></div></aside>
+    </div></section>
+  </main>
+
+  <footer class="site-footer"><div class="shell"><div class="footer-top"><a class="brand footer-brand" href="../index.html" aria-label="SynapsePro home"><img src="../images/logo.png" alt="" width="367" height="367"><span>SynapsePro</span></a><nav class="footer-links" aria-label="Footer navigation"><a href="https://ankiweb.net/shared/info/236979321" target="_blank" rel="noopener">AnkiWeb</a><a href="https://github.com/mobesamedia/SynapsePro" target="_blank" rel="noopener">GitHub</a><a href="../blog.html">Blog</a><a href="../contact.html">Support</a><a href="../imprint.html">Imprint</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a></nav></div><div class="footer-bottom"><span>© 2026 SynapsePro. All rights reserved.</span><span>Designed for focused learning.</span></div></div></footer>
+</body>
+</html>

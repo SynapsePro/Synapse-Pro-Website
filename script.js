@@ -1,79 +1,192 @@
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Header-Scroll-Effekt
-    const header = document.querySelector('.main-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+(function () {
+  "use strict";
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const header = document.querySelector(".site-header");
+  const menuButton = document.querySelector(".menu-toggle");
+  const mobileMenu = document.querySelector(".mobile-menu");
+
+  function closeMenu() {
+    if (!header || !menuButton) return;
+    header.classList.remove("is-open");
+    document.body.classList.remove("menu-open");
+    menuButton.setAttribute("aria-expanded", "false");
+  }
+
+  if (header) {
+    const updateHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+  }
+
+  if (header && menuButton && mobileMenu) {
+    menuButton.addEventListener("click", () => {
+      const open = !header.classList.contains("is-open");
+      header.classList.toggle("is-open", open);
+      document.body.classList.toggle("menu-open", open);
+      menuButton.setAttribute("aria-expanded", String(open));
     });
 
-    // Fade-In-Animationen beim Scrollen
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
+    mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeMenu();
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 900) closeMenu();
+    });
+  }
+
+  const revealItems = document.querySelectorAll("[data-reveal]");
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+  } else {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const delay = Number(entry.target.dataset.delay || 0);
+          window.setTimeout(() => entry.target.classList.add("is-visible"), delay);
+          observer.unobserve(entry.target);
         });
-    }, {
-        threshold: 0.1
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -42px" }
+    );
+    revealItems.forEach((item) => revealObserver.observe(item));
+  }
+
+  async function copyToClipboard(value) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(value);
+      return;
+    }
+
+    const helper = document.createElement("textarea");
+    helper.value = value;
+    helper.setAttribute("readonly", "");
+    helper.style.position = "fixed";
+    helper.style.opacity = "0";
+    document.body.appendChild(helper);
+    helper.select();
+    document.execCommand("copy");
+    helper.remove();
+  }
+
+  document.querySelectorAll("[data-copy]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const original = button.textContent;
+      try {
+        await copyToClipboard(button.dataset.copy);
+        button.textContent = "Copied";
+        button.classList.add("is-copied");
+      } catch (error) {
+        button.textContent = "Select code";
+      }
+      window.setTimeout(() => {
+        button.textContent = original;
+        button.classList.remove("is-copied");
+      }, 1800);
+    });
+  });
+
+  function animateOnView(element) {
+    if (!element) return;
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      element.classList.add("is-animated");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        element.classList.add("is-animated");
+        currentObserver.disconnect();
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(element);
+  }
+
+  const sidebarWrap = document.getElementById("tsbWrap");
+  const sidebarStage = document.getElementById("tsbStage");
+  if (sidebarWrap && sidebarStage) {
+    const fitSidebar = () => {
+      const scale = Math.min(1, sidebarWrap.clientWidth / 600);
+      sidebarStage.style.transform = `scale(${scale})`;
+      sidebarWrap.style.height = `${620 * scale}px`;
+    };
+
+    fitSidebar();
+    window.addEventListener("resize", fitSidebar, { passive: true });
+
+    sidebarStage.querySelectorAll(".tsb-ico img").forEach((image) => {
+      const iconBox = image.parentElement;
+      if (image.complete && image.naturalWidth > 0) iconBox.classList.remove("ph");
+      image.addEventListener("load", () => iconBox.classList.remove("ph"));
+      image.addEventListener("error", () => iconBox.classList.add("ph"));
+    });
+  }
+
+  animateOnView(document.getElementById("learning-chart"));
+  animateOnView(document.querySelector(".command-map"));
+
+  const comparison = document.querySelector("[data-compare]");
+  if (comparison) {
+    const handle = comparison.querySelector(".compare-handle");
+    let position = 52;
+    let dragging = false;
+
+    const setPosition = (nextPosition) => {
+      position = Math.max(2, Math.min(98, nextPosition));
+      comparison.style.setProperty("--position", `${position}%`);
+      if (handle) handle.setAttribute("aria-valuenow", String(Math.round(position)));
+    };
+
+    const setFromPointer = (clientX) => {
+      const rect = comparison.getBoundingClientRect();
+      setPosition(((clientX - rect.left) / rect.width) * 100);
+    };
+
+    comparison.addEventListener("pointerdown", (event) => {
+      dragging = true;
+      comparison.setPointerCapture(event.pointerId);
+      setFromPointer(event.clientX);
+    });
+    comparison.addEventListener("pointermove", (event) => {
+      if (dragging) setFromPointer(event.clientX);
+    });
+    comparison.addEventListener("pointerup", () => {
+      dragging = false;
+    });
+    comparison.addEventListener("pointercancel", () => {
+      dragging = false;
     });
 
-    const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-    elementsToAnimate.forEach(el => {
-        observer.observe(el);
+    if (handle) {
+      handle.addEventListener("keydown", (event) => {
+        const increments = { ArrowLeft: -2, ArrowDown: -2, ArrowRight: 2, ArrowUp: 2 };
+        if (event.key in increments) {
+          event.preventDefault();
+          setPosition(position + increments[event.key]);
+        } else if (event.key === "Home") {
+          event.preventDefault();
+          setPosition(2);
+        } else if (event.key === "End") {
+          event.preventDefault();
+          setPosition(98);
+        }
+      });
+    }
+
+    setPosition(position);
+  }
+
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    document.querySelectorAll(".feature-card").forEach((card) => {
+      card.addEventListener("pointermove", (event) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+        card.style.setProperty("--my", `${event.clientY - rect.top}px`);
+      });
     });
-
-    // Logik für den "VANILLA JS" SLIDER
-    const slider = document.getElementById('before-after-slider');
-    const before = document.getElementById('before-image');
-    const beforeImage = before.getElementsByTagName('img')[0];
-    const resizer = document.getElementById('resizer');
-
-    if (slider && before && beforeImage && resizer) {
-        let active = false;
-        const setBeforeImageWidth = () => { let width = slider.offsetWidth; beforeImage.style.width = width + 'px'; };
-        setBeforeImageWidth();
-        window.addEventListener('resize', setBeforeImageWidth);
-        resizer.addEventListener('mousedown', function() { active = true; });
-        document.body.addEventListener('mouseup', function() { active = false; });
-        document.body.addEventListener('mouseleave', function() { active = false; });
-        document.body.addEventListener('mousemove', function(e) { if (!active) return; let x = e.pageX; x -= slider.getBoundingClientRect().left; slideIt(x); pauseEvent(e); });
-        resizer.addEventListener('touchstart', function() { active = true; });
-        document.body.addEventListener('touchend', function() { active = false; });
-        document.body.addEventListener('touchcancel', function() { active = false; });
-        document.body.addEventListener('touchmove', function(e) { if (!active) return; let x; if (e.changedTouches && e.changedTouches.length > 0) { x = e.changedTouches[0].pageX; } else { return; } x -= slider.getBoundingClientRect().left; slideIt(x); pauseEvent(e); });
-        function slideIt(x) { let transform = Math.max(0, Math.min(x, slider.offsetWidth)); before.style.width = transform + "px"; resizer.style.left = transform + "px"; }
-        function pauseEvent(e) { if (e.stopPropagation) e.stopPropagation(); if (e.preventDefault) e.preventDefault(); e.cancelBubble = true; e.returnValue = false; return false; }
-    }
-
-    // LOGIK FÜR MODALS (POP-UPS)
-    const impressumLink = document.getElementById('impressum-link');
-    const privacyLink = document.getElementById('privacy-link');
-    const termsLink = document.getElementById('terms-link');
-    const impressumModal = document.getElementById('impressum-modal');
-    const privacyModal = document.getElementById('privacy-modal');
-    const termsModal = document.getElementById('terms-modal');
-    const allModals = document.querySelectorAll('.modal-overlay');
-
-    function openModal(modal) { if (modal) modal.classList.add('visible'); }
-    function closeModal(modal) { if (modal) modal.classList.remove('visible'); }
-
-    if (impressumLink && impressumModal) {
-        impressumLink.addEventListener('click', (e) => { e.preventDefault(); openModal(impressumModal); });
-    }
-    if (privacyLink && privacyModal) {
-        privacyLink.addEventListener('click', (e) => { e.preventDefault(); openModal(privacyModal); });
-    }
-    if (termsLink && termsModal) {
-        termsLink.addEventListener('click', (e) => { e.preventDefault(); openModal(termsModal); });
-    }
-
-    allModals.forEach(modal => {
-        const closeButton = modal.querySelector('.modal-close');
-        if (closeButton) { closeButton.addEventListener('click', () => { closeModal(modal); }); }
-        modal.addEventListener('click', (e) => { if (e.target === modal) { closeModal(modal); } });
-    });
-});
+  }
+})();

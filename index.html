@@ -1,379 +1,493 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SynapsePro - The Ultimate Anki Addon</title>
-    
-    <link rel="icon" type="image/png" href="logo.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* === CUSTOM DESIGN OVERRIDES === */
-        :root {
-            --dark-blue: #003A6D;
-            --standard-blue: #0071D3;
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SynapsePro is a free Anki addon with AI assistance, focus tools, study planning, gamification, mind maps, and deeper learning statistics.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#050505">
+  <title>SynapsePro: AI Anki Addon for Smarter Studying</title>
+  <link rel="canonical" href="https://www.synapse-pro.de/">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SynapsePro">
+  <meta property="og:title" content="SynapsePro · The Ultimate Anki Workspace">
+  <meta property="og:description" content="A free Anki addon that brings AI, planning, focus, gamification, and deeper insights into one calm workspace.">
+  <meta property="og:url" content="https://www.synapse-pro.de/">
+  <meta property="og:image" content="https://www.synapse-pro.de/images/og-synapsepro.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SynapsePro, the ultimate Anki workspace">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SynapsePro · The Ultimate Anki Workspace">
+  <meta name="twitter:description" content="A free Anki addon with AI, planning, focus tools, gamification, and deeper learning insights.">
+  <meta name="twitter:image" content="https://www.synapse-pro.de/images/og-synapsepro.png">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.synapse-pro.de/#organization",
+        "name": "SynapsePro",
+        "url": "https://www.synapse-pro.de/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.synapse-pro.de/images/logo.png"
         }
-
-        /* Header Buttons */
-        .nav-btn-dark-blue {
-            background-color: var(--dark-blue) !important;
-            color: white !important;
-            padding: 10px 22px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: opacity 0.2s, transform 0.2s;
-            text-decoration: none;
-        }
-        .nav-btn-dark-blue:hover { opacity: 0.9; transform: scale(1.02); }
-
-        /* Fix für Dashboard Button */
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: transparent;
-            color: var(--dark-blue);
-            border: 2px solid var(--dark-blue);
-            padding: 14px 28px;
-            border-radius: 10px;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 18px;
-            line-height: 1;
-            transition: all 0.2s ease;
-            margin-left: 10px;
-        }
-        .btn-secondary:hover {
-            background-color: rgba(0, 58, 109, 0.05);
-            transform: scale(1.02);
-        }
-
-        /* Pricing Section mit Verlauf */
-        .pricing-section-gradient {
-            background: linear-gradient(to bottom, #FFFFFF 0%, var(--dark-blue) 100%);
-            padding: 100px 0;
-        }
-
-        /* Textfarben in der Pricing Section */
-        .pricing-section-gradient .section-header h2,
-        .pricing-section-gradient .section-header p {
-            color: var(--dark-blue) !important;
-        }
-
-        .pricing-grid-compact {
-            display: grid;
-            grid-template-columns: 1fr; /* Angepasst für eine zentrierte Karte */
-            gap: 25px;
-            max-width: 460px; /* Angepasst damit die Karte mittig und nicht zu breit ist */
-            margin: 50px auto 0;
-            padding: 0 20px;
-        }
-
-        /* Card Styles */
-        .compact-card {
-            background: white;
-            color: #1d1d1f;
-            border-radius: 24px;
-            padding: 35px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease;
-        }
-        .compact-card:hover { transform: translateY(-8px); }
-
-        /* AI Premium Card mit deinem Gradienten - RAND ENTFERNT */
-        .compact-card.ai-premium {
-            background: linear-gradient(165deg, #BFE1FF 0%, #FFFFFF 50%, #EEF8FF 100%);
-            border: none; /* Rand entfernt */
-        }
-
-        .compact-card.ai-premium .subtitle {
-            color: var(--dark-blue) !important;
-            font-weight: 600;
-        }
-
-        /* Abstand zwischen Subtitle und Features vergrößert */
-        .compact-card .subtitle {
-            margin-bottom: 40px !important; 
-        }
-
-        .compact-card .badge {
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 6px;
-            background: rgba(0, 58, 109, 0.1);
-            color: var(--dark-blue);
-            margin-bottom: 12px;
-            display: inline-block;
-        }
-
-        .compact-card h3 { font-size: 26px; font-weight: 800; margin-bottom: 10px; color: #000; }
-
-        .card-features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 30px 0;
-            flex-grow: 1;
-        }
-        .card-features li {
-            font-size: 14px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-        .card-features li::before { content: "✓"; color: var(--standard-blue); font-weight: 900; }
-
-        .price-big { font-size: 52px; font-weight: 800; color: #000; display: block; line-height: 1; }
-        .price-sub { font-size: 14px; color: #6e6e73; margin-bottom: 25px; display: block; }
-
-        /* Addon Box */
-        .mini-addon-box {
-            background: #f5f5f7;
-            border: 1px solid #d2d2d7;
-            border-radius: 14px;
-            padding: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .code-txt { font-family: monospace; font-size: 18px; font-weight: 700; color: #000; }
-        
-        /* Verbesserter Copy Button */
-        .mini-copy-btn {
-            background: var(--dark-blue);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background 0.2s, transform 0.1s;
-        }
-        .mini-copy-btn:hover {
-            background-color: #002a4f;
-            transform: scale(1.02);
-        }
-        .mini-copy-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Buttons */
-        .btn-compact {
-            padding: 16px;
-            font-size: 16px;
-            border-radius: 12px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 700;
-            transition: opacity 0.2s;
-        }
-        .btn-dark-blue { background: var(--dark-blue); color: white; }
-        .btn-standard-blue { background: var(--standard-blue); color: white; }
-
-        @media (max-width: 768px) {
-            .pricing-grid-compact { grid-template-columns: 1fr; }
-            .cta-buttons { display: flex; flex-direction: column; gap: 15px; align-items: center; }
-            .btn-secondary { margin-left: 0; }
-        }
-    </style>
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.synapse-pro.de/#website",
+        "url": "https://www.synapse-pro.de/",
+        "name": "SynapsePro",
+        "description": "A free productivity and AI workspace for Anki.",
+        "publisher": { "@id": "https://www.synapse-pro.de/#organization" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://www.synapse-pro.de/#software",
+        "name": "SynapsePro",
+        "url": "https://www.synapse-pro.de/",
+        "downloadUrl": "https://ankiweb.net/shared/info/236979321",
+        "applicationCategory": "EducationalApplication",
+        "applicationSubCategory": "Anki add-on",
+        "description": "A free Anki add-on with AI assistance, focus tools, study planning, gamification, mind maps, and learning statistics.",
+        "sameAs": "https://github.com/mobesamedia/SynapsePro",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "featureList": [
+          "AI study assistant",
+          "Study planning",
+          "Pomodoro focus timer",
+          "Gamification",
+          "Interactive mind maps",
+          "Learning statistics"
+        ],
+        "publisher": { "@id": "https://www.synapse-pro.de/#organization" }
+      }
+    ]
+  }
+  </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"a4d748549a9f4c1798913d57ffdf75ff"}'></script>
+  <script defer src="script.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <!-- Ticker wurde entfernt -->
+  <header class="site-header">
+    <div class="shell nav-shell">
+      <a class="brand" href="#top" aria-label="SynapsePro home">
+        <img src="images/logo.png" alt="" width="367" height="367">
+        <span>SynapsePro</span>
+      </a>
 
-    <header class="main-header">
-        <div class="container">
-            <nav class="main-nav">
-                <a href="#" class="logo">
-                    <img src="logo.png" alt="SynapsePro Logo">
-                </a>
-                <ul class="desktop-nav">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#pricing" class="nav-btn-dark-blue">Free Download</a></li>
-                </ul>
-            </nav>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#transformation">Makeover</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="nav-link-muted" href="https://github.com/mobesamedia/SynapsePro" target="_blank" rel="noopener">GitHub</a>
+        <a class="nav-pill" href="#download">Free Download</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-navigation">
+    <div>
+      <nav aria-label="Mobile navigation">
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#transformation">Makeover</a>
+        <a href="blog.html">Blog</a>
+        <a href="https://github.com/mobesamedia/SynapsePro" target="_blank" rel="noopener">GitHub</a>
+        <a href="contact.html">Support</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <section class="hero" id="top">
+      <div class="shell">
+        <div class="hero-grid">
+          <div class="hero-copy-block">
+            <p class="eyebrow" data-reveal>For those who take learning seriously.</p>
+            <h1 data-reveal data-delay="60"><span class="hero-title-line">The Ultimate</span><span class="gradient-word hero-title-line">Anki Workspace.</span></h1>
+          </div>
+
+          <div class="hero-visual" data-reveal data-delay="140">
+            <img class="hero-product" src="images/display-cutout.png" alt="SynapsePro dashboard running inside Anki on a MacBook" width="1497" height="1051" fetchpriority="high">
+            <div class="floating-chip chip-top">One workspace</div>
+            <div class="floating-chip chip-bottom">10+ tools for your productivity.</div>
+          </div>
+
+          <div class="hero-cta-block">
+            <p class="hero-copy" data-reveal data-delay="120">AI, focus tools, gamification, and deeper insights — built directly into the study flow you already know.</p>
+
+            <div class="hero-actions" data-reveal data-delay="180">
+              <a class="button button-primary" href="#download">Download for free</a>
+              <a class="button button-secondary" href="#features">Explore features</a>
+            </div>
+
+            <div class="install-strip" data-reveal data-delay="240">
+              <div>
+                <p>Anki add-on code</p>
+                <strong>236979321</strong>
+              </div>
+              <button class="copy-button" type="button" data-copy="236979321" aria-label="Copy Anki add-on code">Copy</button>
+            </div>
+          </div>
         </div>
-    </header>
 
-    <main>
-        <!-- ======== Hero Section ======== -->
-        <section class="hero">
-            <div class="container text-center">
-                <div class="hero-image-wrapper animate-on-scroll">
-                    <picture>
-                        <source media="(max-width: 768px)" srcset="display-mobile.png">
-                        <source media="(min-width: 769px)" srcset="display.png">
-                        <img src="display.png" alt="SynapsePro Addon on a Macbook" class="hero-image">
-                    </picture>
-                </div>
-                <div class="cta-buttons animate-on-scroll">
-                    <a href="#pricing" class="nav-btn-dark-blue" style="padding: 16px 32px; font-size: 18px;">Free Download</a>
-                    <!-- Button gefixt -->
-                    <a href="#dashboard" class="btn-secondary">See Dashboard &rarr;</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======== FEATURES SECTION ======== -->
-        <section id="features" class="features-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2 class="animate-on-scroll">Engineered for a Smarter Workflow.</h2>
-                    <p class="animate-on-scroll">SynapsePro is more than an addon. It's a complete ecosystem designed to optimize your learning process.</p>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/ai.svg" alt="AI Icon"></div><h3>AI Assistant</h3><p>Your personal AI tutor. Get instant explanations, generate practice questions, or create clever mnemonics without leaving your card.</p></div>
-                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/planner.svg" alt="Planner Icon"></div><h3>Study Planner</h3><p>Organize your study sessions with a powerful daily planner.</p></div>
-                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/design.svg" alt="Design Icon"></div><h3>Modern Design</h3><p>Transform your Anki experience with a clean, modern interface.</p></div>
-                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/timer.svg" alt="Timer Icon"></div><h3>Pomodoro Timer</h3><p>Boost your focus with the built-in Pomodoro timer.</p></div>
-                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/mindmap.svg" alt="Mindmap Icon"></div><h3>Interactive Mindmap</h3><p>Visualize complex topics with an interactive mind map tool.</p></div>
-                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/gamification.svg" alt="Gamification Icon"></div><h3>Gamification</h3><p>Turn learning into an adventure.</p></div>
-                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/music.svg" alt="Music Icon"></div><h3>Study Music</h3><p>Set the perfect mood for studying.</p></div>
-                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/stats.svg" alt="Stats Icon"></div><h3>New Statistics</h3><p>Go beyond basic stats.</p></div>
-                    <div class="feature-card animate-on-scroll"><div class="feature-icon"><img src="icons/browser.svg" alt="Browser Icon"></div><h3>Web-Browser</h3><p>Keep your resources close.</p></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======== SHOWCASE SECTION ======== -->
-        <section id="dashboard" class="showcase-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2 class="animate-on-scroll">Your Learning Dashboard. Everything at a Glance.</h2>
-                </div>
-                <div class="slider-wrapper animate-on-scroll">
-                    <div id="before-after-slider">
-                        <div id="after-image"><img src="anki-after.png" alt="Anki with SynapsePro"/></div>
-                        <div id="before-image"><img src="anki-before.png" alt="Anki before SynapsePro"/></div>
-                        <div id="resizer"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="section-divider"></div>
-
-        <!-- ======== SIDEBAR-SEKTION ======== -->
-        <section id="sidebar-section" class="sidebar-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2 class="animate-on-scroll">Your Integrated Command Center.</h2>
-                    <p class="animate-on-scroll">The Launcher sidebar puts every tool at your fingertips, keeping your workflow fast and focused without ever leaving Anki.</p>
-                </div>
-                <div class="sidebar-image-wrapper animate-on-scroll">
-                    <img src="sidebar_explanation.png" alt="Anatomy of the SynapsePro Sidebar">
-                </div>
-            </div>
-        </section>
-
-        <div class="section-divider"></div>
-
-        <!-- ======== VIDEO-SEKTION ======== -->
-        <section id="walkthrough" class="walkthrough-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <!-- Texte geändert wie gewünscht -->
-                    <h2 class="animate-on-scroll">This is SynapsePro</h2>
-                    <p class="animate-on-scroll">A beautiful modern design meets functionality and efficiency.</p>
-                </div>
-                <div class="video-wrapper animate-on-scroll">
-                    <video src="walkthrough.mp4" autoplay muted loop playsinline></video>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======== PRICING SECTION MIT GRADIENT ======== -->
-        <section id="pricing" class="pricing-section-gradient">
-            <div class="container text-center">
-                <div class="section-header">
-                    <h2 class="animate-on-scroll">Ready to Upgrade Your Anki?</h2>
-                    <p class="animate-on-scroll">Download the Add-On for free and unlock the full power.</p>
-                </div>
-
-                <div class="pricing-grid-compact">
-                    <!-- FREE CARD -->
-                    <div class="compact-card animate-on-scroll">
-                        <span class="badge">Community</span>
-                        <h3>SynapsePro - Add-On</h3>
-                        <!-- Abstand vergrößert durch CSS override -->
-                        <p class="subtitle" style="color: #6e6e73;">Essential tools to optimize your study workflow forever.</p>
-                        
-                        <ul class="card-features">
-                            <li><span><strong>Organization:</strong> AI Study Plan Configurator, Deadline Bar & Study Plan Widgets</span></li>
-                            <li><span><strong>Productivity:</strong> Integrated Mind Maps, Notebook, Web-Sidebar, Pomodoro Timer & Focus Music</span></li>
-                            <li><span><strong>Gamification:</strong> XP & Leveling System, 21 Unique Ranks, Streaks & Daily Challenges</span></li>
-                            <li><span><strong>AI Assistant:</strong> Instant Card Explanations, Mnemonics & MCQs (requires your own API Key)</span></li>
-                            <li><span><strong>Customization:</strong> Dark Mode Ready & Daily Facts (Medical/Law/General)</span></li>
-                        </ul>
-
-                        <span class="price-big">Free</span>
-                        <span class="price-sub">Always available</span>
-
-                        <div class="mini-addon-box">
-                            <!-- Code geändert -->
-                            <span class="code-txt" id="code-val">236979321</span>
-                            <!-- Copy Button verbessert -->
-                            <button class="mini-copy-btn" onclick="copyAddonCode()">Copy</button>
-                        </div>
-
-                        <!-- Link aktualisiert -->
-                        <a href="https://ankiweb.net/shared/info/236979321" target="_blank" class="btn-compact btn-dark-blue">AnkiWeb Page</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="main-footer" style="padding: 60px 0; background: var(--dark-blue); color: white; border-top: 1px solid rgba(255,255,255,0.1);">
-        <div class="container text-center">
-            <div style="margin-bottom: 20px;">
-                <img src="logo.png" alt="SynapsePro Logo" style="height: 40px; filter: brightness(0) invert(1); opacity: 0.9;">
-            </div>
-            <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 25px;">&copy; 2026 SynapsePro. All rights reserved.</p>
-            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <a href="imprint.html" style="color: white; text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.8; transition: opacity 0.2s;">Imprint</a>
-                <a href="privacy.html" style="color: white; text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.8; transition: opacity 0.2s;">Privacy Policy</a>
-                <a href="terms.html" style="color: white; text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.8; transition: opacity 0.2s;">Terms & Disclaimer</a>
-            </div>
+        <div class="hero-foot" data-reveal data-delay="300" aria-label="SynapsePro highlights">
+          <div class="hero-stat"><strong>Free</strong><span>Always available</span></div>
+          <div class="hero-stat"><strong>10+ tools</strong><span>For your productivity</span></div>
+          <div class="hero-stat"><strong>Native</strong><span>Built directly into Anki</span></div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        function copyAddonCode() {
-            const code = document.getElementById('code-val').innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                const btn = document.querySelector('.mini-copy-btn');
-                const originalText = btn.innerText;
-                const originalBg = window.getComputedStyle(btn).backgroundColor;
-                
-                btn.innerText = 'Copied!';
-                btn.style.background = '#34c759';
-                
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.style.background = originalBg;
-                    // Reset inline style to allow CSS hover to work again if needed, 
-                    // or just set it back to the dark blue var if using inline styles.
-                    btn.style.removeProperty('background'); 
-                }, 2000);
-            });
-        }
-    </script>
-    <script src="script.js"></script>
+    <section class="section-light section-pad" aria-labelledby="intro-title">
+      <div class="shell intro-grid">
+        <div data-reveal>
+          <p class="section-kicker">Learn with momentum</p>
+          <h2 class="section-title" id="intro-title">A smarter workflow, without leaving Anki.</h2>
+          <p class="section-copy">SynapsePro brings planning, focus, AI support, and motivation into a single calm interface. Less switching. More time spent actually learning.</p>
+        </div>
+
+        <div class="chart-card" data-reveal data-delay="100">
+          <div class="chart-head">
+            <div>
+              <strong>Learning momentum</strong>
+              <span>Illustrative retention over 12 weeks</span>
+            </div>
+            <div class="chart-badge">+42% momentum</div>
+          </div>
+
+          <svg id="learning-chart" viewBox="0 0 520 260" role="img" aria-labelledby="chart-title chart-desc">
+            <title id="chart-title">Illustrative learning momentum chart</title>
+            <desc id="chart-desc">A SynapsePro curve rises faster than a regular Anki workflow over twelve weeks.</desc>
+            <defs>
+              <linearGradient id="synapse-area" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0071e3" stop-opacity="0.24"></stop>
+                <stop offset="100%" stop-color="#0071e3" stop-opacity="0"></stop>
+              </linearGradient>
+              <linearGradient id="regular-area" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#a1a1a6" stop-opacity="0.16"></stop>
+                <stop offset="100%" stop-color="#a1a1a6" stop-opacity="0"></stop>
+              </linearGradient>
+            </defs>
+
+            <g fill="none" stroke="#e6e6eb" stroke-width="1">
+              <path d="M48 28V212H500"></path>
+              <path d="M48 166H500" stroke-dasharray="4 6"></path>
+              <path d="M48 120H500" stroke-dasharray="4 6"></path>
+              <path d="M48 74H500" stroke-dasharray="4 6"></path>
+            </g>
+
+            <g fill="#aaaab0" font-size="11" font-family="-apple-system, BlinkMacSystemFont, sans-serif">
+              <text x="42" y="216" text-anchor="end">0</text>
+              <text x="42" y="170" text-anchor="end">25</text>
+              <text x="42" y="124" text-anchor="end">50</text>
+              <text x="42" y="78" text-anchor="end">75</text>
+              <text x="48" y="237" text-anchor="middle">Week 1</text>
+              <text x="184" y="237" text-anchor="middle">Week 4</text>
+              <text x="336" y="237" text-anchor="middle">Week 8</text>
+              <text x="500" y="237" text-anchor="middle">Week 12</text>
+            </g>
+
+            <path class="chart-fill" d="M48 212C122 209 195 193 270 174C346 155 415 142 500 132V212Z" fill="url(#regular-area)"></path>
+            <path class="chart-fill" d="M48 212C102 191 168 144 249 103C333 60 414 39 500 25V212Z" fill="url(#synapse-area)"></path>
+            <path class="chart-line chart-line-muted" pathLength="1" d="M48 212C122 209 195 193 270 174C346 155 415 142 500 132" fill="none" stroke="#a1a1a6" stroke-width="3" stroke-linecap="round"></path>
+            <path class="chart-line chart-line-primary" pathLength="1" d="M48 212C102 191 168 144 249 103C333 60 414 39 500 25" fill="none" stroke="#0071e3" stroke-width="3.5" stroke-linecap="round"></path>
+            <circle class="chart-dot" cx="500" cy="132" r="5" fill="#a1a1a6"></circle>
+            <circle class="chart-dot" cx="500" cy="25" r="6" fill="#0071e3"></circle>
+            <g class="chart-annotation" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">
+              <text x="488" y="18" text-anchor="end" fill="#0071e3" font-weight="650">SynapsePro</text>
+              <text x="488" y="124" text-anchor="end" fill="#77777d">Regular workflow</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft section-pad" id="features" aria-labelledby="features-title">
+      <div class="shell">
+        <div class="features-head" data-reveal>
+          <p class="section-kicker">Everything in reach</p>
+          <h2 class="section-title" id="features-title">More than an add-on.<br>A complete study system.</h2>
+          <p class="section-copy">Every tool is designed to remove friction while keeping Anki fast, familiar, and focused.</p>
+        </div>
+
+        <div class="bento-grid">
+          <article class="feature-card feature-wide feature-dark" data-reveal>
+            <div class="feature-icon"><img src="images/icon-ai.svg" alt="" width="30" height="30"></div>
+            <h3>AI that stays inside your card.</h3>
+            <p>Ask for explanations, create practice questions, and turn difficult concepts into memorable mnemonics without breaking focus.</p>
+            <div class="ai-demo" aria-hidden="true">
+              <div class="ai-bubble">Explain this concept in one simple analogy.</div>
+              <div class="ai-bubble answer">Think of the nephron as a smart filtration line: filter, reclaim, then fine-tune.</div>
+            </div>
+          </article>
+
+          <article class="feature-card" data-reveal data-delay="70">
+            <div class="feature-icon"><img src="images/icon-studyplan.svg" alt="" width="30" height="30"></div>
+            <h3>Plan less.<br>Study smarter.</h3>
+            <p>Turn deadlines and available time into a clear daily plan.</p>
+            <div class="planner-demo" aria-hidden="true">
+              <div class="planner-row"><strong>Anatomy</strong><b>45 min</b></div>
+              <div class="planner-row"><strong>Neurology</strong><b>30 min</b></div>
+            </div>
+          </article>
+
+          <article class="feature-card" data-reveal>
+            <div class="feature-icon"><img src="images/icon-settings.svg" alt="" width="30" height="30"></div>
+            <h3>Focus, built in.</h3>
+            <p>Pomodoro sessions, reset controls, and study music exactly where you need them.</p>
+            <div class="focus-ring" aria-hidden="true"></div>
+          </article>
+
+          <article class="feature-card feature-wide feature-purple" data-reveal data-delay="70">
+            <div class="feature-icon"><img src="images/icon-gamification.svg" alt="" width="30" height="30"></div>
+            <h3>Progress you can feel.</h3>
+            <p>XP, 21 unique ranks, streaks, and daily challenges add motivation without turning studying into a distraction.</p>
+            <div class="xp-demo" aria-hidden="true">
+              <div class="xp-top"><strong>Level 52</strong><span>1,480 XP to Focus Falcon</span></div>
+              <div class="xp-track"><span></span></div>
+            </div>
+          </article>
+
+          <article class="feature-card" data-reveal>
+            <div class="feature-icon"><img src="images/icon-mindmap.svg" alt="" width="30" height="30"></div>
+            <h3>See the connections.</h3>
+            <p>Build interactive mind maps and turn isolated facts into a connected understanding.</p>
+          </article>
+
+          <article class="feature-card" data-reveal data-delay="70">
+            <div class="feature-icon"><img src="images/icon-web.svg" alt="" width="30" height="30"></div>
+            <h3>Research without switching.</h3>
+            <p>Keep trusted resources open in a sidebar browser while your current card stays in view.</p>
+          </article>
+
+          <article class="feature-card" data-reveal data-delay="140">
+            <div class="feature-icon"><img src="images/icon-addon.svg" alt="" width="30" height="30"></div>
+            <h3>Stats with context.</h3>
+            <p>Understand retention, accuracy, consistency, and efficiency — not just review counts.</p>
+            <div class="stat-spark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-dark section-pad" id="workflow" aria-labelledby="workflow-title">
+      <div class="shell command-grid">
+        <div class="command-map tsb-embed" data-reveal role="img" aria-label="Exact anatomy of the SynapsePro sidebar">
+          <div class="tsb-wrap" id="tsbWrap">
+            <div class="tsb-stage" id="tsbStage">
+              <div class="tsb-title">The Sidebar</div>
+              <div class="tsb-bar"></div>
+              <div class="tsb-divider"></div>
+
+              <div class="tsb-ico logo ph" style="left:159px;top:42px;width:36px;height:36px;">
+                <img src="images/icon-addon.svg" alt="Addon Infos and Settings"><span class="phlbl">Logo</span>
+              </div>
+              <div class="tsb-ico ph" style="left:162px;top:137px;width:30px;height:30px;">
+                <img src="images/icon-ai.svg" alt="AI Assistant"><span class="phlbl">AI</span>
+              </div>
+              <div class="tsb-ico ph" style="left:162px;top:179px;width:30px;height:30px;">
+                <img src="images/icon-web.svg" alt="Web Browser"><span class="phlbl">Web</span>
+              </div>
+              <div class="tsb-ico ph" style="left:162px;top:221px;width:30px;height:30px;">
+                <img src="images/icon-notebook.svg" alt="Notebook and To-do"><span class="phlbl">NB</span>
+              </div>
+              <div class="tsb-ico ph" style="left:162px;top:263px;width:30px;height:30px;">
+                <img src="images/icon-mindmap.svg" alt="Interactive Mindmap Tool"><span class="phlbl">MM</span>
+              </div>
+              <div class="tsb-ico ph" style="left:162px;top:305px;width:30px;height:30px;">
+                <img src="images/icon-gamification.svg" alt="Gamification"><span class="phlbl">GM</span>
+              </div>
+              <div class="tsb-ico ph" style="left:162px;top:347px;width:30px;height:30px;">
+                <img src="images/icon-studyplan.svg" alt="Study Plan Configurator"><span class="phlbl">SP</span>
+              </div>
+              <div class="tsb-timer">25:00</div>
+              <div class="tsb-ico ph" style="left:168px;top:437px;width:18px;height:18px;">
+                <img src="images/icon-play.svg" alt="Start"><span class="phlbl phlbl-small">▶</span>
+              </div>
+              <div class="tsb-ico ph" style="left:168px;top:457px;width:18px;height:18px;">
+                <img src="images/icon-reset.svg" alt="Reset"><span class="phlbl phlbl-small">↺</span>
+              </div>
+              <div class="tsb-ico ph" style="left:168px;top:477px;width:18px;height:18px;">
+                <img src="images/icon-skip.svg" alt="Skip"><span class="phlbl phlbl-small">→</span>
+              </div>
+              <div class="tsb-ico ph" style="left:162px;top:513px;width:30px;height:30px;">
+                <img src="images/icon-settings.svg" alt="Timer Settings"><span class="phlbl">SET</span>
+              </div>
+              <div class="tsb-ico ph" style="left:162px;top:551px;width:30px;height:30px;">
+                <img src="images/icon-music.svg" alt="Study Music"><span class="phlbl">MUS</span>
+              </div>
+
+              <svg class="tsb-lines" viewBox="0 0 600 620" preserveAspectRatio="xMinYMin meet" aria-hidden="true">
+                <path class="tsb-ln" pathLength="1" style="animation-delay:.10s" d="M205,60 L261,58"></path>
+                <circle class="tsb-dot" cx="205" cy="60" r="3.1" style="animation-delay:.55s"></circle>
+                <circle class="tsb-dot" cx="263" cy="58" r="3.1" style="animation-delay:.55s"></circle>
+                <path class="tsb-ln" pathLength="1" style="animation-delay:.22s" d="M205,152 L261,112"></path>
+                <circle class="tsb-dot" cx="205" cy="152" r="3.1" style="animation-delay:.67s"></circle>
+                <circle class="tsb-dot" cx="263" cy="112" r="3.1" style="animation-delay:.67s"></circle>
+                <path class="tsb-ln" pathLength="1" style="animation-delay:.34s" d="M205,194 L261,164"></path>
+                <circle class="tsb-dot" cx="205" cy="194" r="3.1" style="animation-delay:.79s"></circle>
+                <circle class="tsb-dot" cx="263" cy="164" r="3.1" style="animation-delay:.79s"></circle>
+                <path class="tsb-ln" pathLength="1" style="animation-delay:.46s" d="M205,236 L261,214"></path>
+                <circle class="tsb-dot" cx="205" cy="236" r="3.1" style="animation-delay:.91s"></circle>
+                <circle class="tsb-dot" cx="263" cy="214" r="3.1" style="animation-delay:.91s"></circle>
+                <path class="tsb-ln" pathLength="1" style="animation-delay:.58s" d="M205,278 L261,270"></path>
+                <circle class="tsb-dot" cx="205" cy="278" r="3.1" style="animation-delay:1.03s"></circle>
+                <circle class="tsb-dot" cx="263" cy="270" r="3.1" style="animation-delay:1.03s"></circle>
+                <path class="tsb-ln" pathLength="1" style="animation-delay:.70s" d="M205,320 L261,326"></path>
+                <circle class="tsb-dot" cx="205" cy="320" r="3.1" style="animation-delay:1.15s"></circle>
+                <circle class="tsb-dot" cx="263" cy="326" r="3.1" style="animation-delay:1.15s"></circle>
+                <path class="tsb-ln" pathLength="1" style="animation-delay:.82s" d="M205,362 L261,372"></path>
+                <circle class="tsb-dot" cx="205" cy="362" r="3.1" style="animation-delay:1.27s"></circle>
+                <circle class="tsb-dot" cx="263" cy="372" r="3.1" style="animation-delay:1.27s"></circle>
+                <path class="tsb-ln" pathLength="1" style="animation-delay:.96s" d="M204,438 L218,438 L218,494 L204,494"></path>
+                <path class="tsb-ln" pathLength="1" style="animation-delay:1.10s" d="M218,466 L261,466"></path>
+                <circle class="tsb-dot" cx="263" cy="466" r="3.1" style="animation-delay:1.45s"></circle>
+                <path class="tsb-ln" pathLength="1" style="animation-delay:1.10s" d="M204,520 L218,520 L218,574 L204,574"></path>
+                <path class="tsb-ln" pathLength="1" style="animation-delay:1.24s" d="M218,547 L261,547"></path>
+                <circle class="tsb-dot" cx="263" cy="547" r="3.1" style="animation-delay:1.59s"></circle>
+              </svg>
+
+              <div class="tsb-lab" style="top:58px;animation-delay:.35s">Addon Infos &amp; Settings</div>
+              <div class="tsb-lab" style="top:112px;animation-delay:.47s">AI Assistant</div>
+              <div class="tsb-lab" style="top:164px;animation-delay:.59s">Web-Browser</div>
+              <div class="tsb-lab" style="top:214px;animation-delay:.71s">Notebook &amp; ToDo</div>
+              <div class="tsb-lab" style="top:270px;animation-delay:.83s">Interactive Mindmap Tool</div>
+              <div class="tsb-lab" style="top:326px;animation-delay:.95s">Gamification</div>
+              <div class="tsb-lab" style="top:372px;animation-delay:1.07s">Study Plan Configurator</div>
+              <div class="tsb-lab" style="top:466px;animation-delay:1.25s">Pomodoro Timer</div>
+              <div class="tsb-lab" style="top:547px;animation-delay:1.40s">Study Music &amp; Timer Settings</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="command-copy" data-reveal data-delay="80">
+          <p class="section-kicker">Launcher</p>
+          <h2 class="section-title" id="workflow-title">Your Integrated Command Center.</h2>
+          <p class="section-copy">The Launcher sidebar puts every tool at your fingertips, keeping your workflow fast and focused without ever leaving Anki.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft section-pad" id="transformation" aria-labelledby="transformation-title">
+      <div class="shell">
+        <div class="compare-head" data-reveal>
+          <p class="section-kicker">The transformation</p>
+          <h2 class="section-title" id="transformation-title">Still Anki. Just far more capable.</h2>
+          <p class="section-copy">Drag the handle to compare the familiar base experience with the complete SynapsePro workspace.</p>
+        </div>
+
+        <div class="compare-wrap" data-compare data-reveal>
+          <img src="images/anki-before.png" alt="Standard Anki interface before SynapsePro" width="4818" height="3066" loading="lazy" decoding="async">
+          <div class="compare-overlay" aria-hidden="true">
+            <img src="images/anki-after.png" alt="" width="4818" height="3066" loading="lazy" decoding="async">
+          </div>
+          <span class="compare-label label-before">Before</span>
+          <span class="compare-label label-after">With SynapsePro</span>
+          <button class="compare-handle" type="button" role="slider" aria-label="Compare Anki before and after SynapsePro" aria-valuemin="2" aria-valuemax="98" aria-valuenow="52"></button>
+        </div>
+        <p class="compare-hint">Drag, tap, or use the arrow keys</p>
+      </div>
+    </section>
+
+    <section class="download-section" id="download" aria-labelledby="download-title">
+      <div class="shell">
+        <div class="download-card" data-reveal>
+          <div class="download-brand">
+            <div class="download-logo"><img src="images/logo.png" alt="" width="367" height="367"></div>
+            <div>
+              <p class="section-kicker">Free Anki add-on</p>
+              <h2 id="download-title">Upgrade your workflow today.</h2>
+              <p>Install SynapsePro in seconds and keep the study system you already know.</p>
+            </div>
+          </div>
+          <div class="download-actions">
+            <a class="button button-primary" href="https://ankiweb.net/shared/info/236979321" target="_blank" rel="noopener">Get it on AnkiWeb</a>
+            <div class="download-code">
+              <span>236979321</span>
+              <button class="copy-button" type="button" data-copy="236979321" aria-label="Copy Anki add-on code">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog-preview" id="blog" aria-labelledby="blog-title">
+      <div class="shell">
+        <div class="blog-heading" data-reveal>
+          <div>
+            <h2 id="blog-title">Ideas for better learning.</h2>
+            <a class="blog-heading-link" href="blog.html">Explore every guide →</a>
+          </div>
+          <p>Practical, evidence-aware guides for choosing Anki addons, improving focus, and understanding your review data.</p>
+        </div>
+
+        <div class="blog-grid">
+          <a class="blog-card" href="blog/anki-ai-addon.html" data-reveal>
+            <div class="blog-art"><span class="soon-badge">AI &amp; Learning</span></div>
+            <div class="blog-body"><span>7 min read</span><h3>Anki AI Addons: How to use AI without weakening recall</h3></div>
+          </a>
+          <a class="blog-card" href="blog/anki-gamification.html" data-reveal data-delay="70">
+            <div class="blog-art"><span class="soon-badge">Motivation</span></div>
+            <div class="blog-body"><span>6 min read</span><h3>Anki gamification that supports real consistency</h3></div>
+          </a>
+          <a class="blog-card" href="blog/anki-pomodoro.html" data-reveal data-delay="140">
+            <div class="blog-art"><span class="soon-badge">Focus</span></div>
+            <div class="blog-body"><span>7 min read</span><h3>A practical Anki Pomodoro workflow for deep study</h3></div>
+          </a>
+          <a class="blog-card" href="blog/anki-retention-statistics.html" data-reveal data-delay="210">
+            <div class="blog-art"><span class="soon-badge">Statistics</span></div>
+            <div class="blog-body"><span>8 min read</span><h3>What your Anki retention data really tells you</h3></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="footer-top">
+        <a class="brand footer-brand" href="#top" aria-label="Back to the top">
+          <img src="images/logo.png" alt="" width="367" height="367">
+          <span>SynapsePro</span>
+        </a>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="https://ankiweb.net/shared/info/236979321" target="_blank" rel="noopener">AnkiWeb</a>
+          <a href="https://github.com/mobesamedia/SynapsePro" target="_blank" rel="noopener">GitHub</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Support</a>
+          <a href="imprint.html">Imprint</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 SynapsePro. All rights reserved.</span>
+        <span>Designed for focused learning.</span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
