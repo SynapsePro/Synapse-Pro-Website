@@ -1329,6 +1329,12 @@ button {
   line-height: 1.5;
 }
 
+.blog-heading p a {
+  color: inherit;
+  font-weight: 650;
+  text-underline-offset: 3px;
+}
+
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1587,6 +1593,7 @@ button {
 }
 
 .prose {
+  overflow-wrap: anywhere;
   color: #343438;
   font-size: 17px;
   line-height: 1.74;
@@ -1953,6 +1960,7 @@ button {
 }
 
 .article-content {
+  min-width: 0;
   padding: clamp(30px, 5vw, 58px);
   border: 1px solid var(--line-light);
   border-radius: 26px;
@@ -2372,6 +2380,10 @@ button {
   .content-card,
   .article-content {
     border-radius: 22px;
+  }
+
+  .article-content {
+    padding: 26px 22px;
   }
 
   .prose {

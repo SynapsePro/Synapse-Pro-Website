@@ -11,6 +11,7 @@
     header.classList.remove("is-open");
     document.body.classList.remove("menu-open");
     menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open navigation");
   }
 
   if (header) {
@@ -25,6 +26,7 @@
       header.classList.toggle("is-open", open);
       document.body.classList.toggle("menu-open", open);
       menuButton.setAttribute("aria-expanded", String(open));
+      menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
     });
 
     mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
