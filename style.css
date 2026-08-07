@@ -1666,6 +1666,29 @@ button {
   margin-bottom: 6px;
 }
 
+.article-figure {
+  margin: 32px 0;
+}
+
+.article-figure > img,
+.article-image {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain;
+  border: 1px solid var(--line-light);
+  border-radius: 16px;
+  background: #f5f5f7;
+}
+
+.article-figure figcaption {
+  margin-top: 11px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
 .table-wrap {
   margin: 28px 0;
   overflow-x: auto;
