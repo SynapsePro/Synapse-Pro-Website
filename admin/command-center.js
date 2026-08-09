@@ -223,7 +223,7 @@
       const [inboxResult, actionsResult, briefingResult, runsResult, onboardingResult] = await Promise.all([
         state.supabase
           .from("inbox_items")
-          .select("*, ai_analyses(*)")
+          .select("*, ai_analyses!ai_analyses_inbox_item_id_fkey(*)")
           .order("ingested_at", { ascending: false })
           .limit(150),
         state.supabase
