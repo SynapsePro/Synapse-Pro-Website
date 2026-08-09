@@ -69,7 +69,7 @@
 
   function cacheDom() {
     [
-      "auth-shell", "app-shell", "login-form", "login-email", "auth-status",
+      "auth-shell", "app-shell", "login-form", "login-email", "login-password", "auth-status",
       "logout-button", "refresh-button", "loading-bar", "global-message",
       "page-eyebrow", "page-title", "user-avatar", "connection-label", "demo-badge",
       "nav-inbox-count", "nav-action-count", "today-kpis", "briefing-headline",
@@ -167,22 +167,22 @@
   async function handleLogin(event) {
     event.preventDefault();
     const email = dom.loginEmail.value.trim();
-    if (!email || !state.supabase) return;
+    const password = dom.loginPassword.value;
+    if (!email || !password || !state.supabase) return;
 
     const button = dom.loginForm.querySelector("button[type='submit']");
     button.disabled = true;
-    setAuthStatus("Login-Link wird gesendet …");
-    const redirectTo = `${window.location.origin}${window.location.pathname}`;
-    const { error } = await state.supabase.auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: redirectTo, shouldCreateUser: true },
-    });
+    setAuthStatus("Anmeldung läuft …");
+    const { error } = await state.supabase.auth.signInWithPassword({ email, password });
     button.disabled = false;
     if (error) {
-      setAuthStatus(error.message, true);
+      const message = error.message === "Invalid login credentials"
+        ? "E-Mail-Adresse oder Passwort ist falsch."
+        : error.message;
+      setAuthStatus(message, true);
       return;
     }
-    setAuthStatus("Login-Link gesendet. Öffne die E-Mail auf diesem Gerät.");
+    setAuthStatus("Erfolgreich angemeldet.");
   }
 
   async function handleLogout() {
