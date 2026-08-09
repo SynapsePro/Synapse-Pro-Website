@@ -28,12 +28,16 @@
         <label for="login-email">E-Mail-Adresse</label>
         <div class="login-row">
           <input id="login-email" name="email" type="email" autocomplete="email" placeholder="name@beispiel.de" required>
-          <button class="button button-primary" type="submit">Login-Link senden</button>
         </div>
-        <p class="form-note">Du erhältst einen sicheren Magic Link. Nur freigeschaltete Admin-Konten können das Dashboard öffnen.</p>
+        <label class="login-password-label" for="login-password">Passwort</label>
+        <div class="login-row">
+          <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Dein Admin-Passwort" required>
+          <button class="button button-primary" type="submit">Anmelden</button>
+        </div>
+        <p class="form-note">Keine E-Mail erforderlich. Nur freigeschaltete Admin-Konten können das Dashboard öffnen.</p>
       </form>
       <div class="auth-status" id="auth-status" role="status" aria-live="polite"></div>
-      <a class="demo-link" href="?demo=1">Lokale Demo ansehen</a>
+      <a class="demo-link" href="?demo=1">Demo ansehen</a>
     </section>
   </main>
 
