@@ -135,6 +135,8 @@ a { color: inherit; }
   font-weight: 700;
 }
 
+.login-form .login-password-label { margin-top: 13px; }
+
 .login-row { display: flex; gap: 10px; }
 
 .login-row input,
